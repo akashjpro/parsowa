@@ -26,7 +26,13 @@ class _JobListScreenState extends State<JobListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarCustom(widget.title, () => {}, () => {}),
+      // tile: widget.title, true, true, () => {}, () => {}
+      appBar: AppBarCustom(
+          stringTitle: widget.title,
+          isLeadingHide: true,
+          isActionHide: true,
+          onBackPress: () => {},
+          onClosePress: () => {}),
       body: Center(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
