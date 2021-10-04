@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:parsowa/core/constants/colors.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -37,10 +38,11 @@ class BottomNavBar extends StatelessWidget {
                 _buildIconActive('assets/icons/icon_svg/Mypage_icon.svg')),
       ],
       currentIndex: 0,
-      selectedItemColor: const Color(0xFFF5AA56),
+      selectedItemColor: AppColors.primaryColor,
       showUnselectedLabels: true,
-      unselectedLabelStyle: const TextStyle(color: Color(0xFF2C2C2C)),
-      unselectedItemColor: const Color(0xFF2C2C2C),
+      unselectedLabelStyle:
+          const TextStyle(color: AppColors.unselectedLabelNavBottomColor),
+      unselectedItemColor: AppColors.unselectedItemNavBottomColor,
       selectedFontSize: 12.0,
       type: BottomNavigationBarType.fixed,
       onTap: (index) {},
@@ -65,7 +67,7 @@ class BottomNavBar extends StatelessWidget {
         assets,
         width: 20.0,
         height: 20.0,
-        color: const Color(0xFFF5AA56),
+        color: AppColors.primaryColor,
       ),
     );
   }
