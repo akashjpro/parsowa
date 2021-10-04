@@ -9,19 +9,34 @@ class BottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
-            icon: const Icon(Icons.search),
-            // SvgPicture.asset('assets/icons/icon_svg/Mypage_icon.svg'),
-            label: 'default'),
+            icon: _buildIcon('assets/icons/icon_svg/Search_icon_on.svg'),
+            label: '探す',
+            activeIcon:
+                _buildIconActive('assets/icons/icon_svg/Search_icon_on.svg')),
         BottomNavigationBarItem(
-            icon: const Icon(Icons.receipt_rounded), label: 'default'),
+            icon: _buildIcon('assets/icons/icon_svg/JobList_icon.svg'),
+            label: '申込中',
+            activeIcon:
+                _buildIconActive('assets/icons/icon_svg/JobList_icon.svg')),
         BottomNavigationBarItem(
-            icon: const Icon(Icons.menu_outlined), label: 'default'),
+            icon: _buildIcon('assets/icons/icon_svg/AttendList_icon.svg'),
+            label: '出勤/退勤',
+            activeIcon:
+                _buildIconActive('assets/icons/icon_svg/AttendList_icon.svg')),
         BottomNavigationBarItem(
-            icon: const Icon(Icons.receipt_rounded), label: 'default'),
+            icon:
+                // Icon(Icons.access_alarm),
+                _buildIcon('assets/icons/icon_svg/Job_Record_icon.svg'),
+            label: '記録',
+            activeIcon:
+                _buildIconActive('assets/icons/icon_svg/Job_Record_icon.svg')),
         BottomNavigationBarItem(
-            icon: const Icon(Icons.person), label: 'default'),
+            icon: _buildIcon('assets/icons/icon_svg/Mypage_icon.svg'),
+            label: 'マイページ',
+            activeIcon:
+                _buildIconActive('assets/icons/icon_svg/Mypage_icon.svg')),
       ],
-      currentIndex: 2,
+      currentIndex: 0,
       selectedItemColor: const Color(0xFFF5AA56),
       showUnselectedLabels: true,
       unselectedLabelStyle: const TextStyle(color: Color(0xFF2C2C2C)),
@@ -29,6 +44,29 @@ class BottomNavBar extends StatelessWidget {
       selectedFontSize: 12.0,
       type: BottomNavigationBarType.fixed,
       onTap: (index) {},
+    );
+  }
+
+  _buildIcon(String assets) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SvgPicture.asset(
+        assets,
+        width: 20.0,
+        height: 20.0,
+      ),
+    );
+  }
+
+  _buildIconActive(String assets) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SvgPicture.asset(
+        assets,
+        width: 20.0,
+        height: 20.0,
+        color: const Color(0xFFF5AA56),
+      ),
     );
   }
 }
