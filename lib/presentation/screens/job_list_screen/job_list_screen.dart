@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/strings.dart';
-import 'widgets/bottom_nav_bar_widget.dart';
+import '../../widgets/bottom_nav_bar_widget.dart';
 
 class JobListScreen extends StatelessWidget {
   const JobListScreen({Key? key, required this.title}) : super(key: key);
@@ -25,7 +25,7 @@ class JobListScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
