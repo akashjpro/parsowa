@@ -48,7 +48,7 @@ class AppBarCustom extends AppBar {
             style: const TextStyle(
               color: Colors.black,
               fontFamily: 'NotoSansJP-Bold.otf',
-              fontSize: 18,
+              fontSize: 22,
               fontWeight: FontWeight.bold
             ),
           ),
