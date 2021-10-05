@@ -52,7 +52,7 @@ class _hashtag_listState extends State<hashtag_list> {
           ),
           height: 38,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(19),
             color: selectIndex == index
                 ? const Color(0xffc2b5a5)
                 : Color(0xffFFFFFF),
