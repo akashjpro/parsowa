@@ -47,9 +47,9 @@ class AppBarCustom extends AppBar {
             stringTitle,
             style: const TextStyle(
               color: Colors.black,
-              fontFamily: 'NotoSansJP-Bold.otf',
+              fontFamily: 'NotoSanJP',
               fontSize: 22,
-              fontWeight: FontWeight.bold
+              fontWeight: FontWeight.w700
             ),
           ),
           centerTitle: true,
