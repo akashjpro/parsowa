@@ -50,6 +50,7 @@ class AppBarCustom extends AppBar {
                 fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
+          elevation: 1.0,
           backgroundColor: Colors.white,
           leading: isLeadingHide ? null : btnBackAppbar(onBackPress),
           actions: isActionHide ? [] : [btnCloseAppbar(onClosePress)],
