@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class bottom_of_appbar extends StatefulWidget {
-  const bottom_of_appbar({
+class BottomOfAppbar extends StatefulWidget {
+  const BottomOfAppbar({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<bottom_of_appbar> createState() => _bottom_of_appbarState();
+  State<BottomOfAppbar> createState() => _bottom_of_appbarState();
 }
 
-class _bottom_of_appbarState extends State<bottom_of_appbar> {
+class _bottom_of_appbarState extends State<BottomOfAppbar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 14),
       child: Row(
-        //mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
             flex: 5,
             child: Container(
               height: 36,
-              // width: 280,
-              alignment: Alignment.center,
+              alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Color(0xfff4f1f1),
@@ -32,10 +32,32 @@ class _bottom_of_appbarState extends State<bottom_of_appbar> {
                 alignment: Alignment.centerLeft,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 15, right: 8),
+                    margin: EdgeInsets.only(left: 15, right: 5),
                     child: iconSearch(),
                   ),
-                  textSearch()
+                  Container(
+                    height: 36,
+                    child: TextField(
+                      maxLines: 1,
+                      textAlignVertical: TextAlignVertical.center,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        contentPadding: EdgeInsets.only(left: 45),
+                        hintText: '曜日、時間などで探す',
+                        hintStyle: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xff7C7C7C),
+                          fontFamily: 'NotoSanJP',
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -61,6 +83,8 @@ class _bottom_of_appbarState extends State<bottom_of_appbar> {
 
   Widget textSearch() {
     return const TextField(
+      //textAlign: TextAlign.left,
+      textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         hintText: '曜日、時間などで探す',
         hintStyle: TextStyle(
@@ -69,15 +93,14 @@ class _bottom_of_appbarState extends State<bottom_of_appbar> {
           fontFamily: 'NotoSanJP',
           fontWeight: FontWeight.normal,
         ),
-        contentPadding: EdgeInsets.only(left: 50, bottom: 12),
         border: InputBorder.none,
+        contentPadding: EdgeInsets.zero,
       ),
     );
   }
 
   Widget buttonSearch() {
     return ElevatedButton(
-
       onPressed: () {},
       child: const Text(
         'クリア',

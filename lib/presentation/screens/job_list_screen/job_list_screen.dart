@@ -41,13 +41,13 @@ class _JobListScreenState extends State<JobListScreen> {
           Container(
             width: double.infinity,
             color: Color(0xffFFFFFF),
-            child: bottom_of_appbar(),
+            child: BottomOfAppbar(),
           ),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.only(bottom: 14),
             color: Color(0xffFFFFFF),
-            child: hashtag_list(category: category),
+            child: HashTagList(category: category),
           ),
           JobListBodyWidget(
             data: widget.data,

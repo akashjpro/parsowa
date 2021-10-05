@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class hashtag_list extends StatefulWidget {
-  const hashtag_list({Key? key, required this.category}) : super(key: key);
+class HashTagList extends StatefulWidget {
+  const HashTagList({Key? key, required this.category}) : super(key: key);
 
   final List<String> category;
 
   @override
-  State<hashtag_list> createState() => _hashtag_listState();
+  State<HashTagList> createState() => _hashtag_listState();
 }
 
-class _hashtag_listState extends State<hashtag_list> {
+class _hashtag_listState extends State<HashTagList> {
   int selectIndex = 0;
 
   @override
