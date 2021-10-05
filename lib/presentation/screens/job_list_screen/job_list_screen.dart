@@ -45,6 +45,7 @@ class _JobListScreenState extends State<JobListScreen> {
           ),
           Container(
             width: double.infinity,
+            padding: const EdgeInsets.only(bottom: 14),
             color: Color(0xffFFFFFF),
             child: hashtag_list(category: category),
           ),
