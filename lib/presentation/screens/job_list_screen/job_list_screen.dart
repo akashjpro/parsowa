@@ -39,7 +39,7 @@ class _JobListScreenState extends State<JobListScreen> {
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const bottom_of_appbar(),
+            bottom_of_appbar(),
             hashtag_list(category: category),
             JobListBodyWidget(
               data: widget.data,
