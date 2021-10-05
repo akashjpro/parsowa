@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -44,10 +46,11 @@ class AppBarCustom extends AppBar {
           title: Text(
             stringTitle,
             style: const TextStyle(
-                color: Colors.black,
-                fontFamily: 'NotoSansJP-Bold.otf',
-                fontSize: 22,
-                fontWeight: FontWeight.bold),
+              color: Colors.black,
+              fontFamily: 'NotoSansJP-Bold.otf',
+              fontSize: 18,
+              fontWeight: FontWeight.bold
+            ),
           ),
           centerTitle: true,
           elevation: 1.0,
