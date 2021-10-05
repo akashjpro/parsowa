@@ -7,10 +7,10 @@ class BottomOfAppbar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<BottomOfAppbar> createState() => _bottom_of_appbarState();
+  State<BottomOfAppbar> createState() => BottomOfAppbarState();
 }
 
-class _bottom_of_appbarState extends State<BottomOfAppbar> {
+class BottomOfAppbarState extends State<BottomOfAppbar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
