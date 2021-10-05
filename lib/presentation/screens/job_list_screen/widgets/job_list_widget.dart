@@ -19,79 +19,82 @@ class JobListBodyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Expanded(
-      child: ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {},
-          child: Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-            margin: const EdgeInsets.all(10.0),
-            decoration: const BoxDecoration(
-                color: AppColors.whiteColor,
-                borderRadius: BorderRadius.all(Radius.circular(5.0))),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  data[index].officeName,
-                  style: const TextStyle(
-                      fontFamily: 'NotoSanJP',
-                      fontSize: 16.0,
-                      color: AppColors.unselectedColor,
-                      fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(height: 17),
-                Text(
-                  data[index].title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontFamily: 'NotoSanJP',
-                      fontSize: 19.0,
-                      color: AppColors.unselectedColor,
-                      fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                _buildRow(context, 'assets/icons/icon_svg/Mypage_icon.svg',
-                    data[index].userInformation),
-                _buildRow(context, 'assets/icons/icon_svg/Workplace_icon.svg',
-                    data[index].workLocation),
-                _buildRow(
-                    context,
-                    'assets/icons/icon_svg/working_days_icon.svg',
-                    data[index].workingDay),
-                _buildRow(context, 'assets/icons/icon_svg/Working_hours.svg',
-                    data[index].workingHours),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: RichText(
-                    text: TextSpan(
-                        text: data[index].remuneration,
-                        style: const TextStyle(
-                          fontFamily: 'NotoSanJP',
-                          fontSize: 34.0,
-                          color: AppColors.unselectedColor,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        children: const [
-                          TextSpan(
-                              text: '円/日',
-                              style: TextStyle(
-                                fontFamily: 'NotoSanJP',
-                                fontSize: 20.0,
-                                color: AppColors.unselectedColor,
-                                fontWeight: FontWeight.w700,
-                              )),
-                        ]),
+      child: Container(
+        color: AppColors.jobListBodyColor,
+        child: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (context, index) => GestureDetector(
+            onTap: () {},
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+              margin: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+              decoration: const BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.all(Radius.circular(5.0))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    data[index].officeName,
+                    style: const TextStyle(
+                        fontFamily: 'NotoSanJP',
+                        fontSize: 16.0,
+                        color: AppColors.unselectedColor,
+                        fontWeight: FontWeight.w500),
                   ),
-                ),
-                Wrap(
-                  children: _buildTag(data[index]),
-                )
-              ],
+                  const SizedBox(height: 17),
+                  Text(
+                    data[index].title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontFamily: 'NotoSanJP',
+                        fontSize: 19.0,
+                        color: AppColors.unselectedColor,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  _buildRow(context, 'assets/icons/icon_svg/Mypage_icon.svg',
+                      data[index].userInformation),
+                  _buildRow(context, 'assets/icons/icon_svg/Workplace_icon.svg',
+                      data[index].workLocation),
+                  _buildRow(
+                      context,
+                      'assets/icons/icon_svg/working_days_icon.svg',
+                      data[index].workingDay),
+                  _buildRow(context, 'assets/icons/icon_svg/Working_hours.svg',
+                      data[index].workingHours),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: RichText(
+                      text: TextSpan(
+                          text: data[index].remuneration,
+                          style: const TextStyle(
+                            fontFamily: 'NotoSanJP',
+                            fontSize: 34.0,
+                            color: AppColors.unselectedColor,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          children: const [
+                            TextSpan(
+                                text: '円/日',
+                                style: TextStyle(
+                                  fontFamily: 'NotoSanJP',
+                                  fontSize: 20.0,
+                                  color: AppColors.unselectedColor,
+                                  fontWeight: FontWeight.w700,
+                                )),
+                          ]),
+                    ),
+                  ),
+                  Wrap(
+                    children: _buildTag(data[index]),
+                  )
+                ],
+              ),
             ),
           ),
         ),
