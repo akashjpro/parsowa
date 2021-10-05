@@ -20,8 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      home: const JobListScreen(title: 'Job List'),
+      home: JobListScreen(title: 'Job List'),
     );
   }
 }
-
