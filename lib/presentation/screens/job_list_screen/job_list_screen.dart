@@ -30,42 +30,42 @@ class _JobListScreenState extends State<JobListScreen> {
         title: Text(
           widget.title,
           style: const TextStyle(
-            color: Colors.black,
-            fontFamily: 'NotoSansJP-Bold.otf',
+            color: Color(0xff2c2c2c),
+            fontFamily: 'NotoSanJP',
             fontSize: 22,
+            fontWeight: FontWeight.bold,
           ),
         ),
+        elevation: 1,
         centerTitle: true,
         backgroundColor: Colors.white,
-        leading: btn_back_appbar(),
-        actions: [btn_close_appbar()],
+        leading: btnBackAppbar(),
+        actions: [btnCloseAppbar()],
       ),
-      body: Center(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            bottom_of_appbar(),
-            hashtag_list(category: category),
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          bottom_of_appbar(),
+          hashtag_list(category: category),
+        ],
       ),
     );
   }
 
-  Widget btn_close_appbar() {
+  Widget btnCloseAppbar() {
     return IconButton(
       onPressed: () {},
       icon: SvgPicture.asset(
         'assets/icons/icon_svg/close_btn.svg',
         fit: BoxFit.contain,
-        color: Colors.black,
+        color: Color(0xff2c2c2c),
         width: 22,
         height: 22,
       ),
     );
   }
 
-  Widget btn_back_appbar() {
+  Widget btnBackAppbar() {
     return IconButton(
       onPressed: () {
         print('back');
@@ -73,7 +73,7 @@ class _JobListScreenState extends State<JobListScreen> {
       icon: SvgPicture.asset(
         'assets/icons/icon_svg/back_btn.svg',
         fit: BoxFit.contain,
-        color: Colors.black,
+        color: Color(0xff2c2c2c),
         width: 22,
         height: 22,
       ),

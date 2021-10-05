@@ -1,42 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class bottom_of_appbar extends StatelessWidget {
+class bottom_of_appbar extends StatefulWidget {
   const bottom_of_appbar({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<bottom_of_appbar> createState() => _bottom_of_appbarState();
+}
+
+class _bottom_of_appbarState extends State<bottom_of_appbar> {
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          margin: const EdgeInsets.all(20),
-          height: 51,
-          width: MediaQuery.of(context).size.width * 0.7,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Color(0xffF2F3F2),
-          ),
-          child: Stack(
-            alignment: Alignment.centerLeft,
-            children: [
-              Container(
-                margin: EdgeInsets.only(left: 15, right: 8),
-                child: icon_search(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 14),
+      child: Row(
+        //mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Expanded(
+            flex: 5,
+            child: Container(
+              height: 36,
+              // width: 280,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Color(0xffe9e9e9),
               ),
-              text_search()
-            ],
+              child: Stack(
+                alignment: Alignment.centerLeft,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 15, right: 8),
+                    child: iconSearch(),
+                  ),
+                  textSearch()
+                ],
+              ),
+            ),
           ),
-        ),
-        Container(
-          child: button_search(),
-        )
-      ],
+          SizedBox(width: 17),
+          Container(
+            height: 22,
+            child: buttonSearch(),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget icon_search() {
+  Widget iconSearch() {
     return SvgPicture.asset(
       'assets/icons/icon_svg/Search_icon_on.svg',
       color: Color(0xffc2b5a5),
@@ -45,31 +59,41 @@ class bottom_of_appbar extends StatelessWidget {
     );
   }
 
-  Widget text_search() {
+  Widget textSearch() {
     return const TextField(
       decoration: InputDecoration(
         hintText: '曜日、時間などで探す',
-        hintStyle: TextStyle(fontSize: 18, color: Color(0xff7C7C7C)),
-        contentPadding: EdgeInsets.only(left: 50),
+        hintStyle: TextStyle(
+          fontSize: 18,
+          color: Color(0xff7C7C7C),
+          fontFamily: 'NotoSanJP',
+          fontWeight: FontWeight.normal,
+        ),
+        contentPadding: EdgeInsets.only(left: 50, bottom: 12),
         border: InputBorder.none,
       ),
     );
   }
 
-  Widget button_search() {
+  Widget buttonSearch() {
     return ElevatedButton(
       onPressed: () {},
-      child: Text('クリア',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 10,
-          )),
+      child: const Text(
+        'クリア',
+        style: TextStyle(
+          color: Color(0xff7C7C7C),
+          fontSize: 10,
+          fontFamily: 'NotoSanJP',
+        ),
+      ),
       style: ButtonStyle(
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-                side: BorderSide(color: Colors.black))),
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+            side: const BorderSide(color: Color(0xff929191)),
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all<Color>(Color(0xfff4f4f3)),
       ),
     );
   }
