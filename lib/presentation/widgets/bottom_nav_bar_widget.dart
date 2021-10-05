@@ -39,6 +39,7 @@ class BottomNavBar extends StatelessWidget {
       ],
       currentIndex: 0,
       selectedItemColor: AppColors.primaryColor,
+      backgroundColor: AppColors.whiteColor,
       showUnselectedLabels: true,
       unselectedLabelStyle:
           const TextStyle(color: AppColors.unselectedLabelNavBottomColor),

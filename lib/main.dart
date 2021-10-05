@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      home: JobListScreen(title: 'Job List'),
+      home: JobListScreen(title: '業務依頼一覧'),
     );
   }
 }
