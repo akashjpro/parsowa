@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/job_list_screen/data/job_list_data.dart';
 
 class JobListWidget extends StatelessWidget {
@@ -27,7 +28,7 @@ class JobListBodyWidget extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
             margin: const EdgeInsets.all(10.0),
             decoration: const BoxDecoration(
-                color: Color(0xffFFFFFF),
+                color: AppColors.whiteColor,
                 borderRadius: BorderRadius.all(Radius.circular(5.0))),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +38,7 @@ class JobListBodyWidget extends StatelessWidget {
                   style: const TextStyle(
                       fontFamily: 'NotoSanJP',
                       fontSize: 16.0,
-                      color: Color(0xff2c2c2c),
+                      color: AppColors.unselectedColor,
                       fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 17),
@@ -48,7 +49,7 @@ class JobListBodyWidget extends StatelessWidget {
                   style: const TextStyle(
                       fontFamily: 'NotoSanJP',
                       fontSize: 19.0,
-                      color: Color(0xff2c2c2c),
+                      color: AppColors.unselectedColor,
                       fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
@@ -72,7 +73,7 @@ class JobListBodyWidget extends StatelessWidget {
                         style: const TextStyle(
                           fontFamily: 'NotoSanJP',
                           fontSize: 34.0,
-                          color: Color(0xff2c2c2c),
+                          color: AppColors.unselectedColor,
                           fontWeight: FontWeight.w700,
                         ),
                         children: const [
@@ -81,7 +82,7 @@ class JobListBodyWidget extends StatelessWidget {
                               style: TextStyle(
                                 fontFamily: 'NotoSanJP',
                                 fontSize: 20.0,
-                                color: Color(0xff2c2c2c),
+                                color: AppColors.unselectedColor,
                                 fontWeight: FontWeight.w700,
                               )),
                         ]),
@@ -117,7 +118,7 @@ class JobListBodyWidget extends StatelessWidget {
             style: const TextStyle(
                 fontFamily: 'NotoSanJP',
                 fontSize: 16.0,
-                color: Color(0xff2c2c2c),
+                color: AppColors.unselectedColor,
                 fontWeight: FontWeight.w400),
           ),
         ],
