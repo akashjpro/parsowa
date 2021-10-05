@@ -55,7 +55,7 @@ class _hashtag_listState extends State<hashtag_list> {
             borderRadius: BorderRadius.circular(20),
             color: selectIndex == index
                 ? const Color(0xffc2b5a5)
-                : Color(0xffFFFFFF),
+                : Color(0xfff4f4f3),
             border: Border.all(
               color: const Color(0xffc2b5a5),
             ),

@@ -53,7 +53,7 @@ class _bottom_of_appbarState extends State<bottom_of_appbar> {
   Widget iconSearch() {
     return SvgPicture.asset(
       'assets/icons/icon_svg/Search_icon_on.svg',
-      color: Color(0xff929191),
+      color: Color(0xffc2b5a5),
       width: 18,
       height: 18,
     );
@@ -93,7 +93,7 @@ class _bottom_of_appbarState extends State<bottom_of_appbar> {
             side: const BorderSide(color: Color(0xff929191)),
           ),
         ),
-        backgroundColor: MaterialStateProperty.all<Color>(Color(0xffFFFFFF)),
+        backgroundColor: MaterialStateProperty.all<Color>(Color(0xfff4f4f3)),
       ),
     );
   }
