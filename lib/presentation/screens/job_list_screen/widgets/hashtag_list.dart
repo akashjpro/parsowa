@@ -14,59 +14,76 @@ class _hashtag_listState extends State<hashtag_list> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.05,
-          padding: EdgeInsets.only(left: 20),
-          child: List_Hashtag(selectIndex),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18),
+        child: Row(
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 38,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.category.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) => listItem(index, context),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
-  Widget List_Hashtag(int selectItem) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: widget.category.length,
-      itemBuilder: (context, index) => GestureDetector(
-        onTap: () {
-          setState(() {
-            selectIndex = index;
-          });
-        },
+  Widget listItem(int index, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectIndex = index;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 3),
+        child: Container(
+          constraints: const BoxConstraints(
+            minWidth: 100,
+          ),
+          height: 38,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: selectIndex == index
+                ? const Color(0xffc2b5a5)
+                : Color(0xfff4f4f3),
+            border: Border.all(
+              color: const Color(0xffc2b5a5),
+            ),
+          ),
+          child: textHashList(index),
+        ),
+      ),
+    );
+  }
+
+  Widget textHashList(int index) {
+    return Center(
+      child: FittedBox(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Container(
-            constraints: BoxConstraints(
-              minWidth: MediaQuery.of(context).size.height * 0.15,
-            ),
-            // width: MediaQuery.of(context).size.height * 0.1,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(22),
-              color: selectItem == index ? Color(0xffc2b5a5) : Colors.white,
-              border: Border.all(
-                color: Color(0xffc2b5a5),
-              ),
-            ),
-            child: Center(
-              child: FittedBox(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    widget.category[index],
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'NotoSansJP-Medium.otf',
-                    ),
-                  ),
-                ),
-                fit: BoxFit.cover,
-              ),
+          padding: const EdgeInsets.all(10.0),
+          child: Text(
+            widget.category[index],
+            style: TextStyle(
+              fontSize: 20,
+              fontFamily: 'NotoSanJP',
+              fontWeight: FontWeight.bold,
+              color: selectIndex == index
+                  ? const Color(0xfff4f4f3)
+                  : const Color(0xff2c2c2c),
             ),
           ),
         ),
+        fit: BoxFit.cover,
       ),
     );
   }

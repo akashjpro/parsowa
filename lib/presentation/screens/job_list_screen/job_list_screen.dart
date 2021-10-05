@@ -35,17 +35,23 @@ class _JobListScreenState extends State<JobListScreen> {
           isActionHide: true,
           onBackPress: () => {},
           onClosePress: () => {}),
-      body: Center(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            bottom_of_appbar(),
-            hashtag_list(category: category),
-            JobListBodyWidget(
-              data: widget.data,
-            ),
-          ],
-        ),
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            color: Color(0xffFFFFFF),
+            child: bottom_of_appbar(),
+          ),
+          Container(
+            width: double.infinity,
+            color: Color(0xffFFFFFF),
+            child: hashtag_list(category: category),
+          ),
+          JobListBodyWidget(
+            data: widget.data,
+          ),
+        ],
       ),
       bottomNavigationBar: const BottomNavBar(),
     );
