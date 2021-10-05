@@ -42,9 +42,10 @@ class BottomNavBar extends StatelessWidget {
       backgroundColor: AppColors.whiteColor,
       showUnselectedLabels: true,
       unselectedLabelStyle:
-          const TextStyle(color: AppColors.unselectedLabelNavBottomColor),
+          const TextStyle(color: AppColors.unselectedLabelNavBottomColor, fontFamily: "NotoSanJP", fontWeight:  FontWeight.w400),
       unselectedItemColor: AppColors.unselectedItemNavBottomColor,
       selectedFontSize: 12.0,
+      selectedLabelStyle: const TextStyle(color: AppColors.primaryColor, fontFamily: "NotoSanJP", fontWeight:  FontWeight.w400),
       type: BottomNavigationBarType.fixed,
       onTap: (index) {},
     );
