@@ -26,7 +26,7 @@ class _bottom_of_appbarState extends State<bottom_of_appbar> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Color(0xffe9e9e9),
+                color: Color(0xfff4f1f1),
               ),
               child: Stack(
                 alignment: Alignment.centerLeft,
