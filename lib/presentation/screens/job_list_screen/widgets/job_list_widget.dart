@@ -48,7 +48,7 @@ class JobListBodyWidget extends StatelessWidget {
                   style: const TextStyle(
                       fontFamily: 'NotoSanJP',
                       fontSize: 19.0,
-                      color: Color(0xff000000),
+                      color: Color(0xff2c2c2c),
                       fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
@@ -72,7 +72,7 @@ class JobListBodyWidget extends StatelessWidget {
                         style: const TextStyle(
                           fontFamily: 'NotoSanJP',
                           fontSize: 34.0,
-                          color: Color(0xff000000),
+                          color: Color(0xff2c2c2c),
                           fontWeight: FontWeight.w700,
                         ),
                         children: const [
@@ -81,7 +81,7 @@ class JobListBodyWidget extends StatelessWidget {
                               style: TextStyle(
                                 fontFamily: 'NotoSanJP',
                                 fontSize: 20.0,
-                                color: Color(0xff000000),
+                                color: Color(0xff2c2c2c),
                                 fontWeight: FontWeight.w700,
                               )),
                         ]),
