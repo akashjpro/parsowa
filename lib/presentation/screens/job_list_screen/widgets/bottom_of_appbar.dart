@@ -77,6 +77,7 @@ class _bottom_of_appbarState extends State<bottom_of_appbar> {
 
   Widget buttonSearch() {
     return ElevatedButton(
+
       onPressed: () {},
       child: const Text(
         'クリア',
@@ -87,6 +88,7 @@ class _bottom_of_appbarState extends State<bottom_of_appbar> {
         ),
       ),
       style: ButtonStyle(
+        elevation: MaterialStateProperty.all(0.0),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
