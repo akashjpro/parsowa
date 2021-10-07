@@ -115,7 +115,7 @@ class ConfirmJobDetailScreen extends StatelessWidget {
             child: Text(
               '申し込み後の流れ',
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 19.0,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -181,7 +181,7 @@ class ConfirmJobDetailScreen extends StatelessWidget {
           style: const TextStyle(
             fontSize: 19.0,
             fontFamily: 'NotoSanJP',
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ),
@@ -228,7 +228,7 @@ class ConfirmJobDetailScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'NotoSanJP',
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.w400,
               fontSize: 16.0,
             ),
           ),
@@ -237,7 +237,7 @@ class ConfirmJobDetailScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'NotoSanJP',
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.w400,
               fontSize: 16.0,
             ),
           ),
@@ -251,7 +251,7 @@ class ConfirmJobDetailScreen extends StatelessWidget {
       content,
       style: const TextStyle(
         fontFamily: 'NotoSanJP',
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w400,
         fontSize: 16.0,
       ),
     );
