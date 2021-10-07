@@ -43,8 +43,8 @@ class CompleteJobDetailScreen extends StatelessWidget {
             style: TextStyle(
               color: AppColors.blackColor,
               fontFamily: 'NotoSanJP',
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+              fontSize: 19,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
@@ -55,8 +55,8 @@ class CompleteJobDetailScreen extends StatelessWidget {
             style: TextStyle(
               color: AppColors.blackColor,
               fontFamily: 'NotoSanJP',
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ),
@@ -66,8 +66,8 @@ class CompleteJobDetailScreen extends StatelessWidget {
             style: TextStyle(
               color: AppColors.blackColor,
               fontFamily: 'NotoSanJP',
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ),
