@@ -55,7 +55,7 @@ class AppBarCustom extends AppBar {
           elevation: 1.0,
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          leading:  null ,
+          leading:  isLeadingHide ? null : btnBackAppbar(onBackPress) ,
           actions: isActionHide ? [] : [btnCloseAppbar(onClosePress)],
         );
 }
