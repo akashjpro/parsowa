@@ -23,7 +23,9 @@ class CompleteJobDetailScreen extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         color: AppColors.whiteColor,
-        child: completeBody(context),
+        child: SingleChildScrollView(
+          child: completeBody(context),
+        ),
       ),
     );
   }
