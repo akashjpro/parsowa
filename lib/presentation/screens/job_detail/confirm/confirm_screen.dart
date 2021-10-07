@@ -45,43 +45,46 @@ class ConfirmJobDetailScreen extends StatelessWidget {
   Widget _buildButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 45.0, horizontal: 92.0),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed(
-            CompleteJobDetailScreen.routeName,
-          );
-        },
-        child: const Text(
-          '申し込みする',
-          style: TextStyle(
-            fontFamily: 'NotoSanJP',
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-            if (states.contains(MaterialState.pressed)) {
-              return AppColors.whiteColor;
-            }
-            return AppColors.primaryColor;
-          }),
-          foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-            if (states.contains(MaterialState.pressed)) {
-              return AppColors.primaryColor;
-            }
-            return AppColors.whiteColor;
-          }),
-          shape: MaterialStateProperty.resolveWith<OutlinedBorder>((states) {
-            if (states.contains(MaterialState.pressed)) {
-              return RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(19.0),
-                  side: const BorderSide(color: AppColors.primaryColor));
-            }
-            return RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(19.0),
+      child: SizedBox(
+        height: 38.0,
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed(
+              CompleteJobDetailScreen.routeName,
             );
-          }),
+          },
+          child: const Text(
+            '申し込みする',
+            style: TextStyle(
+              fontFamily: 'NotoSanJP',
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+              if (states.contains(MaterialState.pressed)) {
+                return AppColors.whiteColor;
+              }
+              return AppColors.primaryColor;
+            }),
+            foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+              if (states.contains(MaterialState.pressed)) {
+                return AppColors.primaryColor;
+              }
+              return AppColors.whiteColor;
+            }),
+            shape: MaterialStateProperty.resolveWith<OutlinedBorder>((states) {
+              if (states.contains(MaterialState.pressed)) {
+                return RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(19.0),
+                    side: const BorderSide(color: AppColors.primaryColor));
+              }
+              return RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(19.0),
+              );
+            }),
+          ),
         ),
       ),
     );
