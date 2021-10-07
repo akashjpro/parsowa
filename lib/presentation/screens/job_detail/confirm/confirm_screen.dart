@@ -45,7 +45,8 @@ class ConfirmJobDetailScreen extends StatelessWidget {
   Widget _buildButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 45.0, horizontal: 92.0),
-      child: SizedBox(
+      child: ButtonTheme(
+        minWidth: 190.0,
         height: 38.0,
         child: ElevatedButton(
           onPressed: () {
@@ -55,6 +56,10 @@ class ConfirmJobDetailScreen extends StatelessWidget {
           },
           child: const Text(
             '申し込みする',
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            softWrap: false,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontFamily: 'NotoSanJP',
               fontSize: 16.0,
@@ -84,6 +89,8 @@ class ConfirmJobDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(19.0),
               );
             }),
+            minimumSize:
+                MaterialStateProperty.all<Size>(const Size(190.0, 38.0)),
           ),
         ),
       ),
