@@ -22,7 +22,9 @@ class ConfirmJobDetailScreen extends StatelessWidget {
         isLeadingHide: true,
         stringTitle: '申し込み',
         onBackPress: () {},
-        onClosePress: () {},
+        onClosePress: () {
+          Navigator.of(context).pop();
+        },
       ),
       body: SingleChildScrollView(
         child: SafeArea(

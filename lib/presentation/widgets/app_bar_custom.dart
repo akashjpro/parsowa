@@ -46,16 +46,16 @@ class AppBarCustom extends AppBar {
           title: Text(
             stringTitle,
             style: const TextStyle(
-              color: Colors.black,
-              fontFamily: 'NotoSanJP',
-              fontSize: 22,
-              fontWeight: FontWeight.w700
-            ),
+                color: Colors.black,
+                fontFamily: 'NotoSanJP',
+                fontSize: 22,
+                fontWeight: FontWeight.w700),
           ),
           centerTitle: true,
           elevation: 1.0,
           backgroundColor: Colors.white,
-          leading: isLeadingHide ? null : btnBackAppbar(onBackPress),
+          automaticallyImplyLeading: false,
+          leading:  null ,
           actions: isActionHide ? [] : [btnCloseAppbar(onClosePress)],
         );
 }

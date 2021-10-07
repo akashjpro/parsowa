@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      initialRoute: JobListScreen.routeName,
+      home: JobListScreen(
+        title: Strings.jobListTitle,
+      ),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
