@@ -26,7 +26,7 @@ class JobListBodyWidget extends StatelessWidget {
           itemCount: data.length,
           itemBuilder: (context, index) => GestureDetector(
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
+              Navigator.of(context).pushNamed(
                 ContentJobDetailScreen.routeName,
                 arguments: data[index],
               );
