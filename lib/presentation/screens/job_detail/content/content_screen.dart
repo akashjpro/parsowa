@@ -397,7 +397,7 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
             color: textColor,
           ),
         ),
-        height: 44,
+        height: 38,
         minWidth: 140,
         elevation: 0,
         color: bg,
