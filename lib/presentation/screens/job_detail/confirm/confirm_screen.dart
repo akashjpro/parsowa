@@ -115,9 +115,8 @@ class ConfirmJobDetailScreen extends StatelessWidget {
             child: Text(
               '申し込み後の流れ',
               style: TextStyle(
-                fontFamily: 'NotoSanJP',
-                fontWeight: FontWeight.bold,
-                fontSize: 19.0,
+                fontSize: 16.0,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),

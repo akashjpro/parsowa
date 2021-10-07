@@ -82,8 +82,8 @@ class CompleteJobDetailScreen extends StatelessWidget {
               style: TextStyle(
                 color: AppColors.whiteColor,
                 fontFamily: 'NotoSanJP',
-                fontSize: 18,
-                fontWeight: FontWeight.w300,
+                fontSize: 16.0,
+                fontWeight: FontWeight.w700,
               ),
             ),
             style: ElevatedButton.styleFrom(
