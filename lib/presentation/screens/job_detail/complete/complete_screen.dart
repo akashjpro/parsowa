@@ -85,7 +85,9 @@ class CompleteJobDetailScreen extends StatelessWidget {
               ),
             ),
             style: ElevatedButton.styleFrom(
-                shape: StadiumBorder(), primary: AppColors.primaryColor),
+                elevation: 0,
+                shape: StadiumBorder(),
+                primary: AppColors.primaryColor),
           ),
         )
       ],
