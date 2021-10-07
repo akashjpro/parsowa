@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
 import 'package:parsowa/presentation/screens/job_list_screen/data/job_list_data.dart';
 
 class JobListWidget extends StatelessWidget {
@@ -24,7 +25,12 @@ class JobListBodyWidget extends StatelessWidget {
         child: ListView.builder(
           itemCount: data.length,
           itemBuilder: (context, index) => GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                ContentJobDetailScreen.routeName,
+                arguments: data[index],
+              );
+            },
             child: Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),

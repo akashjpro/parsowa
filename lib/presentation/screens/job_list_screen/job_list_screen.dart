@@ -9,6 +9,9 @@ import 'widgets/bottom_of_appbar.dart';
 import 'widgets/hashtag_list.dart';
 
 class JobListScreen extends StatefulWidget {
+
+  static const String routeName = "/JobListScreen";
+
   JobListScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;

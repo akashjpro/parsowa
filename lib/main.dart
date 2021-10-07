@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parsowa/presentation/routers/router.dart';
 import 'package:parsowa/presentation/screens/home_screen/home_screen.dart';
 import 'package:parsowa/presentation/screens/job_list_screen/job_list_screen.dart';
 
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      // home: JobListScreen(title: '業務依頼一覧'),
-      home: CompleteJobDetail(),
+      initialRoute: JobListScreen.routeName,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

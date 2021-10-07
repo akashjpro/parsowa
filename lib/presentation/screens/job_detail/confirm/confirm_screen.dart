@@ -6,10 +6,13 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/job_detail/complete/complete_screen.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
-class ConfirmScreen extends StatelessWidget {
-  const ConfirmScreen({Key? key}) : super(key: key);
+class ConfirmJobDetailScreen extends StatelessWidget {
+  static const String routeName = "/ConfirmJobDetailScreen";
+
+  const ConfirmJobDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class ConfirmScreen extends StatelessWidget {
               children: <Widget>[
                 _buildHeader(),
                 _buildContent(),
-                _buildButton(),
+                _buildButton(context),
               ],
             ),
           ),
@@ -39,11 +42,15 @@ class ConfirmScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildButton() {
+  Widget _buildButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 45.0, horizontal: 92.0),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(
+            CompleteJobDetailScreen.routeName,
+          );
+        },
         child: const Text(
           '申し込みする',
           style: TextStyle(

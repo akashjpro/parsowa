@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
-class CompleteJobDetail extends StatelessWidget {
-  const CompleteJobDetail({Key? key}) : super(key: key);
+class CompleteJobDetailScreen extends StatelessWidget {
+  static const String routeName = "/CompleteJobDetailScreen";
+
+  const CompleteJobDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

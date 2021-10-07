@@ -4,19 +4,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/job_detail/confirm/confirm_screen.dart';
 import 'package:parsowa/presentation/screens/job_list_screen/data/job_list_data.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
-class JobDetailContent extends StatefulWidget {
+class ContentJobDetailScreen extends StatefulWidget {
+  static const String routeName = "/ContentJobDetailScreen";
+
   final JobData job;
   final String title;
-  const JobDetailContent({Key? key, required this.title, required this.job})
+
+  const ContentJobDetailScreen(
+      {Key? key, required this.title, required this.job})
       : super(key: key);
+
   @override
-  State<StatefulWidget> createState() => JobDetailContentState();
+  State<StatefulWidget> createState() => ContentJobDetailScreenState();
 }
 
-class JobDetailContentState extends State<JobDetailContent> {
+class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -357,7 +363,9 @@ class JobDetailContentState extends State<JobDetailContent> {
             Expanded(
               flex: 1,
               child: _buildButton('戻る', AppColors.whiteColor,
-                  AppColors.primaryColor, AppColors.primaryColor, () {}),
+                  AppColors.primaryColor, AppColors.primaryColor, () {
+                Navigator.of(context).pop(true);
+              }),
             ),
             const SizedBox(
               width: 20.0,
@@ -365,11 +373,16 @@ class JobDetailContentState extends State<JobDetailContent> {
             Expanded(
               flex: 1,
               child: _buildButton('申し込む', AppColors.primaryColor,
-                  AppColors.whiteColor, AppColors.whiteColor, () {}),
+                  AppColors.whiteColor, AppColors.whiteColor, () {
+                Navigator.of(context).pushNamed(
+                  ConfirmJobDetailScreen.routeName,
+                );
+              }),
             ),
           ],
         ),
       );
+
   Widget _buildButton(String title, Color bg, Color textColor,
           Color borderColor, Function onPress) =>
       MaterialButton(
@@ -392,6 +405,7 @@ class JobDetailContentState extends State<JobDetailContent> {
             borderRadius: BorderRadius.circular(19.0),
             side: BorderSide(color: borderColor)),
       );
+
   Widget _buildTitle(String title) => Container(
         height: 32.0,
         alignment: Alignment.centerLeft,
@@ -406,6 +420,7 @@ class JobDetailContentState extends State<JobDetailContent> {
               fontWeight: FontWeight.w700),
         ),
       );
+
   Widget _buildSubTitle(String subTitle) => Text(
         subTitle,
         style: const TextStyle(
@@ -414,6 +429,7 @@ class JobDetailContentState extends State<JobDetailContent> {
             color: AppColors.unselectedColor,
             fontWeight: FontWeight.w700),
       );
+
   Widget _buildText(String text) => Text(
         text,
         style: const TextStyle(
@@ -423,6 +439,7 @@ class JobDetailContentState extends State<JobDetailContent> {
             color: AppColors.unselectedColor,
             fontWeight: FontWeight.w400),
       );
+
   Widget _buildRowIconAndText(
           BuildContext context, String uriIcon, String content) =>
       Row(
@@ -450,6 +467,7 @@ class JobDetailContentState extends State<JobDetailContent> {
           ),
         ],
       );
+
   Widget _buildPersonInfor(BuildContext context, String uriIcon,
           String personName, String personInfo) =>
       Row(
@@ -494,6 +512,7 @@ class JobDetailContentState extends State<JobDetailContent> {
           ),
         ],
       );
+
   List<Widget> _buildTag(JobData job) {
     return job.tagList
         .map((tag) => Container(

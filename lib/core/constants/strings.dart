@@ -19,4 +19,13 @@ class Strings {
 
   // My page
   static const myPageScreenName = 'My page';
+
+  //========Title===============================================================
+
+  // Job list
+  static const jobListTitle = '業務依頼一覧';
+
+  // Content job detail
+  static const contentJobDetailTitle = '業務依頼詳細';
+
 }
