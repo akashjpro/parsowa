@@ -22,7 +22,9 @@ class ConfirmJobDetailScreen extends StatelessWidget {
         isLeadingHide: true,
         stringTitle: '申し込み',
         onBackPress: () {},
-        onClosePress: () {},
+        onClosePress: () {
+          Navigator.of(context).pop();
+        },
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -67,6 +69,7 @@ class ConfirmJobDetailScreen extends StatelessWidget {
             ),
           ),
           style: ButtonStyle(
+            elevation: MaterialStateProperty.all(0.0),
             backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
               if (states.contains(MaterialState.pressed)) {
                 return AppColors.whiteColor;

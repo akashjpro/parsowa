@@ -11,17 +11,21 @@ class CompleteJobDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarCustom(
-        stringTitle: '申し込み',
-        isLeadingHide: true,
         isActionHide: false,
-        onBackPress: onBackPress,
-        onClosePress: onClosePress,
+        isLeadingHide: true,
+        stringTitle: '申し込み',
+        onBackPress: () {},
+        onClosePress: () {
+          Navigator.of(context).pop();
+        },
       ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
         color: AppColors.whiteColor,
-        child: completeBody(context),
+        child: SingleChildScrollView(
+          child: completeBody(context),
+        ),
       ),
     );
   }
@@ -83,14 +87,12 @@ class CompleteJobDetailScreen extends StatelessWidget {
               ),
             ),
             style: ElevatedButton.styleFrom(
-                shape: StadiumBorder(), primary: AppColors.primaryColor),
+                elevation: 0,
+                shape: StadiumBorder(),
+                primary: AppColors.primaryColor),
           ),
         )
       ],
     );
   }
-
-  onClosePress() {}
-
-  onBackPress() {}
 }
