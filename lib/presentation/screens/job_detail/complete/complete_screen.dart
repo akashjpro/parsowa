@@ -24,7 +24,7 @@ class CompleteJobDetailScreen extends StatelessWidget {
         height: double.infinity,
         color: AppColors.whiteColor,
         child: SingleChildScrollView(
-          child: completeBody(context),
+          child: _completeBody(context),
         ),
       ),
     );
@@ -32,7 +32,7 @@ class CompleteJobDetailScreen extends StatelessWidget {
 
   //function
 
-  Widget completeBody(BuildContext context) {
+  Widget _completeBody(BuildContext context) {
     return Column(
       // mainAxisAlignment: MainAxisAlignment.center,
       children: [

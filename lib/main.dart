@@ -5,6 +5,9 @@ import 'package:parsowa/presentation/screens/job_list_screen/job_list_screen.dar
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
+
+import 'presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
+
 import 'presentation/screens/job_detail/complete/complete_screen.dart';
 
 void main() {
@@ -25,6 +28,7 @@ class MyApp extends StatelessWidget {
       home: JobListScreen(
         title: Strings.jobListTitle,
       ),
+      //home: ContentFixRequestDetail(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
