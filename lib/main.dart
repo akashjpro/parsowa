@@ -23,10 +23,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      home: ContentsFixRequestDetailScreen(),
-      // JobListScreen(
-      //   title: Strings.jobListTitle,
-      // ),
+      home: JobListScreen(
+        title: Strings.jobListTitle,
+      ),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

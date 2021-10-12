@@ -272,7 +272,7 @@ class _ContentsFixRequestDetailScreenState
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Container(
             height: 38.0,
             decoration: BoxDecoration(
@@ -336,7 +336,7 @@ class _ContentsFixRequestDetailScreenState
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Container(
             height: 38.0,
             decoration: BoxDecoration(
