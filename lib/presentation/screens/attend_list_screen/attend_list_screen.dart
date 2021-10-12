@@ -6,12 +6,16 @@ import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/attend_list_screen/data/attebd_list_data.dart';
 import 'package:parsowa/presentation/screens/attend_list_screen/widgets/attend_list_widget.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
+import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 import '../../../core/constants/strings.dart';
 
 class AttendListScreen extends StatefulWidget {
+  static const String routeName = "/AttendListScreen";
+
   const AttendListScreen({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -24,6 +28,7 @@ class AttendListScreenState extends State<AttendListScreen>
   late final date;
   final List<AttendList> data = AttendList.init_data();
   late TabController _tabController;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -36,25 +41,27 @@ class AttendListScreenState extends State<AttendListScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.jobListBodyColor,
-        appBar: AppBarCustom(
-            stringTitle: widget.title,
-            isLeadingHide: true,
-            isActionHide: true,
-            onBackPress: () => {},
-            onClosePress: () => {}),
-        body: Column(
-          children: <Widget>[
-            AttendListWidget.searchSection(date),
-            Container(
-              color: AppColors.whiteColor,
-              height: 10,
-            ),
-            _buildTabbar(context),
-            const SizedBox(height: 10),
-            Expanded(child: _buildTabView(context))
-          ],
-        ));
+      backgroundColor: AppColors.jobListBodyColor,
+      appBar: AppBarCustom(
+          stringTitle: widget.title,
+          isLeadingHide: true,
+          isActionHide: true,
+          onBackPress: () => {},
+          onClosePress: () => {}),
+      body: Column(
+        children: <Widget>[
+          AttendListWidget.searchSection(date),
+          Container(
+            color: AppColors.whiteColor,
+            height: 10,
+          ),
+          _buildTabbar(context),
+          const SizedBox(height: 10),
+          Expanded(child: _buildTabView(context))
+        ],
+      ),
+      bottomNavigationBar: BottomNavBar(currentIndex: 2),
+    );
   }
 
   _buildAttendList(BuildContext context) {
@@ -85,6 +92,7 @@ class AttendListScreenState extends State<AttendListScreen>
           ),
         ],
       );
+
   _buildTabbar(BuildContext context) => Container(
         height: 50,
         decoration: BoxDecoration(
@@ -121,6 +129,7 @@ class AttendListScreenState extends State<AttendListScreen>
           ],
         ),
       );
+
   static _getCurrentDate() {
     var now = DateTime.now();
     return now;

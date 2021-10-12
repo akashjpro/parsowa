@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
-import 'package:parsowa/presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
+import 'package:parsowa/presentation/screens/attend_list_screen/attend_list_screen.dart';
+import 'package:parsowa/presentation/screens/job_list_screen/job_list_screen.dart';
+import 'package:parsowa/presentation/screens/job_record_screen/job_record_screen.dart';
+import 'package:parsowa/presentation/screens/my_page_screen/my_page_screen.dart';
+import 'package:parsowa/presentation/screens/search_screen/search_screen.dart';
 
-class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+class BottomNavBar extends StatefulWidget {
+  var currentIndex = 0;
 
+  BottomNavBar({Key? key, int? currentIndex}) : super(key: key) {
+    this.currentIndex = currentIndex ?? 0;
+  }
+
+  @override
+  BottomNavBarState createState() => BottomNavBarState();
+}
+
+class BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -38,7 +51,7 @@ class BottomNavBar extends StatelessWidget {
             activeIcon:
                 _buildIconActive('assets/icons/icon_svg/Mypage_icon.svg')),
       ],
-      currentIndex: 0,
+      currentIndex: widget.currentIndex,
       selectedItemColor: AppColors.primaryColor,
       backgroundColor: AppColors.whiteColor,
       showUnselectedLabels: true,
@@ -53,7 +66,25 @@ class BottomNavBar extends StatelessWidget {
           fontFamily: "NotoSanJP",
           fontWeight: FontWeight.w400),
       type: BottomNavigationBarType.fixed,
-      onTap: (index) {},
+      onTap: (index) {
+        switch (index) {
+          case 0:
+            Navigator.of(context).pushReplacementNamed(SearchScreen.routeName);
+            break;
+          case 1:
+            Navigator.of(context).pushReplacementNamed(JobListScreen.routeName);
+            break;
+          case 2:
+            Navigator.of(context).pushReplacementNamed(AttendListScreen.routeName);
+            break;
+          case 3:
+            Navigator.of(context).pushReplacementNamed(JobRecordScreen.routeName);
+            break;
+          case 4:
+            Navigator.of(context).pushReplacementNamed(MyPageScreen.routeName);
+            break;
+        }
+      },
     );
   }
 

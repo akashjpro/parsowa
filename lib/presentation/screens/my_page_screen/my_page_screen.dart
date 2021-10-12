@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 import '../../../core/constants/strings.dart';
 
 class MyPageScreen extends StatelessWidget {
+  static const String routeName = "/MyPageScreen";
+
   const MyPageScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
@@ -24,6 +27,7 @@ class MyPageScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavBar(currentIndex: 4),
     );
   }
 }

@@ -66,7 +66,7 @@ class _ContentsFixRequestDetailScreenState
             ],
           ),
         ),
-        bottomNavigationBar: const BottomNavBar(),
+        bottomNavigationBar: BottomNavBar(),
       ),
     );
   }

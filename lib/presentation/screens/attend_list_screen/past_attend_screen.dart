@@ -5,8 +5,10 @@ import 'package:parsowa/presentation/screens/attend_list_screen/data/attebd_list
 import 'package:parsowa/presentation/screens/attend_list_screen/widgets/attend_list_widget.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
-class PreviousAttendScreen extends StatefulWidget {
-  const PreviousAttendScreen({Key? key, required this.title}) : super(key: key);
+class PastAttendScreen extends StatefulWidget {
+  static const String routeName = "/PastAttendScreen";
+
+  const PastAttendScreen({Key? key, required this.title}) : super(key: key);
   final String title;
   @override
   State<StatefulWidget> createState() {
@@ -15,7 +17,7 @@ class PreviousAttendScreen extends StatefulWidget {
   }
 }
 
-class PreviousAttendState extends State<PreviousAttendScreen> {
+class PreviousAttendState extends State<PastAttendScreen> {
   List<AttendList> data = AttendList.init_data();
   late DateTime date;
   @override

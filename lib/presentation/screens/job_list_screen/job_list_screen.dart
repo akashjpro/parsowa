@@ -56,7 +56,7 @@ class _JobListScreenState extends State<JobListScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(currentIndex: 1),
     );
   }
 }

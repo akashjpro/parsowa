@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/paths.dart';
 import 'package:parsowa/core/constants/strings.dart';
 import 'package:parsowa/presentation/screens/attend_list_screen/attend_list_screen.dart';
+import 'package:parsowa/presentation/screens/attend_list_screen/past_attend_screen.dart';
+import 'package:parsowa/presentation/screens/attend_list_screen/record_screen.dart';
 import 'package:parsowa/presentation/screens/home_screen/home_screen.dart';
 import 'package:parsowa/presentation/screens/job_detail/complete/complete_screen.dart';
 import 'package:parsowa/presentation/screens/job_detail/confirm/confirm_screen.dart';
@@ -72,6 +74,30 @@ class RouteGenerator {
       case CompleteJobDetailScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => const CompleteJobDetailScreen(),
+        );
+      case SearchScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const SearchScreen(title: Strings.searchScreenName),
+        );
+      case AttendListScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const AttendListScreen(title: Strings.attendListTitle),
+        );
+      case RecordScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const RecordScreen(title: Strings.recordTitle),
+        );
+      case PastAttendScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const PastAttendScreen(title: Strings.recordTitle),
+        );
+      case JobRecordScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const JobRecordScreen(title: Strings.jobRecordScreenName),
+        );
+      case MyPageScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const MyPageScreen(title: Strings.myPageScreenName),
         );
 
       default:

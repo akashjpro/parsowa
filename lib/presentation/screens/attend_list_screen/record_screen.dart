@@ -6,6 +6,8 @@ import 'package:parsowa/presentation/screens/attend_list_screen/widgets/attend_l
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
 class RecordScreen extends StatefulWidget {
+  static const String routeName = "/RecordScreen";
+
   const RecordScreen({Key? key, required this.title}) : super(key: key);
   final String title;
   @override

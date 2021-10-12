@@ -28,4 +28,13 @@ class Strings {
   // Content job detail
   static const contentJobDetailTitle = '業務依頼詳細';
 
+  // attend list
+  static const attendListTitle = '出退勤一覧';
+
+  // Record
+  static const recordTitle = '記録';
+
+  // Past Attend
+  static const pastAttendTitle = '過去の出退勤';
+
 }
