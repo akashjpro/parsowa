@@ -30,9 +30,9 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
     return Scaffold(
       appBar: AppBarCustom(
           stringTitle: widget.title,
-          isLeadingHide: true,
+          isLeadingHide: false,
           isActionHide: true,
-          onBackPress: () => {},
+          onBackPress: () => {Navigator.of(context).pop()},
           onClosePress: () => {}),
       body: SingleChildScrollView(
         child: Container(
