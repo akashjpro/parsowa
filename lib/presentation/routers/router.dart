@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/paths.dart';
 import 'package:parsowa/core/constants/strings.dart';
 import 'package:parsowa/presentation/screens/attend_list_screen/attend_list_screen.dart';
-import 'package:parsowa/presentation/screens/attend_list_screen/past_attend_screen.dart';
+import 'package:parsowa/presentation/screens/attend_list_screen/previous_attend_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list_screen/record_screen.dart';
 import 'package:parsowa/presentation/screens/home_screen/home_screen.dart';
 import 'package:parsowa/presentation/screens/job_detail/complete/complete_screen.dart';
@@ -87,9 +87,9 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const RecordScreen(title: Strings.recordTitle),
         );
-      case PastAttendScreen.routeName:
+      case PreviousAttendScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => const PastAttendScreen(title: Strings.recordTitle),
+          builder: (_) => const PreviousAttendScreen(title: Strings.recordTitle),
         );
       case JobRecordScreen.routeName:
         return MaterialPageRoute(

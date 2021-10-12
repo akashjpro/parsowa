@@ -34,7 +34,7 @@ class Strings {
   // Record
   static const recordTitle = '記録';
 
-  // Past Attend
-  static const pastAttendTitle = '過去の出退勤';
+  // Previous Attend
+  static const previousAttendTitle = '過去の出退勤';
 
 }
