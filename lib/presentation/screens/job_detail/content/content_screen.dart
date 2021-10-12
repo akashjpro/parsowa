@@ -30,9 +30,9 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
     return Scaffold(
       appBar: AppBarCustom(
           stringTitle: widget.title,
-          isLeadingHide: true,
+          isLeadingHide: false,
           isActionHide: true,
-          onBackPress: () => {},
+          onBackPress: () => {Navigator.of(context).pop()},
           onClosePress: () => {}),
       body: SingleChildScrollView(
         child: Container(
@@ -217,7 +217,7 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
             width: 15.0,
           ),
           Text(
-            '時給：X${widget.job.hourlyPrice}円',
+            '時給：${widget.job.hourlyPrice}円',
             style: const TextStyle(
                 fontFamily: 'NotoSanJP',
                 fontSize: 16.0,

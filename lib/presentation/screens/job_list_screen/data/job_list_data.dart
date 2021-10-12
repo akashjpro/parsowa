@@ -74,7 +74,7 @@ class JobData {
           providerAddress: '東京都目黒区○○2-5-5○○ビル',
           providerHowToAcsess: ['目黒駅から徒歩20分', '中目黒駅から徒歩10分']),
       JobData(
-          title: '短時間の作業でも大丈夫です！\n初心者大歓迎！起床の介助と食事の…',
+          title: '''短時間の作業でも大丈夫です！\n初心者大歓迎！起床の介助と食事の介助をお願いします。''',
           userInformation: '男性/70代',
           nameOfUser: '田中太郎さん',
           workLocation: '東京都港区高輪',
@@ -98,7 +98,7 @@ class JobData {
           providerAddress: '東京都目黒区○○2-5-5○○ビル',
           providerHowToAcsess: ['目黒駅から徒歩20分', '中目黒駅から徒歩10分']),
       JobData(
-          title: '短時間の作業でも大丈夫です！\n初心者大歓迎！起床の介助と食事の…',
+          title: '''短時間の作業でも大丈夫です！\n初心者大歓迎！起床の介助と食事の介助をお願いします。''',
           userInformation: '男性/70代',
           nameOfUser: '田中太郎さん',
           workLocation: '東京都港区高輪',

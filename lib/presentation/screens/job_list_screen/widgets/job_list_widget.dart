@@ -34,7 +34,10 @@ class JobListBodyWidget extends StatelessWidget {
             child: Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-              margin: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+              margin: index == 0
+                  ? const EdgeInsets.all(10)
+                  : const EdgeInsets.only(
+                      left: 10.0, right: 10.0, bottom: 10.0),
               decoration: const BoxDecoration(
                   color: AppColors.whiteColor,
                   borderRadius: BorderRadius.all(Radius.circular(5.0))),
@@ -52,8 +55,6 @@ class JobListBodyWidget extends StatelessWidget {
                   const SizedBox(height: 17),
                   Text(
                     data[index].title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                         fontFamily: 'NotoSanJP',
                         fontSize: 19.0,
