@@ -55,8 +55,6 @@ class JobListBodyWidget extends StatelessWidget {
                   const SizedBox(height: 17),
                   Text(
                     data[index].title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                         fontFamily: 'NotoSanJP',
                         fontSize: 19.0,

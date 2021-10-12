@@ -85,6 +85,7 @@ class BottomOfAppbarState extends State<BottomOfAppbar> {
     return const TextField(
       //textAlign: TextAlign.left,
       textAlignVertical: TextAlignVertical.center,
+      autofocus: false,
       decoration: InputDecoration(
         hintText: '曜日、時間などで探す',
         hintStyle: TextStyle(
