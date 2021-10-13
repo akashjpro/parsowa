@@ -240,7 +240,7 @@ class AttendListWidget {
               width: 7,
             ),
             SizedBox(
-              width: 105,
+              width: 111,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
