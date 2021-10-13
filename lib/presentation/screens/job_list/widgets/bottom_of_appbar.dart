@@ -48,7 +48,7 @@ class BottomOfAppbarState extends State<BottomOfAppbar> {
                           ),
                         ),
                         contentPadding: EdgeInsets.only(left: 45),
-                        hintText: '曜日、時間などで探す',
+                        hintText: 'キーワードを入力',
                         hintStyle: TextStyle(
                           fontSize: 18,
                           color: Color(0xff7C7C7C),
@@ -87,7 +87,7 @@ class BottomOfAppbarState extends State<BottomOfAppbar> {
       textAlignVertical: TextAlignVertical.center,
       autofocus: false,
       decoration: InputDecoration(
-        hintText: '曜日、時間などで探す',
+        hintText: 'キーワードを入力',
         hintStyle: TextStyle(
           fontSize: 18,
           color: Color(0xff7C7C7C),
