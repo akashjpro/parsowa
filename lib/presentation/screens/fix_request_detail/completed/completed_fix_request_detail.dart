@@ -41,7 +41,7 @@ class CompleteFixRequestDetailScreen extends StatelessWidget {
         SizedBox(height: MediaQuery.of(context).size.height * 0.2),
         const Center(
           child: Text(
-            '申し込みが完了しました',
+            '修正依頼が完了いたしました',
             style: TextStyle(
               color: AppColors.blackColor,
               fontFamily: 'NotoSanJP',
@@ -51,8 +51,8 @@ class CompleteFixRequestDetailScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 45),
-        _textComplete('申し込みありがとうございました'),
-        _textComplete('事業者からの連絡をお待ちください'),
+        _textComplete('事業所の承認があるまで'),
+        _textComplete('しばらくお待ちください'),
         SizedBox(height: 50),
         SizedBox(
           width: 139,

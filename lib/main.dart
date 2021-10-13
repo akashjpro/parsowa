@@ -5,6 +5,7 @@ import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
+
 import 'presentation/screens/job_detail/complete/complete_screen.dart';
 
 void main() {
