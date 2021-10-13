@@ -111,7 +111,7 @@ class AttendListWidget {
                           );
                         }),
                       if (typeScreen == 3)
-                        _buildButton('記録を書', AppColors.primaryColor,
+                        _buildButton('記録を書く', AppColors.primaryColor,
                             AppColors.whiteColor, AppColors.whiteColor, () {
                           // #36 Fix Request detail
                           Navigator.of(context).pushNamed(
