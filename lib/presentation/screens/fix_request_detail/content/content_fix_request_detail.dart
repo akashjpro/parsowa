@@ -14,6 +14,8 @@ import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 class ContentsFixRequestDetailScreen extends StatefulWidget {
+  static const String routeName = "/ContentsFixRequestDetailScreen";
+
   const ContentsFixRequestDetailScreen({Key? key}) : super(key: key);
 
   @override

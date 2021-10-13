@@ -5,8 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/attend_list/data/attebd_list_data.dart';
+import 'package:parsowa/presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
 import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
+import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
 
 class AttendListWidget {
   static searchSection(DateTime date) => Container(
@@ -104,12 +106,17 @@ class AttendListWidget {
                         _buildButton('QRコード読込', AppColors.primaryColor,
                             AppColors.whiteColor, AppColors.whiteColor, () {
                           // #35 QR code screen
-                          // TODO: implement Navigate to QR code screen
+                          Navigator.of(context).pushNamed(
+                            QRCodeReadScreen.routeName,
+                          );
                         }),
                       if (typeScreen == 3)
                         _buildButton('記録を書', AppColors.primaryColor,
                             AppColors.whiteColor, AppColors.whiteColor, () {
                           // #36 Fix Request detail
+                          Navigator.of(context).pushNamed(
+                            ContentsFixRequestDetailScreen.routeName,
+                          );
                         })
                     ],
                   )

@@ -37,4 +37,7 @@ class Strings {
   // Previous Attend
   static const previousAttendTitle = '過去の出退勤';
 
+  // QR code read
+  static const qrCodeReadTitle = 'QR Code Read';
+
 }

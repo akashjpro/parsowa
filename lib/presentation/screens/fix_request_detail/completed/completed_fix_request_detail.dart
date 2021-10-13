@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
-class CompleteFixRequestDetail extends StatelessWidget {
+class CompleteFixRequestDetailScreen extends StatelessWidget {
   static const String routeName = "/CompleteFixRequestDetailScreen";
 
-  const CompleteFixRequestDetail({Key? key}) : super(key: key);
+  const CompleteFixRequestDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

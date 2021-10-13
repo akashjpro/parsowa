@@ -5,6 +5,8 @@ import 'package:parsowa/core/constants/strings.dart';
 import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/record_screen.dart';
+import 'package:parsowa/presentation/screens/fix_request_detail/completed/completed_fix_request_detail.dart';
+import 'package:parsowa/presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
 import 'package:parsowa/presentation/screens/home/home_screen.dart';
 import 'package:parsowa/presentation/screens/job_detail/complete/complete_screen.dart';
 import 'package:parsowa/presentation/screens/job_detail/confirm/confirm_screen.dart';
@@ -13,6 +15,7 @@ import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
 import 'package:parsowa/presentation/screens/job_record/job_record_screen.dart';
 import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
+import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
 import 'package:parsowa/presentation/screens/search/search_screen.dart';
 
 // @MaterialAutoRouter(replaceInRouteName: "Page,Route", routes: [
@@ -97,6 +100,18 @@ class RouteGenerator {
       case MyPageScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => const MyPageScreen(title: Strings.myPageScreenName),
+        );
+      case QRCodeReadScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const QRCodeReadScreen(title: Strings.qrCodeReadTitle),
+        );
+      case ContentsFixRequestDetailScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const ContentsFixRequestDetailScreen(),
+        );
+      case CompleteFixRequestDetailScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const CompleteFixRequestDetailScreen(),
         );
 
       default:
