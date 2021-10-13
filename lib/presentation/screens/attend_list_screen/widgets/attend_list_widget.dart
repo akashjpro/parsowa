@@ -90,13 +90,12 @@ class AttendListWidget {
                     children: [
                       _buildButton('業務詳細', AppColors.primaryColor,
                           AppColors.whiteColor, AppColors.whiteColor, () {}),
-                      if (typeScreen == 1 || typeScreen == 3)
-                        _buildButton(
-                            typeScreen == 3 ? '記録を書く' : 'QRコード読込',
-                            AppColors.primaryColor,
-                            AppColors.whiteColor,
-                            AppColors.whiteColor,
-                            () {})
+                      if (typeScreen == 1)
+                        _buildButton('QRコード読込', AppColors.primaryColor,
+                            AppColors.whiteColor, AppColors.whiteColor, () {}),
+                      if (typeScreen == 3)
+                        _buildButton('記録を書', AppColors.primaryColor,
+                            AppColors.whiteColor, AppColors.whiteColor, () {})
                     ],
                   )
               ],
