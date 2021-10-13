@@ -1,20 +1,19 @@
-import 'package:auto_route/annotations.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:parsowa/core/constants/paths.dart';
 import 'package:parsowa/core/constants/strings.dart';
-import 'package:parsowa/presentation/screens/attend_list_screen/attend_list_screen.dart';
-import 'package:parsowa/presentation/screens/attend_list_screen/previous_attend_screen.dart';
-import 'package:parsowa/presentation/screens/attend_list_screen/record_screen.dart';
-import 'package:parsowa/presentation/screens/home_screen/home_screen.dart';
+import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
+import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.dart';
+import 'package:parsowa/presentation/screens/attend_list/record_screen.dart';
+import 'package:parsowa/presentation/screens/home/home_screen.dart';
 import 'package:parsowa/presentation/screens/job_detail/complete/complete_screen.dart';
 import 'package:parsowa/presentation/screens/job_detail/confirm/confirm_screen.dart';
 import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
-import 'package:parsowa/presentation/screens/job_list_screen/data/job_list_data.dart';
-import 'package:parsowa/presentation/screens/job_list_screen/job_list_screen.dart';
-import 'package:parsowa/presentation/screens/job_record_screen/job_record_screen.dart';
-import 'package:parsowa/presentation/screens/my_page_screen/my_page_screen.dart';
-import 'package:parsowa/presentation/screens/search_screen/search_screen.dart';
+import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
+import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
+import 'package:parsowa/presentation/screens/job_record/job_record_screen.dart';
+import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
+import 'package:parsowa/presentation/screens/search/search_screen.dart';
 
 // @MaterialAutoRouter(replaceInRouteName: "Page,Route", routes: [
 //   AutoRoute(path: Paths.homePath, page: HomeScreen, children: [

@@ -1,14 +1,12 @@
-import 'package:dotted_line/dotted_line.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
+
 import 'package:parsowa/core/constants/colors.dart';
-import 'package:parsowa/presentation/screens/attend_list_screen/data/attebd_list_data.dart';
-import 'package:parsowa/presentation/screens/attend_list_screen/widgets/attend_list_widget.dart';
+import 'package:parsowa/presentation/screens/attend_list/widgets/attend_list_widget.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
-import '../../../core/constants/strings.dart';
+import 'data/attebd_list_data.dart';
 
 class AttendListScreen extends StatefulWidget {
   static const String routeName = "/AttendListScreen";

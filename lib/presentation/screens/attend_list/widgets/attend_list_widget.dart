@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:parsowa/core/constants/colors.dart';
-import 'package:parsowa/presentation/screens/attend_list_screen/data/attebd_list_data.dart';
+import 'package:parsowa/presentation/screens/attend_list/data/attebd_list_data.dart';
+import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
+import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 
 class AttendListWidget {
   static searchSection(DateTime date) => Container(
@@ -89,13 +91,26 @@ class AttendListWidget {
                   Column(
                     children: [
                       _buildButton('業務詳細', AppColors.primaryColor,
-                          AppColors.whiteColor, AppColors.whiteColor, () {}),
+                          AppColors.whiteColor, AppColors.whiteColor, () {
+                        // #33 Job detail screen
+                        // TODO: implement JobData
+                        final data = JobData.initData();
+                        Navigator.of(context).pushNamed(
+                          ContentJobDetailScreen.routeName,
+                          arguments: data,
+                        );
+                      }),
                       if (typeScreen == 1)
                         _buildButton('QRコード読込', AppColors.primaryColor,
-                            AppColors.whiteColor, AppColors.whiteColor, () {}),
+                            AppColors.whiteColor, AppColors.whiteColor, () {
+                          // #35 QR code screen
+                          // TODO: implement Navigate to QR code screen
+                        }),
                       if (typeScreen == 3)
                         _buildButton('記録を書', AppColors.primaryColor,
-                            AppColors.whiteColor, AppColors.whiteColor, () {})
+                            AppColors.whiteColor, AppColors.whiteColor, () {
+                          // #36 Fix Request detail
+                        })
                     ],
                   )
               ],
@@ -188,6 +203,7 @@ class AttendListWidget {
           ],
         ),
       );
+
   static _buildTimeRow(String type, String startTime, String endTime) =>
       IntrinsicHeight(
         child: Row(
@@ -280,6 +296,7 @@ class AttendListWidget {
           ],
         ),
       );
+
   static _buildIconButton(String svgIcon, Function onTap) => InkWell(
       onTap: () => onTap(),
       child: SvgPicture.asset(
@@ -333,6 +350,7 @@ class AttendListWidget {
             borderRadius: BorderRadius.circular(19.0),
             side: BorderSide(color: borderColor)),
       );
+
   static Widget _buildRowIconAndText(
           BuildContext context, String uriIcon, String content) =>
       Row(

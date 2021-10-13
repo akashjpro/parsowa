@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
-import 'package:parsowa/presentation/screens/job_list_screen/data/job_list_data.dart';
+import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 
 class JobListWidget extends StatelessWidget {
   const JobListWidget({Key? key}) : super(key: key);

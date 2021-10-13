@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parsowa/presentation/routers/router.dart';
 import 'package:parsowa/presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
-import 'package:parsowa/presentation/screens/home_screen/home_screen.dart';
-import 'package:parsowa/presentation/screens/job_list_screen/job_list_screen.dart';
+import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';

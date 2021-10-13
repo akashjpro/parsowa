@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
-import 'package:parsowa/presentation/screens/attend_list_screen/attend_list_screen.dart';
-import 'package:parsowa/presentation/screens/job_list_screen/job_list_screen.dart';
-import 'package:parsowa/presentation/screens/job_record_screen/job_record_screen.dart';
-import 'package:parsowa/presentation/screens/my_page_screen/my_page_screen.dart';
-import 'package:parsowa/presentation/screens/search_screen/search_screen.dart';
+import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
+import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
+import 'package:parsowa/presentation/screens/job_record/job_record_screen.dart';
+import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
+import 'package:parsowa/presentation/screens/search/search_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   var currentIndex = 0;
