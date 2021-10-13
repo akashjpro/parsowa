@@ -16,4 +16,5 @@ class AppColors {
   static const borderColor = Color(0xFFB2AEAA);
   static const verticalSeperator = Color(0xFFF2F2F2);
   static const errorColor = Color(0xFFFF0000);
+  static const lineStandardColor = Color(0xFFC9C9C9);
 }
