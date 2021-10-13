@@ -200,7 +200,12 @@ class AttendListWidget {
                     '予定', item.scheduledStartTime, item.scheduledLeaveTime),
                 if (typeScreen == 1)
                   _buildButton('修正はこちら', AppColors.primaryColor,
-                      AppColors.whiteColor, AppColors.whiteColor, () {})
+                      AppColors.whiteColor, AppColors.whiteColor, () {
+                    // #36 Fix Request detail
+                    Navigator.of(context).pushNamed(
+                      ContentsFixRequestDetailScreen.routeName,
+                    );
+                  })
               ],
             ),
             const SizedBox(

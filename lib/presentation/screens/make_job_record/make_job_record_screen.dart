@@ -3,10 +3,10 @@ import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 import '../../../core/constants/strings.dart';
 
-class JobRecordScreen extends StatelessWidget {
-  static const String routeName = "/JobRecordScreen";
+class MakeJobRecordScreen extends StatelessWidget {
+  static const String routeName = "/MakeJobRecordScreen";
 
-  const JobRecordScreen({Key? key, required this.title}) : super(key: key);
+  const MakeJobRecordScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

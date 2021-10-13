@@ -13,7 +13,7 @@ import 'package:parsowa/presentation/screens/job_detail/confirm/confirm_screen.d
 import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
-import 'package:parsowa/presentation/screens/job_record/job_record_screen.dart';
+import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
 import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
 import 'package:parsowa/presentation/screens/search/search_screen.dart';
@@ -93,9 +93,9 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const PreviousAttendScreen(title: Strings.recordTitle),
         );
-      case JobRecordScreen.routeName:
+      case MakeJobRecordScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => const JobRecordScreen(title: Strings.jobRecordScreenName),
+          builder: (_) => const MakeJobRecordScreen(title: Strings.jobRecordScreenName),
         );
       case MyPageScreen.routeName:
         return MaterialPageRoute(
