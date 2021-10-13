@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
+import 'package:parsowa/presentation/screens/attend_list/record_screen.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
@@ -78,7 +79,7 @@ class BottomNavBarState extends State<BottomNavBar> {
             Navigator.of(context).pushReplacementNamed(AttendListScreen.routeName);
             break;
           case 3:
-            Navigator.of(context).pushReplacementNamed(MakeJobRecordScreen.routeName);
+            Navigator.of(context).pushReplacementNamed(RecordScreen.routeName);
             break;
           case 4:
             Navigator.of(context).pushReplacementNamed(MyPageScreen.routeName);

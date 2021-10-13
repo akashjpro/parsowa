@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/attend_list/widgets/attend_list_widget.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
+import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 import 'data/attebd_list_data.dart';
 
@@ -11,6 +12,7 @@ class PreviousAttendScreen extends StatefulWidget {
 
   const PreviousAttendScreen({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -21,6 +23,7 @@ class PreviousAttendScreen extends StatefulWidget {
 class PreviousAttendState extends State<PreviousAttendScreen> {
   List<AttendList> data = AttendList.init_data();
   late DateTime date;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -32,27 +35,29 @@ class PreviousAttendState extends State<PreviousAttendScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        backgroundColor: AppColors.jobListBodyColor,
-        appBar: AppBarCustom(
-            stringTitle: widget.title,
-            isLeadingHide: true,
-            isActionHide: true,
-            onBackPress: () => {},
-            onClosePress: () => {}),
-        body: SafeArea(
-            child: Column(
-          children: [
-            AttendListWidget.searchSection(date),
-            const SizedBox(
-              height: 10,
+      backgroundColor: AppColors.jobListBodyColor,
+      appBar: AppBarCustom(
+          stringTitle: widget.title,
+          isLeadingHide: true,
+          isActionHide: true,
+          onBackPress: () => {},
+          onClosePress: () => {}),
+      body: SafeArea(
+          child: Column(
+        children: [
+          AttendListWidget.searchSection(date),
+          const SizedBox(
+            height: 10,
+          ),
+          Expanded(
+            child: ListView(
+              children: _buildRecordList(context),
             ),
-            Expanded(
-              child: ListView(
-                children: _buildRecordList(context),
-              ),
-            ),
-          ],
-        )));
+          ),
+        ],
+      )),
+      bottomNavigationBar: BottomNavBar(currentIndex: 4),
+    );
   }
 
   _buildRecordList(BuildContext context) {

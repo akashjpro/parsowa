@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.dart';
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 import '../../../core/constants/strings.dart';
@@ -20,14 +22,45 @@ class MyPageScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              Strings.myPageScreenName,
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            // Text(
+            //   Strings.myPageScreenName,
+            //   style: Theme.of(context).textTheme.headline4,
+            // ),
+
+            _buildButton('Past attendance', AppColors.primaryColor,
+                AppColors.whiteColor, AppColors.whiteColor, () {
+                  Navigator.of(context).pushReplacementNamed(
+                    PreviousAttendScreen.routeName,
+                  );
+                })
           ],
         ),
       ),
       bottomNavigationBar: BottomNavBar(currentIndex: 4),
     );
   }
+
+  static Widget _buildButton(String title, Color bg, Color textColor,
+      Color borderColor, Function onPress) =>
+      MaterialButton(
+        onPressed: () => onPress(),
+        child: Text(
+          title,
+          style: TextStyle(
+            height: 1,
+            fontFamily: 'NotoSanJP',
+            fontSize: 14.0,
+            fontWeight: FontWeight.w700,
+            color: textColor,
+          ),
+        ),
+        height: 38,
+        minWidth: 112,
+        padding: EdgeInsets.all(20.0),
+        elevation: 0,
+        color: bg,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(19.0),
+            side: BorderSide(color: borderColor)),
+      );
 }
