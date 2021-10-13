@@ -1,12 +1,15 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/check_box_model.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/job_type.dart';
+import 'package:parsowa/presentation/screens/make_job_record/data/types.dart';
 import 'package:parsowa/presentation/screens/make_job_record/widgets/custom_expansion_panel.dart';
+import 'package:parsowa/presentation/screens/make_job_record/widgets/custom_radio_group_button_2.dart';
+import 'package:parsowa/presentation/screens/make_job_record/widgets/custom_radio_group_button_3.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
-import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 class MakeJobRecord extends StatefulWidget {
   const MakeJobRecord({Key? key}) : super(key: key);
@@ -17,6 +20,12 @@ class MakeJobRecord extends StatefulWidget {
 
 class _MakeJobRecordState extends State<MakeJobRecord> {
   final _jobTypeActive = JobType.jobTypeActive;
+  final _serviceTypeActive = ServiceType.serviceTypeActive;
+  final _visitTypeActive = VisitType.visitTypeActive;
+  final _serviceForDisableTypeActive =
+      ServiceForDisableType.serviceForDisableTypeActive;
+  final _serviceForCommunityLifeTypeActive =
+      ServiceForCommunityLifeType.serviceForCommunityLifeTypeActive;
 
   final _isOpenExpandPanels = [false, false, false, false, false, false, false];
 
@@ -32,6 +41,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         onClosePress: () {},
       ),
       body: SingleChildScrollView(
+        physics: const ScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Column(
@@ -44,11 +54,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 
-  Padding _buildSendSection() {
+  Widget _buildSendSection() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40.0),
       child: Row(
@@ -99,7 +108,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         _buildSingleExpansionPanel(
           index: 0,
           label: 'サービスの種類',
-          body: const Text('this is body'),
+          body: _buildServiceTypeArea(),
         ),
         _buildSingleExpansionPanel(
           index: 1,
@@ -158,7 +167,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   List<Widget> _buildChangesArea() {
     return <Widget>[
       _buildLabel(label: '変更内容'),
-      _buildContainerCheckBox(
+      _buildCustomContainer(
         _jobTypeActive.changesSelect
             .map((e) => _buildSingleCheckBox(cb: e))
             .toList(),
@@ -170,7 +179,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   List<Widget> _buildJobTypeArea() {
     return <Widget>[
       _buildLabel(label: '業務形態'),
-      _buildContainerCheckBox(
+      _buildCustomContainer(
         _jobTypeActive.jobTypeSelect
             .map((e) => _buildSingleCheckBox(cb: e))
             .toList(),
@@ -203,7 +212,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
-  Widget _buildContainerCheckBox(List<Widget> child) {
+  Widget _buildCustomContainer(List<Widget> child) {
     List<Widget> newChild = [];
 
     if (child.length > 1) {
@@ -221,7 +230,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
 
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(3.0),
         border: Border.all(
           color: AppColors.borderColor,
         ),
@@ -237,30 +246,35 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       data: ThemeData(
         unselectedWidgetColor: AppColors.borderColor,
         checkboxTheme: CheckboxThemeData(
+          // overlayColor: MaterialStateProperty.all(AppColors.whiteColor),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3.0),
           ),
         ),
       ),
-      child: CheckboxListTile(
-        title: Text(
-          cb.title,
-          style: const TextStyle(
-            fontFamily: 'NotoSanJP',
-            fontWeight: FontWeight.w500,
-            fontSize: 16.0,
-            height: 1.2,
+      child: Container(
+        color: AppColors.whiteColor,
+        child: CheckboxListTile(
+          contentPadding: const EdgeInsets.only(left: 15.5),
+          title: Text(
+            cb.title,
+            style: const TextStyle(
+              fontFamily: 'NotoSanJP',
+              fontWeight: FontWeight.w500,
+              fontSize: 16.0,
+              height: 1.2,
+            ),
           ),
+          // contentPadding: EdgeInsets.symmetric(horizontal: 15.5),
+          controlAffinity: ListTileControlAffinity.leading,
+          value: cb.isChecked,
+          activeColor: AppColors.primaryColor,
+          onChanged: (value) {
+            setState(() {
+              cb.isChecked = value!;
+            });
+          },
         ),
-        // contentPadding: EdgeInsets.symmetric(horizontal: 15.5),
-        controlAffinity: ListTileControlAffinity.leading,
-        value: cb.isChecked,
-        activeColor: AppColors.primaryColor,
-        onChanged: (value) {
-          setState(() {
-            cb.isChecked = value!;
-          });
-        },
       ),
     );
   }
@@ -334,6 +348,18 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
+  Widget _buildSubLabel({required label}) {
+    return Text(
+      label,
+      style: const TextStyle(
+        fontFamily: 'NotoSanJP',
+        fontSize: 16.0,
+        fontWeight: FontWeight.w500,
+        height: 1.75,
+      ),
+    );
+  }
+
   Widget _buildLabel({required label}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 5.3),
@@ -346,6 +372,419 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           height: 1.3125,
         ),
       ),
+    );
+  }
+
+  Widget _buildServiceTypeArea() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0),
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: AppColors.disabledColor,
+            ),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+              child: _buildCareServiceArea(),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: AppColors.disabledColor,
+            ),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+              child: _buildIntergratedServiceArea(),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: AppColors.disabledColor,
+            ),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+              child: _buildServiceForDisabilitiesArea(),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: AppColors.disabledColor,
+            ),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _buildHeadingLabel(label: '地域生活支援'),
+                  _buildCustomContainer([
+                    _buildColumnCheckBoxAndChildren(
+                      cb: _serviceForCommunityLifeTypeActive
+                          .serviceForCommunityLifeType[0],
+                      child: [
+                        CustomRadioGroupButtonTwo(
+                            labels: const ['身体伴う', '身体伴わない'],
+                            isChecked: _serviceForCommunityLifeTypeActive
+                                .serviceForCommunityLifeType[0].isChecked),
+                        _buildSingleRowLabelAndInput(
+                          label: '分',
+                          cb: _serviceForCommunityLifeTypeActive
+                              .serviceForCommunityLifeType[0],
+                          onChanged: (v) {},
+                        ),
+                        _buildSingleRowLabelAndMultiLinesInput(
+                          label: '行先',
+                          cb: _serviceForCommunityLifeTypeActive
+                              .serviceForCommunityLifeType[0],
+                          onChanged: (v) {},
+                        ),
+                      ],
+                    ),
+                  ]),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildServiceForDisabilitiesArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '障害者総合支援'),
+        _buildCustomContainer([
+          _buildColumnCheckBoxAndChildren(
+            cb: _serviceForDisableTypeActive.serviceForDisableTypeChoices[0],
+            child: [
+              _buildSingleRowLabelAndInput(
+                label: '分',
+                cb: _serviceForDisableTypeActive
+                    .serviceForDisableTypeChoices[0],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+          _buildColumnCheckBoxAndChildren(
+            cb: _serviceForDisableTypeActive.serviceForDisableTypeChoices[1],
+            child: [
+              _buildSingleRowLabelAndInput(
+                label: '分',
+                cb: _serviceForDisableTypeActive
+                    .serviceForDisableTypeChoices[1],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+          _buildColumnCheckBoxAndChildren(
+            cb: _serviceForDisableTypeActive.serviceForDisableTypeChoices[2],
+            child: [
+              _buildSingleRowLabelAndInput(
+                label: '分',
+                cb: _serviceForDisableTypeActive
+                    .serviceForDisableTypeChoices[2],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+          _buildColumnCheckBoxAndChildren(
+            cb: _serviceForDisableTypeActive.serviceForDisableTypeChoices[3],
+            child: [
+              _buildSingleRowLabelAndInput(
+                label: '分',
+                cb: _serviceForDisableTypeActive
+                    .serviceForDisableTypeChoices[3],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+          _buildColumnCheckBoxAndChildren(
+            cb: _serviceForDisableTypeActive.serviceForDisableTypeChoices[4],
+            child: [
+              CustomRadioGroupButtonTwo(
+                isChecked: _serviceForDisableTypeActive
+                    .serviceForDisableTypeChoices[4].isChecked,
+                labels: const ['身体伴う', '身体伴わない'],
+              ),
+              _buildSingleRowLabelAndInput(
+                label: '分',
+                cb: _serviceForDisableTypeActive
+                    .serviceForDisableTypeChoices[4],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+          _buildColumnCheckBoxAndChildren(
+            cb: _serviceForDisableTypeActive.serviceForDisableTypeChoices[5],
+            child: [
+              CustomRadioGroupButtonTwo(
+                isChecked: _serviceForDisableTypeActive
+                    .serviceForDisableTypeChoices[5].isChecked,
+                labels: const ['身体伴う', '身体伴わない'],
+              ),
+              _buildSingleRowLabelAndInput(
+                label: '分',
+                cb: _serviceForDisableTypeActive
+                    .serviceForDisableTypeChoices[5],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+        ]),
+      ],
+    );
+  }
+
+  Column _buildIntergratedServiceArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '総合事業'),
+        _buildCustomContainer(
+          [
+            _buildColumnCheckBoxAndChildren(
+              cb: _visitTypeActive.visitChoices[0],
+              child: [
+                const CustomRadioGroupButtonThree(
+                  indexOfListCheck: 0,
+                  labels: ['I', 'II', 'III'],
+                ),
+              ],
+            ),
+            _buildColumnCheckBoxAndChildren(
+              cb: _visitTypeActive.visitChoices[1],
+              child: [
+                const CustomRadioGroupButtonThree(
+                  indexOfListCheck: 1,
+                  labels: ['I', 'II', 'III'],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCareServiceArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '介護サービス'),
+        _buildCustomContainer(
+          [
+            _buildColumnCheckBoxAndChildren(
+              cb: _serviceTypeActive.careChoices[0],
+              child: [_buildInputGroup(0)],
+            ),
+            _buildColumnCheckBoxAndChildren(
+              cb: _serviceTypeActive.careChoices[1],
+              child: [
+                CustomRadioGroupButtonTwo(
+                  isChecked: _serviceTypeActive.careChoices[1].isChecked,
+                  labels: const ["45分未満", "45分以上"],
+                ),
+              ],
+            ),
+            _buildColumnCheckBoxAndChildren(
+              cb: _serviceTypeActive.careChoices[2],
+              child: [
+                CustomRadioGroupButtonTwo(
+                  isChecked: _serviceTypeActive.careChoices[1].isChecked,
+                  labels: const ["１回", "２回"],
+                ),
+                // const DottedLine(dashColor: AppColors.borderColor),
+                _buildSingleRowLabelAndInput(
+                  label: '分',
+                  cb: _serviceTypeActive.careChoices[2],
+                  onChanged: (v) {},
+                )
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildColumnCheckBoxAndChildren(
+      {required CheckBoxModel cb, required List<Widget> child}) {
+    List<Widget> newChild = [];
+
+    if (child.length > 1) {
+      for (var e in child) {
+        newChild.add(
+          Container(
+            height: 58.0,
+            color: !cb.isChecked ? AppColors.disabledColor : null,
+            child: e,
+          ),
+        );
+        newChild.add(
+          const DottedLine(dashColor: AppColors.borderColor),
+        );
+      }
+      newChild.removeLast();
+    } else {
+      for (var e in child) {
+        newChild.add(
+          Container(
+            height: 58.0,
+            color: !cb.isChecked ? AppColors.disabledColor : null,
+            child: e,
+          ),
+        );
+      }
+    }
+
+    return Column(
+      children: [
+        _buildSingleCheckBox(
+          cb: cb,
+        ),
+        const DottedLine(dashColor: AppColors.borderColor),
+        ...newChild
+      ],
+    );
+  }
+
+  Widget _buildInputGroup(int indexOfListCheck) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(width: 4.0),
+        _buildRowLabelAndInput(
+          label: '身体',
+          index: indexOfListCheck,
+          onChanged: (v) {},
+        ),
+        const SizedBox(width: 18.0),
+        _buildRowLabelAndInput(
+          label: '生活',
+          index: indexOfListCheck,
+          onChanged: (v) {},
+        ),
+        const SizedBox(width: 18.0),
+      ],
+    );
+  }
+
+  Widget _buildSingleRowLabelAndInput(
+      {required String label,
+      required CheckBoxModel cb,
+      required Function(String)? onChanged}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(width: 41.0),
+        SizedBox(
+          width: 70.0,
+          height: 38.0,
+          child: TextField(
+            decoration: InputDecoration(
+              enabled: cb.isChecked,
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.borderColor,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              ),
+              contentPadding: const EdgeInsets.only(left: 5.0),
+            ),
+            autofocus: false,
+            maxLines: 1,
+            keyboardType: TextInputType.text,
+            onChanged: onChanged,
+          ),
+        ),
+        const SizedBox(width: 6.0),
+        Padding(
+          padding: const EdgeInsets.only(top: 18.0),
+          child: _buildSubLabel(label: label),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSingleRowLabelAndMultiLinesInput(
+      {required String label,
+      required CheckBoxModel cb,
+      required Function(String)? onChanged}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(width: 41.0),
+        _buildSubLabel(label: label),
+        const SizedBox(width: 6.0),
+        SizedBox(
+          width: 194.0,
+          height: 38.0,
+          child: TextField(
+            decoration: InputDecoration(
+              enabled: cb.isChecked,
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.borderColor,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              ),
+              contentPadding: const EdgeInsets.all(5.0),
+            ),
+            autofocus: false,
+            minLines: 2,
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+            onChanged: onChanged,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRowLabelAndInput(
+      {required String label,
+      required int index,
+      required Function(String)? onChanged}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildSubLabel(label: label),
+        const SizedBox(width: 5.0),
+        SizedBox(
+          width: 70.0,
+          height: 38.0,
+          child: TextField(
+            decoration: InputDecoration(
+              enabled: _serviceTypeActive.careChoices[index].isChecked,
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.borderColor,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              ),
+              contentPadding: const EdgeInsets.only(left: 5.0),
+            ),
+            autofocus: false,
+            maxLines: 1,
+            keyboardType: TextInputType.text,
+            onChanged: onChanged,
+          ),
+        ),
+      ],
     );
   }
 }
