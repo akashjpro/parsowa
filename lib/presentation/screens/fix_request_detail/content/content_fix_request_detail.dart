@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/fix_request_detail/completed/completed_fix_request_detail.dart';
 import 'package:parsowa/presentation/screens/fix_request_detail/data/user_data.dart';
 import 'package:parsowa/presentation/screens/fix_request_detail/data/work_detail_data.dart';
 import 'package:parsowa/presentation/screens/fix_request_detail/widgets/custom_dropdownbutton.dart';
@@ -46,7 +47,9 @@ class _ContentsFixRequestDetailScreenState
           stringTitle: '修正依頼',
           isLeadingHide: false,
           isActionHide: true,
-          onBackPress: () {},
+          onBackPress: () {
+            Navigator.of(context).pop();
+          },
           onClosePress: () {},
         ),
         body: SingleChildScrollView(
@@ -68,7 +71,7 @@ class _ContentsFixRequestDetailScreenState
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavBar(),
+        bottomNavigationBar: BottomNavBar(currentIndex: 2),
       ),
     );
   }
@@ -99,7 +102,9 @@ class _ContentsFixRequestDetailScreenState
                   title: '戻る',
                   primaryColor: AppColors.whiteColor,
                   changeColor: AppColors.primaryColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                 ),
               ),
               const SizedBox(width: 20.0),
@@ -108,7 +113,12 @@ class _ContentsFixRequestDetailScreenState
                   title: '依頼する',
                   primaryColor: AppColors.primaryColor,
                   changeColor: AppColors.whiteColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigate to Complete Fix Request detail
+                    Navigator.of(context).pushNamed(
+                      CompleteFixRequestDetailScreen.routeName,
+                    );
+                  },
                 ),
               ),
             ],

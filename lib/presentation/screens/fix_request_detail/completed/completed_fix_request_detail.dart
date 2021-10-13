@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
+import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 class CompleteFixRequestDetailScreen extends StatelessWidget {
   static const String routeName = "/CompleteFixRequestDetailScreen";
@@ -11,13 +12,13 @@ class CompleteFixRequestDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarCustom(
-        isActionHide: false,
-        isLeadingHide: true,
+        isActionHide: true,
+        isLeadingHide: false,
         stringTitle: '申し込み',
-        onBackPress: () {},
-        onClosePress: () {
+        onBackPress: () {
           Navigator.of(context).pop();
         },
+        onClosePress: () {},
       ),
       body: Container(
         width: double.infinity,
@@ -27,6 +28,7 @@ class CompleteFixRequestDetailScreen extends StatelessWidget {
           child: _completeBody(context),
         ),
       ),
+      bottomNavigationBar: BottomNavBar(currentIndex: 2),
     );
   }
 
