@@ -6,6 +6,7 @@ import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/advance_check_section_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/body_care_section_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/check_box_model.dart';
+import 'package:parsowa/presentation/screens/make_job_record/data/exit_confirming_section_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/job_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/living_assistance_section_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/service_section_types.dart';
@@ -51,6 +52,9 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   final _clothingTypeActive = LivingAssistance.clothingTypeActive;
   final _preparingMealTypeActive = LivingAssistance.preparingMealTypeActive;
   final _otherTasksTypeActive = LivingAssistance.otherTasksTypeActive;
+  // Exit Confirming Section
+  final _exitConfirmingTypeActive = ExitConfirming.exitConfirmingTypeActive;
+
   // local variables
   final _isOpenExpandPanels = [false, false, false, false, false, false, false];
 
@@ -83,6 +87,37 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildNoteSection() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(width: 41.0),
+        Expanded(
+          child: SizedBox(
+            height: 71.0,
+            child: TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.borderColor,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                contentPadding: EdgeInsets.only(left: 10.0),
+              ),
+              autofocus: false,
+              minLines: 4,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
+              onChanged: (v) {},
+            ),
+          ),
+        ),
+        const SizedBox(width: 18.0),
+      ],
     );
   }
 
@@ -128,6 +163,20 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
+  Widget _buildExitConfirmingSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0),
+      child: Column(
+        children: [
+          _buildSubContainerInsideExpansion(
+            _buildExitConfirmingArea(),
+          ),
+          const SizedBox(height: 10.0),
+        ],
+      ),
+    );
+  }
+
   CustomExpansionPanelList _buildExpansionSection() {
     return CustomExpansionPanelList(
       elevation: 0.0,
@@ -162,16 +211,27 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         _buildSingleExpansionPanel(
           index: 5,
           label: '退室確認',
-          body: const Text('this is body'),
+          body: _buildExitConfirmingSection(),
         ),
         _buildSingleExpansionPanel(
-          index: 6,
-          label: '特記・連絡事項',
-          body: const Text('this is body'),
-        ),
+            index: 6, label: '特記・連絡事項', body: _buildNoteSection()),
       ],
       expansionCallback: (i, isOpen) =>
           setState(() => _isOpenExpandPanels[i] = !isOpen),
+    );
+  }
+
+  Widget _buildExitConfirmingArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[0]),
+          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[1]),
+          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[2]),
+          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[3]),
+        ]),
+      ],
     );
   }
 
@@ -852,6 +912,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             fontFamily: 'NotoSanJP',
             fontSize: 16.0,
             fontWeight: FontWeight.w700,
+            height: 1.2,
           ),
         ),
         style: ButtonStyle(
