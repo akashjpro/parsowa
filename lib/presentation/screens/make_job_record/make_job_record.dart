@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/advance_check_section_type.dart';
+import 'package:parsowa/presentation/screens/make_job_record/data/body_care_section_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/check_box_model.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/job_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/service_section_types.dart';
@@ -32,7 +33,16 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   // Advance Check Section
   final _physicalConRecType = PhysicalConRecType.physicalConRecTypeActive;
   final _precheckTypeActive = PhysicalConRecType.precheckTypeActive;
-
+  // Body Care Section
+  final _excretionAssistanceTypeActive =
+      BodyCareType.excretionAssistanceTypeActive;
+  final _mealAssistanceTypeActive = BodyCareType.mealAssistanceTypeActive;
+  final _getDressedTypeActive = BodyCareType.getDressedTypeActive;
+  final _subGetDressedTypeActive = BodyCareType.subGetDressedTypeActive;
+  final _goingOutTypeActive = BodyCareType.goingOutTypeActive;
+  final _wakeUpOrSleepActive = BodyCareType.wakeUpOrSleepActive;
+  final _takingMecOrMecPracActive = BodyCareType.takingMecOrMecPracActive;
+  final _independenceSupportActive = BodyCareType.independenceSupportActive;
   // local variables
   final _isOpenExpandPanels = [false, false, false, false, false, false, false];
 
@@ -129,7 +139,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         _buildSingleExpansionPanel(
           index: 2,
           label: '身体介護',
-          body: const Text('this is body'),
+          body: _buildBodyCareSection(),
         ),
         _buildSingleExpansionPanel(
           index: 3,
@@ -154,6 +164,256 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       ],
       expansionCallback: (i, isOpen) =>
           setState(() => _isOpenExpandPanels[i] = !isOpen),
+    );
+  }
+
+  Widget _buildBodyCareSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0),
+      child: Column(
+        children: [
+          _buildSubContainerInsideExpansion(
+            _buildExcretionAssistanceArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildMealAssistantArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildGetDressedArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildGoingOutArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildWakeUpOrSleepArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildTakingMedicineOrMedicalPracticeArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildIndependenceSupportArea(),
+          ),
+          const SizedBox(height: 10.0),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildIndependenceSupportArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '自立支援'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _independenceSupportActive[0]),
+          _buildSingleCheckBox(cb: _independenceSupportActive[1]),
+          _buildSingleCheckBox(cb: _independenceSupportActive[2]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildTakingMedicineOrMedicalPracticeArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '服薬・医療行為'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _takingMecOrMecPracActive[0]),
+          _buildSingleCheckBox(cb: _takingMecOrMecPracActive[1]),
+          _buildSingleCheckBox(cb: _takingMecOrMecPracActive[2]),
+          _buildSingleCheckBox(cb: _takingMecOrMecPracActive[3]),
+          _buildSingleCheckBox(cb: _takingMecOrMecPracActive[4]),
+          _buildSingleCheckBox(cb: _takingMecOrMecPracActive[5]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildWakeUpOrSleepArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '起床・就寝'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _wakeUpOrSleepActive[0]),
+          _buildSingleCheckBox(cb: _wakeUpOrSleepActive[1]),
+          _buildSingleCheckBox(cb: _wakeUpOrSleepActive[2]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildGoingOutArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '移乗・移動'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _goingOutTypeActive[0]),
+          _buildSingleCheckBox(cb: _goingOutTypeActive[1]),
+          _buildSingleCheckBox(cb: _goingOutTypeActive[2]),
+          _buildSingleCheckBox(cb: _goingOutTypeActive[3]),
+          _buildSingleCheckBox(cb: _goingOutTypeActive[4]),
+          _buildSingleCheckBox(cb: _goingOutTypeActive[5]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildGetDressedArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '身なりの保清・整容'),
+        _buildCustomContainer([
+          _buildColumnCheckBoxAndChildren(
+            cb: _getDressedTypeActive[0],
+            child: [
+              CustomRadioGroupButtonTwo(
+                  labels: const ['全身', '部分'],
+                  isChecked: (_getDressedTypeActive[0]).isChecked),
+            ],
+          ),
+          _buildColumnCheckBoxAndChildren(
+            cb: (_getDressedTypeActive[1]),
+            child: [
+              _buildSubSingleCheckBox(
+                subCb: (_subGetDressedTypeActive[0]),
+                cb: _getDressedTypeActive[1],
+              ),
+              _buildSubSingleCheckBox(
+                subCb: (_subGetDressedTypeActive[1]),
+                cb: _getDressedTypeActive[1],
+              ),
+              _buildSubSingleCheckBox(
+                subCb: (_subGetDressedTypeActive[2]),
+                cb: _getDressedTypeActive[1],
+              ),
+              _buildSubSingleCheckBox(
+                subCb: (_subGetDressedTypeActive[3]),
+                cb: _getDressedTypeActive[1],
+              ),
+            ],
+          ),
+          _buildSingleCheckBox(cb: _getDressedTypeActive[2]),
+          _buildColumnCheckBoxAndChildren(
+            cb: _getDressedTypeActive[3],
+            child: [
+              CustomRadioGroupButtonTwo(
+                  labels: const ['入浴', 'シャワー浴'],
+                  isChecked: (_getDressedTypeActive[3]).isChecked),
+            ],
+          ),
+          _buildSingleCheckBox(cb: _getDressedTypeActive[4]),
+          _buildSingleCheckBox(cb: _getDressedTypeActive[5]),
+          _buildSingleCheckBox(cb: _getDressedTypeActive[6]),
+          _buildColumnCheckBoxAndChildren(
+            cb: (_getDressedTypeActive[7]),
+            child: [
+              _buildSubSingleCheckBox(
+                subCb: (_subGetDressedTypeActive[0]),
+                cb: _getDressedTypeActive[7],
+              ),
+              _buildSubSingleCheckBox(
+                subCb: (_subGetDressedTypeActive[1]),
+                cb: _getDressedTypeActive[7],
+              ),
+            ],
+          ),
+          _buildSingleCheckBox(cb: _getDressedTypeActive[8]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildMealAssistantArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '食事介助'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _mealAssistanceTypeActive[0]),
+          _buildSingleCheckBox(cb: _mealAssistanceTypeActive[1]),
+          _buildColumnCheckBoxAndChildren(
+            cb: _mealAssistanceTypeActive[2],
+            child: [
+              _buildSingleRowLabelAndInput(
+                label: 'CC',
+                cb: _mealAssistanceTypeActive[2],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+          _buildSingleCheckBox(cb: _mealAssistanceTypeActive[3]),
+          _buildColumnCheckBoxAndChildren(
+            cb: _mealAssistanceTypeActive[4],
+            child: [
+              CustomRadioGroupButtonTwo(
+                labels: const ['完食', '残しあり'],
+                isChecked: _mealAssistanceTypeActive[4].isChecked,
+              ),
+              _buildInputGroupWithSlash(
+                _mealAssistanceTypeActive[4],
+                label: '残量',
+              ),
+            ],
+          ),
+          _buildColumnCheckBoxAndChildren(
+            cb: _mealAssistanceTypeActive[5],
+            child: [
+              _buildSingleRowLabelAndMultiLinesInput(
+                label: '',
+                cb: _mealAssistanceTypeActive[5],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildExcretionAssistanceArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '身体介護'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _excretionAssistanceTypeActive[0]),
+          _buildSingleCheckBox(cb: _excretionAssistanceTypeActive[1]),
+          _buildSingleCheckBox(cb: _excretionAssistanceTypeActive[2]),
+          _buildSingleCheckBox(cb: _excretionAssistanceTypeActive[3]),
+          _buildSingleCheckBox(cb: _excretionAssistanceTypeActive[4]),
+          _buildColumnCheckBoxAndChildren(
+            cb: _excretionAssistanceTypeActive[5],
+            child: [
+              _buildSingleMultiLinesInputWithHintLabel(
+                hintLabel: '状態',
+                cb: _excretionAssistanceTypeActive[5],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+          _buildColumnCheckBoxAndChildren(
+            cb: _excretionAssistanceTypeActive[6],
+            child: [
+              _buildSingleMultiLinesInputWithHintLabel(
+                hintLabel: '状態',
+                cb: _excretionAssistanceTypeActive[6],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+          _buildSingleCheckBox(cb: _excretionAssistanceTypeActive[7]),
+        ]),
+      ],
     );
   }
 
@@ -353,7 +613,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             constraints: const BoxConstraints(maxWidth: 208.0),
             child: Text(
               cb.title,
-              maxLines: 2,
+              maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontFamily: 'NotoSanJP',
@@ -371,6 +631,54 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               cb.isChecked = value!;
             });
           },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSubSingleCheckBox(
+      {required CheckBoxModel subCb, required CheckBoxModel cb}) {
+    return Theme(
+      data: ThemeData(
+        unselectedWidgetColor: AppColors.borderColor,
+        checkboxTheme: CheckboxThemeData(
+          // overlayColor: MaterialStateProperty.all(AppColors.whiteColor),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(3.0),
+          ),
+        ),
+      ),
+      child: Container(
+        color: !cb.isChecked ? AppColors.disabledColor : AppColors.whiteColor,
+        child: CheckboxListTile(
+          contentPadding: const EdgeInsets.only(left: 34.0),
+          title: Container(
+            constraints: const BoxConstraints(maxWidth: 208.0),
+            child: Text(
+              subCb.title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontFamily: 'NotoSanJP',
+                fontWeight: FontWeight.w500,
+                fontSize: 16.0,
+                height: 1.2,
+                color: !cb.isChecked
+                    ? AppColors.disableTextColor
+                    : AppColors.blackColor,
+              ),
+            ),
+          ),
+          controlAffinity: ListTileControlAffinity.leading,
+          value: subCb.isChecked,
+          activeColor: AppColors.primaryColor,
+          onChanged: cb.isChecked
+              ? (value) {
+                  setState(() {
+                    subCb.isChecked = value!;
+                  });
+                }
+              : null,
         ),
       ),
     );
@@ -756,17 +1064,17 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
-  Widget _buildInputGroupWithSlash(CheckBoxModel cb) {
+  Widget _buildInputGroupWithSlash(CheckBoxModel cb, {String label = ''}) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(width: 41.0),
-        _buildRowLabelAndInput(
-          label: '',
+        _buildRowLabelAndInputWithSlash(
+          label: label,
           cb: cb,
           onChanged: (v) {},
         ),
-        const SizedBox(width: 19.5),
+        const SizedBox(width: 15.5),
         Text(
           '/',
           style: TextStyle(
@@ -779,8 +1087,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 : AppColors.disableTextColor,
           ),
         ),
-        const SizedBox(width: 19.5),
-        _buildRowLabelAndInput(
+        const SizedBox(width: 11.5),
+        _buildRowLabelAndInputWithSlash(
           label: '',
           cb: cb,
           onChanged: (v) {},
@@ -797,28 +1105,30 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(width: 41.0),
-        SizedBox(
-          width: 231.0,
-          height: 38.0,
-          child: TextField(
-            decoration: InputDecoration(
-              enabled: cb.isChecked,
-              border: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColors.borderColor,
+        Expanded(
+          child: SizedBox(
+            height: 38.0,
+            child: TextField(
+              decoration: InputDecoration(
+                enabled: cb.isChecked,
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.borderColor,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                contentPadding: const EdgeInsets.only(left: 10.0),
+                hintText: hintLabel,
               ),
-              contentPadding: const EdgeInsets.only(left: 10.0),
-              hintText: hintLabel,
+              autofocus: false,
+              minLines: 1,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
+              onChanged: onChanged,
             ),
-            autofocus: false,
-            minLines: 1,
-            maxLines: null,
-            keyboardType: TextInputType.multiline,
-            onChanged: onChanged,
           ),
         ),
+        const SizedBox(width: 18.0),
       ],
     );
   }
@@ -870,28 +1180,30 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         const SizedBox(width: 41.0),
         _buildSubLabel(label: label),
         const SizedBox(width: 6.0),
-        SizedBox(
-          width: 194.0,
-          height: 38.0,
-          child: TextField(
-            decoration: InputDecoration(
-              enabled: cb.isChecked,
-              border: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColors.borderColor,
+        Expanded(
+          child: SizedBox(
+            height: 38.0,
+            child: TextField(
+              decoration: InputDecoration(
+                enabled: cb.isChecked,
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.borderColor,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                contentPadding: const EdgeInsets.only(left: 10.0, top: 15.0),
+                hintText: '',
               ),
-              contentPadding: const EdgeInsets.only(left: 10.0, top: 15.0),
-              hintText: '',
+              autofocus: false,
+              minLines: 2,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
+              onChanged: onChanged,
             ),
-            autofocus: false,
-            minLines: 2,
-            maxLines: null,
-            keyboardType: TextInputType.multiline,
-            onChanged: onChanged,
           ),
         ),
+        const SizedBox(width: 18.0),
       ],
     );
   }
@@ -920,6 +1232,39 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         const SizedBox(width: 5.0),
         SizedBox(
           width: 70.0,
+          height: 38.0,
+          child: TextField(
+            decoration: InputDecoration(
+              enabled: cb.isChecked,
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.borderColor,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              ),
+              contentPadding: const EdgeInsets.only(left: 5.0),
+            ),
+            autofocus: false,
+            maxLines: 1,
+            keyboardType: TextInputType.text,
+            onChanged: onChanged,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRowLabelAndInputWithSlash(
+      {required String label,
+      required CheckBoxModel cb,
+      required Function(String)? onChanged}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildSubLabel(label: label, isChecked: cb.isChecked),
+        const SizedBox(width: 5.0),
+        SizedBox(
+          width: 80.0,
           height: 38.0,
           child: TextField(
             decoration: InputDecoration(

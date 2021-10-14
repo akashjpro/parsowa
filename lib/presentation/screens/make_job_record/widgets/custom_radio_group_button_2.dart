@@ -24,7 +24,7 @@ class _CustomRadioGroupButtonTwoState extends State<CustomRadioGroupButtonTwo> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(width: 30.0),
+        const SizedBox(width: 25.0),
         Row(
           children: [
             Radio(
@@ -42,7 +42,9 @@ class _CustomRadioGroupButtonTwoState extends State<CustomRadioGroupButtonTwo> {
                 label: widget.labels[0], isChecked: widget.isChecked),
           ],
         ),
-        const SizedBox(width: 8.0),
+        widget.labels[1].length > 5
+            ? const SizedBox(width: 8.0)
+            : const SizedBox(width: 30.0),
         Row(
           children: [
             Radio(
