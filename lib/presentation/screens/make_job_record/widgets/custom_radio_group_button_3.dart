@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:parsowa/presentation/screens/make_job_record/data/types.dart';
+import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/make_job_record/data/service_section_types.dart';
 
 class CustomRadioGroupButtonThree extends StatefulWidget {
   final int indexOfListCheck;
@@ -41,7 +42,10 @@ class _CustomRadioGroupButtonThreeState
                     }
                   : null,
             ),
-            _buildSubLabel(label: widget.labels[0]),
+            _buildSubLabel(
+                label: widget.labels[0],
+                isChecked: _visitTypeActive
+                    .visitChoices[widget.indexOfListCheck].isChecked),
           ],
         ),
         const SizedBox(width: 18.0),
@@ -57,7 +61,10 @@ class _CustomRadioGroupButtonThreeState
                     }
                   : null,
             ),
-            _buildSubLabel(label: widget.labels[1]),
+            _buildSubLabel(
+                label: widget.labels[1],
+                isChecked: _visitTypeActive
+                    .visitChoices[widget.indexOfListCheck].isChecked),
           ],
         ),
         const SizedBox(width: 18.0),
@@ -73,7 +80,10 @@ class _CustomRadioGroupButtonThreeState
                     }
                   : null,
             ),
-            _buildSubLabel(label: widget.labels[2]),
+            _buildSubLabel(
+                label: widget.labels[2],
+                isChecked: _visitTypeActive
+                    .visitChoices[widget.indexOfListCheck].isChecked),
           ],
         ),
         const SizedBox(width: 18.0),
@@ -81,14 +91,15 @@ class _CustomRadioGroupButtonThreeState
     );
   }
 
-  Widget _buildSubLabel({required label}) {
+  Widget _buildSubLabel({required label, bool isChecked = false}) {
     return Text(
       label,
-      style: const TextStyle(
+      style: TextStyle(
         fontFamily: 'NotoSanJP',
         fontSize: 16.0,
         fontWeight: FontWeight.w500,
         height: 1.2,
+        color: isChecked ? AppColors.blackColor : AppColors.disableTextColor,
       ),
     );
   }

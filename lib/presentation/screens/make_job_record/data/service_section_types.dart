@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/check_box_model.dart';
 
 class ServiceType {

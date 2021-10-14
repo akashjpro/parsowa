@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/make_job_record/data/advance_check_section_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/check_box_model.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/job_type.dart';
-import 'package:parsowa/presentation/screens/make_job_record/data/types.dart';
+import 'package:parsowa/presentation/screens/make_job_record/data/service_section_types.dart';
 import 'package:parsowa/presentation/screens/make_job_record/widgets/custom_expansion_panel.dart';
 import 'package:parsowa/presentation/screens/make_job_record/widgets/custom_radio_group_button_2.dart';
 import 'package:parsowa/presentation/screens/make_job_record/widgets/custom_radio_group_button_3.dart';
@@ -19,38 +20,48 @@ class MakeJobRecord extends StatefulWidget {
 }
 
 class _MakeJobRecordState extends State<MakeJobRecord> {
+  // data
   final _jobTypeActive = JobType.jobTypeActive;
+  // Service Type Section
   final _serviceTypeActive = ServiceType.serviceTypeActive;
   final _visitTypeActive = VisitType.visitTypeActive;
   final _serviceForDisableTypeActive =
       ServiceForDisableType.serviceForDisableTypeActive;
   final _serviceForCommunityLifeTypeActive =
       ServiceForCommunityLifeType.serviceForCommunityLifeTypeActive;
+  // Advance Check Section
+  final _physicalConRecType = PhysicalConRecType.physicalConRecTypeActive;
+  final _precheckTypeActive = PhysicalConRecType.precheckTypeActive;
 
+  // local variables
   final _isOpenExpandPanels = [false, false, false, false, false, false, false];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.whiteColor,
-      appBar: AppBarCustom(
-        stringTitle: 'サービス提供記録作成',
-        isLeadingHide: false,
-        isActionHide: true,
-        onBackPress: () {},
-        onClosePress: () {},
-      ),
-      body: SingleChildScrollView(
-        physics: const ScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _buildJobTypeSection(),
-              _buildExpansionSection(),
-              _buildSendSection(),
-            ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: AppColors.whiteColor,
+        appBar: AppBarCustom(
+          stringTitle: 'サービス提供記録作成',
+          isLeadingHide: false,
+          isActionHide: true,
+          onBackPress: () {},
+          onClosePress: () {},
+        ),
+        body: SingleChildScrollView(
+          physics: const ScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _buildJobTypeSection(),
+                _buildExpansionSection(),
+                _buildSendSection(),
+              ],
+            ),
           ),
         ),
       ),
@@ -108,12 +119,12 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         _buildSingleExpansionPanel(
           index: 0,
           label: 'サービスの種類',
-          body: _buildServiceTypeArea(),
+          body: _buildServiceTypeSection(),
         ),
         _buildSingleExpansionPanel(
           index: 1,
           label: '事前チェック・記録など',
-          body: const Text('this is body'),
+          body: _buildAdvanceCheckSection(),
         ),
         _buildSingleExpansionPanel(
           index: 2,
@@ -143,6 +154,87 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       ],
       expansionCallback: (i, isOpen) =>
           setState(() => _isOpenExpandPanels[i] = !isOpen),
+    );
+  }
+
+  Widget _buildAdvanceCheckSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0),
+      child: Column(
+        children: [
+          _buildSubContainerInsideExpansion(
+            _buildPhysicalConditionRecordArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildPrecheckArea(),
+          ),
+          const SizedBox(height: 10.0),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPrecheckArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '事前チェック'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _precheckTypeActive[0]),
+          _buildSingleCheckBox(cb: _precheckTypeActive[1]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildPhysicalConditionRecordArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '体調記録'),
+        _buildCustomContainer(
+          [
+            _buildColumnCheckBoxAndChildren(
+              cb: _physicalConRecType.physicalConRecType[0],
+              child: [
+                _buildSingleMultiLinesInputWithHintLabel(
+                  hintLabel: '状態',
+                  cb: _physicalConRecType.physicalConRecType[0],
+                  onChanged: (v) {},
+                ),
+              ],
+            ),
+            _buildColumnCheckBoxAndChildren(
+              cb: _physicalConRecType.physicalConRecType[1],
+              child: [
+                _buildSingleMultiLinesInputWithHintLabel(
+                  hintLabel: '状態',
+                  cb: _physicalConRecType.physicalConRecType[1],
+                  onChanged: (v) {},
+                ),
+              ],
+            ),
+            _buildColumnCheckBoxAndChildren(
+              cb: _physicalConRecType.physicalConRecType[2],
+              child: [
+                _buildSingleRowLabelAndInput(
+                  label: '℃',
+                  cb: _physicalConRecType.physicalConRecType[2],
+                  onChanged: (v) {},
+                ),
+              ],
+            ),
+            _buildColumnCheckBoxAndChildren(
+              cb: _physicalConRecType.physicalConRecType[3],
+              child: [
+                _buildInputGroupWithSlash(
+                    _physicalConRecType.physicalConRecType[3]),
+              ],
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -194,6 +286,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       keyboardType: TextInputType.multiline,
       minLines: 1,
       maxLines: null,
+      autofocus: false,
       decoration: const InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -256,16 +349,20 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         color: AppColors.whiteColor,
         child: CheckboxListTile(
           contentPadding: const EdgeInsets.only(left: 15.5),
-          title: Text(
-            cb.title,
-            style: const TextStyle(
-              fontFamily: 'NotoSanJP',
-              fontWeight: FontWeight.w500,
-              fontSize: 16.0,
-              height: 1.2,
+          title: Container(
+            constraints: const BoxConstraints(maxWidth: 208.0),
+            child: Text(
+              cb.title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontFamily: 'NotoSanJP',
+                fontWeight: FontWeight.w500,
+                fontSize: 16.0,
+                height: 1.2,
+              ),
             ),
           ),
-          // contentPadding: EdgeInsets.symmetric(horizontal: 15.5),
           controlAffinity: ListTileControlAffinity.leading,
           value: cb.isChecked,
           activeColor: AppColors.primaryColor,
@@ -348,14 +445,15 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
-  Widget _buildSubLabel({required label}) {
+  Widget _buildSubLabel({required label, bool isChecked = false}) {
     return Text(
       label,
-      style: const TextStyle(
+      style: TextStyle(
         fontFamily: 'NotoSanJP',
         fontSize: 16.0,
         fontWeight: FontWeight.w500,
         height: 1.75,
+        color: isChecked ? AppColors.blackColor : AppColors.disableTextColor,
       ),
     );
   }
@@ -375,90 +473,62 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
-  Widget _buildServiceTypeArea() {
+  Widget _buildServiceTypeSection() {
     return Padding(
       padding: const EdgeInsets.only(left: 15.0),
       child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: AppColors.disabledColor,
-            ),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-              child: _buildCareServiceArea(),
-            ),
+          _buildSubContainerInsideExpansion(
+            _buildCareServiceArea(),
           ),
           const SizedBox(height: 10.0),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: AppColors.disabledColor,
-            ),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-              child: _buildIntergratedServiceArea(),
-            ),
+          _buildSubContainerInsideExpansion(
+            _buildIntergratedServiceArea(),
           ),
           const SizedBox(height: 10.0),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: AppColors.disabledColor,
-            ),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-              child: _buildServiceForDisabilitiesArea(),
-            ),
+          _buildSubContainerInsideExpansion(
+            _buildServiceForDisabilitiesArea(),
           ),
           const SizedBox(height: 10.0),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: AppColors.disabledColor,
-            ),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  _buildHeadingLabel(label: '地域生活支援'),
-                  _buildCustomContainer([
-                    _buildColumnCheckBoxAndChildren(
-                      cb: _serviceForCommunityLifeTypeActive
-                          .serviceForCommunityLifeType[0],
-                      child: [
-                        CustomRadioGroupButtonTwo(
-                            labels: const ['身体伴う', '身体伴わない'],
-                            isChecked: _serviceForCommunityLifeTypeActive
-                                .serviceForCommunityLifeType[0].isChecked),
-                        _buildSingleRowLabelAndInput(
-                          label: '分',
-                          cb: _serviceForCommunityLifeTypeActive
-                              .serviceForCommunityLifeType[0],
-                          onChanged: (v) {},
-                        ),
-                        _buildSingleRowLabelAndMultiLinesInput(
-                          label: '行先',
-                          cb: _serviceForCommunityLifeTypeActive
-                              .serviceForCommunityLifeType[0],
-                          onChanged: (v) {},
-                        ),
-                      ],
-                    ),
-                  ]),
-                ],
-              ),
-            ),
+          _buildSubContainerInsideExpansion(
+            _buildServiceForCommunityLifeArea(),
           ),
           const SizedBox(height: 10.0),
         ],
       ),
+    );
+  }
+
+  Widget _buildServiceForCommunityLifeArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '地域生活支援'),
+        _buildCustomContainer([
+          _buildColumnCheckBoxAndChildren(
+            cb: _serviceForCommunityLifeTypeActive
+                .serviceForCommunityLifeType[0],
+            child: [
+              CustomRadioGroupButtonTwo(
+                  labels: const ['身体伴う', '身体伴わない'],
+                  isChecked: _serviceForCommunityLifeTypeActive
+                      .serviceForCommunityLifeType[0].isChecked),
+              _buildSingleRowLabelAndInput(
+                label: '分',
+                cb: _serviceForCommunityLifeTypeActive
+                    .serviceForCommunityLifeType[0],
+                onChanged: (v) {},
+              ),
+              _buildSingleRowLabelAndMultiLinesInput(
+                label: '行先',
+                cb: _serviceForCommunityLifeTypeActive
+                    .serviceForCommunityLifeType[0],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+        ]),
+      ],
     );
   }
 
@@ -549,7 +619,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
-  Column _buildIntergratedServiceArea() {
+  Widget _buildIntergratedServiceArea() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -589,7 +659,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           [
             _buildColumnCheckBoxAndChildren(
               cb: _serviceTypeActive.careChoices[0],
-              child: [_buildInputGroup(0)],
+              child: [
+                _buildInputGroup(
+                  _serviceTypeActive.careChoices[0],
+                )
+              ],
             ),
             _buildColumnCheckBoxAndChildren(
               cb: _serviceTypeActive.careChoices[1],
@@ -604,7 +678,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               cb: _serviceTypeActive.careChoices[2],
               child: [
                 CustomRadioGroupButtonTwo(
-                  isChecked: _serviceTypeActive.careChoices[1].isChecked,
+                  isChecked: _serviceTypeActive.careChoices[2].isChecked,
                   labels: const ["１回", "２回"],
                 ),
                 // const DottedLine(dashColor: AppColors.borderColor),
@@ -662,23 +736,89 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
-  Widget _buildInputGroup(int indexOfListCheck) {
+  Widget _buildInputGroup(CheckBoxModel cb) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(width: 4.0),
+        const SizedBox(width: 41.0),
         _buildRowLabelAndInput(
           label: '身体',
-          index: indexOfListCheck,
+          cb: cb,
           onChanged: (v) {},
         ),
         const SizedBox(width: 18.0),
         _buildRowLabelAndInput(
           label: '生活',
-          index: indexOfListCheck,
+          cb: cb,
           onChanged: (v) {},
         ),
-        const SizedBox(width: 18.0),
+      ],
+    );
+  }
+
+  Widget _buildInputGroupWithSlash(CheckBoxModel cb) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(width: 41.0),
+        _buildRowLabelAndInput(
+          label: '',
+          cb: cb,
+          onChanged: (v) {},
+        ),
+        const SizedBox(width: 19.5),
+        Text(
+          '/',
+          style: TextStyle(
+            fontFamily: 'NotoSanJP',
+            fontSize: 26.0,
+            fontWeight: FontWeight.w400,
+            height: 1.2,
+            color: cb.isChecked
+                ? AppColors.blackColor
+                : AppColors.disableTextColor,
+          ),
+        ),
+        const SizedBox(width: 19.5),
+        _buildRowLabelAndInput(
+          label: '',
+          cb: cb,
+          onChanged: (v) {},
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSingleMultiLinesInputWithHintLabel(
+      {required String hintLabel,
+      required CheckBoxModel cb,
+      required Function(String)? onChanged}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(width: 41.0),
+        SizedBox(
+          width: 231.0,
+          height: 38.0,
+          child: TextField(
+            decoration: InputDecoration(
+              enabled: cb.isChecked,
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.borderColor,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              ),
+              contentPadding: const EdgeInsets.only(left: 10.0),
+              hintText: hintLabel,
+            ),
+            autofocus: false,
+            minLines: 1,
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+            onChanged: onChanged,
+          ),
+        ),
       ],
     );
   }
@@ -714,7 +854,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         const SizedBox(width: 6.0),
         Padding(
           padding: const EdgeInsets.only(top: 18.0),
-          child: _buildSubLabel(label: label),
+          child: _buildSubLabel(label: label, isChecked: cb.isChecked),
         ),
       ],
     );
@@ -742,7 +882,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
               ),
-              contentPadding: const EdgeInsets.all(5.0),
+              contentPadding: const EdgeInsets.only(left: 10.0, top: 15.0),
+              hintText: '',
             ),
             autofocus: false,
             minLines: 2,
@@ -755,21 +896,34 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
+  Widget _buildSubContainerInsideExpansion(Widget child) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: AppColors.disabledColor,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+        child: child,
+      ),
+    );
+  }
+
   Widget _buildRowLabelAndInput(
       {required String label,
-      required int index,
+      required CheckBoxModel cb,
       required Function(String)? onChanged}) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _buildSubLabel(label: label),
+        _buildSubLabel(label: label, isChecked: cb.isChecked),
         const SizedBox(width: 5.0),
         SizedBox(
           width: 70.0,
           height: 38.0,
           child: TextField(
             decoration: InputDecoration(
-              enabled: _serviceTypeActive.careChoices[index].isChecked,
+              enabled: cb.isChecked,
               border: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: AppColors.borderColor,
