@@ -7,6 +7,7 @@ import 'package:parsowa/presentation/screens/make_job_record/data/advance_check_
 import 'package:parsowa/presentation/screens/make_job_record/data/body_care_section_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/check_box_model.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/job_type.dart';
+import 'package:parsowa/presentation/screens/make_job_record/data/living_assistance_section_type.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/service_section_types.dart';
 import 'package:parsowa/presentation/screens/make_job_record/widgets/custom_expansion_panel.dart';
 import 'package:parsowa/presentation/screens/make_job_record/widgets/custom_radio_group_button_2.dart';
@@ -43,6 +44,13 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   final _wakeUpOrSleepActive = BodyCareType.wakeUpOrSleepActive;
   final _takingMecOrMecPracActive = BodyCareType.takingMecOrMecPracActive;
   final _independenceSupportActive = BodyCareType.independenceSupportActive;
+  // Living Assistance Section
+  final _cleaningTypeActive = LivingAssistance.cleaningTypeActive;
+  final _laundryTypeActive = LivingAssistance.laundryTypeActive;
+  final _bedingCareTypeActive = LivingAssistance.bedingCareTypeActive;
+  final _clothingTypeActive = LivingAssistance.clothingTypeActive;
+  final _preparingMealTypeActive = LivingAssistance.preparingMealTypeActive;
+  final _otherTasksTypeActive = LivingAssistance.otherTasksTypeActive;
   // local variables
   final _isOpenExpandPanels = [false, false, false, false, false, false, false];
 
@@ -144,7 +152,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         _buildSingleExpansionPanel(
           index: 3,
           label: '生活援助',
-          body: const Text('this is body'),
+          body: _buildLivingAssistanceSection(),
         ),
         _buildSingleExpansionPanel(
           index: 4,
@@ -164,6 +172,147 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       ],
       expansionCallback: (i, isOpen) =>
           setState(() => _isOpenExpandPanels[i] = !isOpen),
+    );
+  }
+
+  Widget _buildLivingAssistanceSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0),
+      child: Column(
+        children: [
+          _buildSubContainerInsideExpansion(
+            _buildCleaningArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildLaundryArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildBeddingCareArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildClothingArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildPreparingMealsArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildOtherTasksArea(),
+          ),
+          const SizedBox(height: 10.0),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOtherTasksArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '買物等'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _otherTasksTypeActive[0]),
+          _buildSingleCheckBox(cb: _otherTasksTypeActive[1]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildPreparingMealsArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '調理配下膳'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _preparingMealTypeActive[0]),
+          _buildSingleCheckBox(cb: _preparingMealTypeActive[1]),
+          _buildSingleCheckBox(cb: _preparingMealTypeActive[2]),
+          _buildSingleCheckBox(cb: _preparingMealTypeActive[3]),
+          _buildColumnCheckBoxAndChildren(
+            cb: _preparingMealTypeActive[4],
+            child: [
+              _buildSingleColumLabelAndInput(
+                label: '献立',
+                cb: _preparingMealTypeActive[4],
+                onChanged: (v) {},
+              ),
+            ],
+          ),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildClothingArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '衣類'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _clothingTypeActive[0]),
+          _buildSingleCheckBox(cb: _clothingTypeActive[1]),
+          _buildSingleCheckBox(cb: _clothingTypeActive[2]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildBeddingCareArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '寝具の手入れ'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _bedingCareTypeActive[0]),
+          _buildSingleCheckBox(cb: _bedingCareTypeActive[1]),
+          _buildSingleCheckBox(cb: _bedingCareTypeActive[2]),
+          _buildSingleCheckBox(cb: _bedingCareTypeActive[3]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildLaundryArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '洗濯'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _laundryTypeActive[0]),
+          _buildSingleCheckBox(cb: _laundryTypeActive[1]),
+          _buildSingleCheckBox(cb: _laundryTypeActive[2]),
+          _buildSingleCheckBox(cb: _laundryTypeActive[3]),
+          _buildSingleCheckBox(cb: _laundryTypeActive[4]),
+          _buildSingleCheckBox(cb: _laundryTypeActive[5]),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildCleaningArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildHeadingLabel(label: '清掃'),
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _cleaningTypeActive[0]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[1]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[2]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[3]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[4]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[5]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[6]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[7]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[8]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[9]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[10]),
+          _buildSingleCheckBox(cb: _cleaningTypeActive[11]),
+        ]),
+      ],
     );
   }
 
@@ -1011,7 +1160,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       for (var e in child) {
         newChild.add(
           Container(
-            height: 58.0,
+            // height: 58.0,
             color: !cb.isChecked ? AppColors.disabledColor : null,
             child: e,
           ),
@@ -1025,7 +1174,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       for (var e in child) {
         newChild.add(
           Container(
-            height: 58.0,
+            // height: 58.0,
             color: !cb.isChecked ? AppColors.disabledColor : null,
             child: e,
           ),
@@ -1167,6 +1316,41 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           child: _buildSubLabel(label: label, isChecked: cb.isChecked),
         ),
       ],
+    );
+  }
+
+  Widget _buildSingleColumLabelAndInput(
+      {required String label,
+      required CheckBoxModel cb,
+      required Function(String)? onChanged}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _buildSubLabel(label: label, isChecked: cb.isChecked),
+          SizedBox(
+            height: 38.0,
+            child: TextField(
+              decoration: InputDecoration(
+                enabled: cb.isChecked,
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.borderColor,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                contentPadding: const EdgeInsets.only(left: 5.0),
+              ),
+              autofocus: false,
+              maxLines: 1,
+              keyboardType: TextInputType.text,
+              onChanged: onChanged,
+            ),
+          ),
+          const SizedBox(height: 10.0),
+        ],
+      ),
     );
   }
 
