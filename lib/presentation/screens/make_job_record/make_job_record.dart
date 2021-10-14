@@ -1,5 +1,6 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:parsowa/core/constants/colors.dart';
@@ -58,12 +59,15 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   // local variables
   final _isOpenExpandPanels = [false, false, false, false, false, false, false];
 
+  // dynamic variables
+  final int _totalPrice = 0;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: AppColors.whiteColor,
         appBar: AppBarCustom(
           stringTitle: 'サービス提供記録作成',
@@ -86,93 +90,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildNoteSection() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(width: 41.0),
-        Expanded(
-          child: SizedBox(
-            height: 71.0,
-            child: TextField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.borderColor,
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                ),
-                contentPadding: EdgeInsets.only(left: 10.0),
-              ),
-              autofocus: false,
-              minLines: 4,
-              maxLines: null,
-              keyboardType: TextInputType.multiline,
-              onChanged: (v) {},
-            ),
-          ),
-        ),
-        const SizedBox(width: 18.0),
-      ],
-    );
-  }
-
-  Widget _buildSendSection() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Spacer(),
-          Expanded(
-            flex: 2,
-            child: SizedBox(
-              height: 38.0,
-              child: _buildButton(
-                title: '送信する',
-                primaryColor: AppColors.primaryColor,
-                changeColor: AppColors.whiteColor,
-                onPressed: () {},
-              ),
-            ),
-          ),
-          const Spacer(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildJobTypeSection() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (_jobTypeActive.jobTypeSelect.isNotEmpty) ..._buildJobTypeArea(),
-          // change
-          if (_jobTypeActive.changesSelect.isNotEmpty) ..._buildChangesArea(),
-          // non-insurences
-          if (_jobTypeActive.isNonInsurenceService)
-            ..._buildNonInsuranceServiceArea(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildExitConfirmingSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0),
-      child: Column(
-        children: [
-          _buildSubContainerInsideExpansion(
-            _buildExitConfirmingArea(),
-          ),
-          const SizedBox(height: 10.0),
-        ],
       ),
     );
   }
@@ -206,7 +123,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         _buildSingleExpansionPanel(
           index: 4,
           label: '買物記録',
-          body: const Text('this is body'),
+          body: _buildShoppingRecordSection(),
         ),
         _buildSingleExpansionPanel(
           index: 5,
@@ -214,30 +131,225 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           body: _buildExitConfirmingSection(),
         ),
         _buildSingleExpansionPanel(
-            index: 6, label: '特記・連絡事項', body: _buildNoteSection()),
+          index: 6,
+          label: '特記・連絡事項',
+          body: _buildNoteSection(),
+        ),
       ],
       expansionCallback: (i, isOpen) =>
           setState(() => _isOpenExpandPanels[i] = !isOpen),
     );
   }
 
-  Widget _buildExitConfirmingArea() {
+  Widget _buildAdvanceCheckSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+      child: Column(
+        children: [
+          _buildSubContainerInsideExpansion(
+            _buildPhysicalConditionRecordArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildPrecheckArea(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBodyCareSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+      child: Column(
+        children: [
+          _buildSubContainerInsideExpansion(
+            _buildExcretionAssistanceArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildMealAssistantArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildGetDressedArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildGoingOutArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildWakeUpOrSleepArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildTakingMedicineOrMedicalPracticeArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildIndependenceSupportArea(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildServiceTypeSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+      child: Column(
+        children: [
+          _buildSubContainerInsideExpansion(
+            _buildCareServiceArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildIntergratedServiceArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildServiceForDisabilitiesArea(),
+          ),
+          const SizedBox(height: 10.0),
+          _buildSubContainerInsideExpansion(
+            _buildServiceForCommunityLifeArea(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildExitConfirmingSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+      child: _buildSubContainerInsideExpansion(
+        _buildExitConfirmingArea(),
+      ),
+    );
+  }
+
+  Widget _buildNoteSection() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _buildCustomContainer([
-          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[0]),
-          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[1]),
-          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[2]),
-          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[3]),
-        ]),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(width: 41.0),
+            Expanded(
+              child: SizedBox(
+                height: 71.0,
+                child: TextField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.borderColor,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    ),
+                    contentPadding: EdgeInsets.only(left: 10.0),
+                  ),
+                  autofocus: false,
+                  minLines: 4,
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
+                  onChanged: (v) {},
+                ),
+              ),
+            ),
+            const SizedBox(width: 18.0),
+          ],
+        ),
+        const SizedBox(height: 10.0),
       ],
+    );
+  }
+
+  Widget _buildSendSection() {
+    return Column(
+      children: [
+        const Divider(
+            color: AppColors.borderColor, thickness: 0.8, height: 1.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 40.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(),
+              Expanded(
+                flex: 2,
+                child: SizedBox(
+                  height: 38.0,
+                  child: _buildButton(
+                    title: '送信する',
+                    primaryColor: AppColors.primaryColor,
+                    changeColor: AppColors.whiteColor,
+                    onPressed: () {},
+                  ),
+                ),
+              ),
+              const Spacer(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildJobTypeSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (_jobTypeActive.jobTypeSelect.isNotEmpty) ..._buildJobTypeArea(),
+          // change
+          if (_jobTypeActive.changesSelect.isNotEmpty) ..._buildChangesArea(),
+          // non-insurences
+          if (_jobTypeActive.isNonInsurenceService)
+            ..._buildNonInsuranceServiceArea(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildShoppingRecordSection() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+      child: _buildSubContainerInsideExpansion(
+        Column(
+          children: [
+            _buildRowAmountInput(
+              label: '預り金',
+              onChanged: (v) {},
+            ),
+            const SizedBox(height: 20.0),
+            _buildRowAmountInput(
+              label: '買い物',
+              onChanged: (v) {},
+            ),
+            const SizedBox(height: 20.0),
+            const Divider(
+              color: AppColors.borderColor,
+              height: 1.0,
+              thickness: 1.0,
+            ),
+            _buildRowSpendTotal(),
+            const SizedBox(height: 20.0),
+            const DottedLine(dashColor: AppColors.borderColor),
+            _buildSingleColumLabelAndInputWithoutCheckBox(
+              label: '内訳',
+              onChanged: (v) {},
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _buildLivingAssistanceSection() {
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0),
+      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
       child: Column(
         children: [
           _buildSubContainerInsideExpansion(
@@ -263,9 +375,99 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           _buildSubContainerInsideExpansion(
             _buildOtherTasksArea(),
           ),
-          const SizedBox(height: 10.0),
         ],
       ),
+    );
+  }
+
+  Widget _buildRowSpendTotal() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildHeadingLabel(label: 'おつり'),
+        const SizedBox(width: 10.0),
+        Expanded(
+          child: Text(
+            _totalPrice.toString(),
+            textAlign: TextAlign.end,
+            style: const TextStyle(
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.w700,
+              fontSize: 34.0,
+              height: 1.6,
+            ),
+          ),
+        ),
+        const SizedBox(width: 6.6),
+        const Text(
+          '円',
+          style: TextStyle(
+            fontFamily: 'NotoSanJP',
+            fontSize: 20.0,
+            fontWeight: FontWeight.w700,
+            height: 2.4,
+          ),
+        ),
+        const SizedBox(width: 24.0),
+      ],
+    );
+  }
+
+  Widget _buildRowAmountInput(
+      {required String label, required Function(String)? onChanged}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildHeadingLabel(label: label),
+        const SizedBox(width: 10.0),
+        Expanded(
+          child: Container(
+            height: 56.0,
+            color: AppColors.whiteColor,
+            child: TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.borderColor,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+              ),
+              autofocus: false,
+              maxLines: 1,
+              keyboardType: TextInputType.number,
+              onChanged: onChanged,
+            ),
+          ),
+        ),
+        const SizedBox(width: 6.6),
+        const Text(
+          '円',
+          style: TextStyle(
+            fontFamily: 'NotoSanJP',
+            fontSize: 20.0,
+            fontWeight: FontWeight.w700,
+            height: 3,
+          ),
+        ),
+        const SizedBox(width: 24.0),
+      ],
+    );
+  }
+
+  Widget _buildExitConfirmingArea() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _buildCustomContainer([
+          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[0]),
+          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[1]),
+          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[2]),
+          _buildSingleCheckBox(cb: _exitConfirmingTypeActive[3]),
+        ]),
+      ],
     );
   }
 
@@ -373,44 +575,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           _buildSingleCheckBox(cb: _cleaningTypeActive[11]),
         ]),
       ],
-    );
-  }
-
-  Widget _buildBodyCareSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0),
-      child: Column(
-        children: [
-          _buildSubContainerInsideExpansion(
-            _buildExcretionAssistanceArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildMealAssistantArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildGetDressedArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildGoingOutArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildWakeUpOrSleepArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildTakingMedicineOrMedicalPracticeArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildIndependenceSupportArea(),
-          ),
-          const SizedBox(height: 10.0),
-        ],
-      ),
     );
   }
 
@@ -623,24 +787,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           _buildSingleCheckBox(cb: _excretionAssistanceTypeActive[7]),
         ]),
       ],
-    );
-  }
-
-  Widget _buildAdvanceCheckSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0),
-      child: Column(
-        children: [
-          _buildSubContainerInsideExpansion(
-            _buildPhysicalConditionRecordArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildPrecheckArea(),
-          ),
-          const SizedBox(height: 10.0),
-        ],
-      ),
     );
   }
 
@@ -987,32 +1133,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           fontWeight: FontWeight.w700,
           height: 1.3125,
         ),
-      ),
-    );
-  }
-
-  Widget _buildServiceTypeSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0),
-      child: Column(
-        children: [
-          _buildSubContainerInsideExpansion(
-            _buildCareServiceArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildIntergratedServiceArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildServiceForDisabilitiesArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildServiceForCommunityLifeArea(),
-          ),
-          const SizedBox(height: 10.0),
-        ],
       ),
     );
   }
@@ -1450,6 +1570,40 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         ),
         const SizedBox(width: 18.0),
       ],
+    );
+  }
+
+  Widget _buildSingleColumLabelAndInputWithoutCheckBox(
+      {required String label, required Function(String)? onChanged}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _buildHeadingLabel(label: label),
+          Container(
+            color: AppColors.whiteColor,
+            child: TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.borderColor,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              ),
+              autofocus: false,
+              minLines: 2,
+              maxLines: null,
+              keyboardType: TextInputType.multiline,
+              onChanged: onChanged,
+            ),
+          ),
+          const SizedBox(height: 10.0),
+        ],
+      ),
     );
   }
 
