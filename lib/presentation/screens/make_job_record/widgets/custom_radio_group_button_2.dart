@@ -24,7 +24,7 @@ class _CustomRadioGroupButtonTwoState extends State<CustomRadioGroupButtonTwo> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(width: 25.0),
+        const SizedBox(width: 24.0),
         Row(
           children: [
             Radio(
@@ -43,22 +43,24 @@ class _CustomRadioGroupButtonTwoState extends State<CustomRadioGroupButtonTwo> {
           ],
         ),
         widget.labels[1].length > 5
-            ? const SizedBox(width: 8.0)
+            ? const SizedBox(width: 0.0)
             : const SizedBox(width: 30.0),
-        Row(
-          children: [
-            Radio(
-              value: widget.labels[1],
-              groupValue: groupValue,
-              onChanged: widget.isChecked
-                  ? (String? value) {
-                      setState(() => groupValue = value!);
-                    }
-                  : null,
-            ),
-            _buildSubLabel(
-                label: widget.labels[1], isChecked: widget.isChecked),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              Radio(
+                value: widget.labels[1],
+                groupValue: groupValue,
+                onChanged: widget.isChecked
+                    ? (String? value) {
+                        setState(() => groupValue = value!);
+                      }
+                    : null,
+              ),
+              _buildSubLabel(
+                  label: widget.labels[1], isChecked: widget.isChecked),
+            ],
+          ),
         ),
       ],
     );
@@ -67,6 +69,9 @@ class _CustomRadioGroupButtonTwoState extends State<CustomRadioGroupButtonTwo> {
   Widget _buildSubLabel({required label, bool isChecked = false}) {
     return Text(
       label,
+      softWrap: true,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontFamily: 'NotoSanJP',
         fontSize: 16.0,

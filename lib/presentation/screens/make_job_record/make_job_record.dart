@@ -1375,55 +1375,61 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   }
 
   Widget _buildInputGroup(CheckBoxModel cb) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(width: 41.0),
-        _buildRowLabelAndInput(
-          label: '身体',
-          cb: cb,
-          onChanged: (v) {},
-        ),
-        const SizedBox(width: 18.0),
-        _buildRowLabelAndInput(
-          label: '生活',
-          cb: cb,
-          onChanged: (v) {},
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(width: 41.0),
+          _buildRowLabelAndInput(
+            label: '身体',
+            cb: cb,
+            onChanged: (v) {},
+          ),
+          const SizedBox(width: 18.0),
+          _buildRowLabelAndInput(
+            label: '生活',
+            cb: cb,
+            onChanged: (v) {},
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildInputGroupWithSlash(CheckBoxModel cb, {String label = ''}) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(width: 41.0),
-        _buildRowLabelAndInputWithSlash(
-          label: label,
-          cb: cb,
-          onChanged: (v) {},
-        ),
-        const SizedBox(width: 15.5),
-        Text(
-          '/',
-          style: TextStyle(
-            fontFamily: 'NotoSanJP',
-            fontSize: 26.0,
-            fontWeight: FontWeight.w400,
-            height: 1.2,
-            color: cb.isChecked
-                ? AppColors.blackColor
-                : AppColors.disableTextColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(width: 41.0),
+          _buildRowLabelAndInputWithSlash(
+            label: label,
+            cb: cb,
+            onChanged: (v) {},
           ),
-        ),
-        const SizedBox(width: 11.5),
-        _buildRowLabelAndInputWithSlash(
-          label: '',
-          cb: cb,
-          onChanged: (v) {},
-        ),
-      ],
+          const SizedBox(width: 15.5),
+          Text(
+            '/',
+            style: TextStyle(
+              fontFamily: 'NotoSanJP',
+              fontSize: 26.0,
+              fontWeight: FontWeight.w400,
+              height: 1.2,
+              color: cb.isChecked
+                  ? AppColors.blackColor
+                  : AppColors.disableTextColor,
+            ),
+          ),
+          const SizedBox(width: 11.5),
+          _buildRowLabelAndInputWithSlash(
+            label: '',
+            cb: cb,
+            onChanged: (v) {},
+          ),
+        ],
+      ),
     );
   }
 
@@ -1431,12 +1437,53 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       {required String hintLabel,
       required CheckBoxModel cb,
       required Function(String)? onChanged}) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(width: 41.0),
-        Expanded(
-          child: SizedBox(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(width: 41.0),
+          Expanded(
+            child: SizedBox(
+              height: 38.0,
+              child: TextField(
+                decoration: InputDecoration(
+                  enabled: cb.isChecked,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.borderColor,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  ),
+                  contentPadding: const EdgeInsets.only(left: 10.0),
+                  hintText: hintLabel,
+                ),
+                autofocus: false,
+                minLines: 1,
+                maxLines: null,
+                keyboardType: TextInputType.multiline,
+                onChanged: onChanged,
+              ),
+            ),
+          ),
+          const SizedBox(width: 18.0),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSingleRowLabelAndInput(
+      {required String label,
+      required CheckBoxModel cb,
+      required Function(String)? onChanged}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(width: 41.0),
+          SizedBox(
+            width: 70.0,
             height: 38.0,
             child: TextField(
               decoration: InputDecoration(
@@ -1447,56 +1494,21 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                contentPadding: const EdgeInsets.only(left: 10.0),
-                hintText: hintLabel,
+                contentPadding: const EdgeInsets.only(left: 5.0),
               ),
               autofocus: false,
-              minLines: 1,
-              maxLines: null,
-              keyboardType: TextInputType.multiline,
+              maxLines: 1,
+              keyboardType: TextInputType.text,
               onChanged: onChanged,
             ),
           ),
-        ),
-        const SizedBox(width: 18.0),
-      ],
-    );
-  }
-
-  Widget _buildSingleRowLabelAndInput(
-      {required String label,
-      required CheckBoxModel cb,
-      required Function(String)? onChanged}) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(width: 41.0),
-        SizedBox(
-          width: 70.0,
-          height: 38.0,
-          child: TextField(
-            decoration: InputDecoration(
-              enabled: cb.isChecked,
-              border: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColors.borderColor,
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              ),
-              contentPadding: const EdgeInsets.only(left: 5.0),
-            ),
-            autofocus: false,
-            maxLines: 1,
-            keyboardType: TextInputType.text,
-            onChanged: onChanged,
+          const SizedBox(width: 6.0),
+          Padding(
+            padding: const EdgeInsets.only(top: 18.0),
+            child: _buildSubLabel(label: label, isChecked: cb.isChecked),
           ),
-        ),
-        const SizedBox(width: 6.0),
-        Padding(
-          padding: const EdgeInsets.only(top: 18.0),
-          child: _buildSubLabel(label: label, isChecked: cb.isChecked),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -1539,37 +1551,40 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       {required String label,
       required CheckBoxModel cb,
       required Function(String)? onChanged}) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(width: 41.0),
-        _buildSubLabel(label: label),
-        const SizedBox(width: 6.0),
-        Expanded(
-          child: SizedBox(
-            height: 38.0,
-            child: TextField(
-              decoration: InputDecoration(
-                enabled: cb.isChecked,
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.borderColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(width: 41.0),
+          _buildSubLabel(label: label),
+          const SizedBox(width: 6.0),
+          Expanded(
+            child: SizedBox(
+              height: 38.0,
+              child: TextField(
+                decoration: InputDecoration(
+                  enabled: cb.isChecked,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.borderColor,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  contentPadding: const EdgeInsets.only(left: 10.0, top: 15.0),
+                  hintText: '',
                 ),
-                contentPadding: const EdgeInsets.only(left: 10.0, top: 15.0),
-                hintText: '',
+                autofocus: false,
+                minLines: 2,
+                maxLines: null,
+                keyboardType: TextInputType.multiline,
+                onChanged: onChanged,
               ),
-              autofocus: false,
-              minLines: 2,
-              maxLines: null,
-              keyboardType: TextInputType.multiline,
-              onChanged: onChanged,
             ),
           ),
-        ),
-        const SizedBox(width: 18.0),
-      ],
+          const SizedBox(width: 18.0),
+        ],
+      ),
     );
   }
 
