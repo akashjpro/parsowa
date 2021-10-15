@@ -142,96 +142,142 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   }
 
   Widget _buildAdvanceCheckSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
-      child: Column(
-        children: [
-          _buildSubContainerInsideExpansion(
-            _buildPhysicalConditionRecordArea(),
+    return Column(
+      children: [
+        const Divider(
+          color: AppColors.borderColor,
+          thickness: 0.8,
+          height: 1.0,
+        ),
+        const SizedBox(height: 10.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+          child: Column(
+            children: [
+              _buildSubContainerInsideExpansion(
+                _buildPhysicalConditionRecordArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildPrecheckArea(),
+              ),
+            ],
           ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildPrecheckArea(),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   Widget _buildBodyCareSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
-      child: Column(
-        children: [
-          _buildSubContainerInsideExpansion(
-            _buildExcretionAssistanceArea(),
+    return Column(
+      children: [
+        const Divider(
+          color: AppColors.borderColor,
+          thickness: 0.8,
+          height: 1.0,
+        ),
+        const SizedBox(height: 10.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+          child: Column(
+            children: [
+              _buildSubContainerInsideExpansion(
+                _buildExcretionAssistanceArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildMealAssistantArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildGetDressedArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildGoingOutArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildWakeUpOrSleepArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildTakingMedicineOrMedicalPracticeArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildIndependenceSupportArea(),
+              ),
+            ],
           ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildMealAssistantArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildGetDressedArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildGoingOutArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildWakeUpOrSleepArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildTakingMedicineOrMedicalPracticeArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildIndependenceSupportArea(),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   Widget _buildServiceTypeSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
-      child: Column(
-        children: [
-          _buildSubContainerInsideExpansion(
-            _buildCareServiceArea(),
+    return Column(
+      children: [
+        const Divider(
+          color: AppColors.borderColor,
+          thickness: 0.8,
+          height: 1.0,
+        ),
+        const SizedBox(height: 10.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+          child: Column(
+            children: [
+              _buildSubContainerInsideExpansion(
+                _buildCareServiceArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildIntergratedServiceArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildServiceForDisabilitiesArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildServiceForCommunityLifeArea(),
+              ),
+            ],
           ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildIntergratedServiceArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildServiceForDisabilitiesArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildServiceForCommunityLifeArea(),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   Widget _buildExitConfirmingSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
-      child: _buildSubContainerInsideExpansion(
-        _buildExitConfirmingArea(),
-      ),
+    return Column(
+      children: [
+        const Divider(
+          color: AppColors.borderColor,
+          thickness: 0.8,
+          height: 1.0,
+        ),
+        const SizedBox(height: 10.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+          child: _buildSubContainerInsideExpansion(
+            _buildExitConfirmingArea(),
+          ),
+        ),
+      ],
     );
   }
 
   Widget _buildNoteSection() {
     return Column(
       children: [
+        const Divider(
+          color: AppColors.borderColor,
+          thickness: 0.8,
+          height: 1.0,
+        ),
+        const SizedBox(height: 10.0),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -314,69 +360,89 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   }
 
   Widget _buildShoppingRecordSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
-      child: _buildSubContainerInsideExpansion(
-        Column(
-          children: [
-            _buildRowAmountInput(
-              label: '預り金',
-              onChanged: (v) {},
-            ),
-            const SizedBox(height: 20.0),
-            _buildRowAmountInput(
-              label: '買い物',
-              onChanged: (v) {},
-            ),
-            const SizedBox(height: 20.0),
-            const Divider(
-              color: AppColors.borderColor,
-              height: 1.0,
-              thickness: 1.0,
-            ),
-            _buildRowSpendTotal(),
-            const SizedBox(height: 20.0),
-            const DottedLine(dashColor: AppColors.borderColor),
-            _buildSingleColumLabelAndInputWithoutCheckBox(
-              label: '内訳',
-              onChanged: (v) {},
-            ),
-          ],
+    return Column(
+      children: [
+        const Divider(
+          color: AppColors.borderColor,
+          thickness: 0.8,
+          height: 1.0,
         ),
-      ),
+        const SizedBox(height: 10.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+          child: _buildSubContainerInsideExpansion(
+            Column(
+              children: [
+                _buildRowAmountInput(
+                  label: '預り金',
+                  onChanged: (v) {},
+                ),
+                const SizedBox(height: 20.0),
+                _buildRowAmountInput(
+                  label: '買い物',
+                  onChanged: (v) {},
+                ),
+                const SizedBox(height: 20.0),
+                const Divider(
+                  color: AppColors.borderColor,
+                  height: 1.0,
+                  thickness: 1.0,
+                ),
+                _buildRowSpendTotal(),
+                const SizedBox(height: 20.0),
+                const DottedLine(dashColor: AppColors.borderColor),
+                _buildSingleColumLabelAndInputWithoutCheckBox(
+                  label: '内訳',
+                  onChanged: (v) {},
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 
   Widget _buildLivingAssistanceSection() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
-      child: Column(
-        children: [
-          _buildSubContainerInsideExpansion(
-            _buildCleaningArea(),
+    return Column(
+      children: [
+        const Divider(
+          color: AppColors.borderColor,
+          thickness: 0.8,
+          height: 1.0,
+        ),
+        const SizedBox(height: 10.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, bottom: 10.0),
+          child: Column(
+            children: [
+              _buildSubContainerInsideExpansion(
+                _buildCleaningArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildLaundryArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildBeddingCareArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildClothingArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildPreparingMealsArea(),
+              ),
+              const SizedBox(height: 10.0),
+              _buildSubContainerInsideExpansion(
+                _buildOtherTasksArea(),
+              ),
+            ],
           ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildLaundryArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildBeddingCareArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildClothingArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildPreparingMealsArea(),
-          ),
-          const SizedBox(height: 10.0),
-          _buildSubContainerInsideExpansion(
-            _buildOtherTasksArea(),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
