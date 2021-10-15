@@ -45,14 +45,14 @@ class _DemoState extends State<RestPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-              _text1('パスワードリセット'),
+              _text1('パスワード再設定'),
               SizedBox(height: 18),
               _text2('パスワードを再設定してください。'),
               SizedBox(height: 89),
               Container(
                   margin: const EdgeInsets.symmetric(horizontal: 38),
                   alignment: Alignment.center,
-                  child: _buildInput(passwordController, 'メールアドレス', 'password', '※半角英数字6文字以上30文字以下')),
+                  child: _buildInput(passwordController, 'パスワード', 'password', '※半角英数字6文字以上30文字以下')),
               SizedBox(height: 17),
               Container(
                   margin: const EdgeInsets.symmetric(horizontal: 38),
