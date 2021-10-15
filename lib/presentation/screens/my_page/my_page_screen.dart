@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.dart';
 import 'package:parsowa/presentation/screens/contact_us/contact_us_screen.dart';
+import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 import '../../../core/constants/strings.dart';
@@ -39,6 +40,13 @@ class MyPageScreen extends StatelessWidget {
                 AppColors.whiteColor, AppColors.whiteColor, () {
                   Navigator.of(context).pushNamed(
                     ContactUsScreen.routeName,
+                  );
+                }),
+            SizedBox(height: 25),
+            _buildButton('Make job record', AppColors.primaryColor,
+                AppColors.whiteColor, AppColors.whiteColor, () {
+                  Navigator.of(context).pushNamed(
+                    MakeJobRecordScreen.routeName,
                   );
                 })
           ],
