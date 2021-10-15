@@ -40,4 +40,8 @@ class Strings {
   // QR code read
   static const qrCodeReadTitle = 'QR Code Read';
 
+  // Contact us
+  static const contactUsTitle = 'お問い合わせ';
+
+
 }

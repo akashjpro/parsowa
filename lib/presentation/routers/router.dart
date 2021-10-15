@@ -4,6 +4,7 @@ import 'package:parsowa/core/constants/strings.dart';
 import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/record_screen.dart';
+import 'package:parsowa/presentation/screens/contact_us/contact_us_screen.dart';
 import 'package:parsowa/presentation/screens/fix_request_detail/completed/completed_fix_request_detail.dart';
 import 'package:parsowa/presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
 import 'package:parsowa/presentation/screens/home/home_screen.dart';
@@ -130,6 +131,10 @@ class RouteGenerator {
       case RestPasswordInputMailScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => const RestPasswordInputMailScreen(),
+        );
+      case ContactUsScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const ContactUsScreen(),
         );
 
       default:
