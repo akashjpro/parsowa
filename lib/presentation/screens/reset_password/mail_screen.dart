@@ -1,14 +1,18 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 
-class RestPasswordScreen extends StatefulWidget {
-  const RestPasswordScreen({Key? key}) : super(key: key);
+import 'reset_password_screen.dart';
+
+class MailScreen extends StatefulWidget {
+  const MailScreen({Key? key}) : super(key: key);
 
   @override
-  _DemoState createState() => _DemoState();
+  _MailState createState() => _MailState();
 }
 
-class _DemoState extends State<RestPasswordScreen> {
+class _MailState extends State<MailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +28,15 @@ class _DemoState extends State<RestPasswordScreen> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.2),
               _text1('パスワードリセット'),
               SizedBox(height: 18),
-              _text2('パスワードを再設定してください。'),
-              SizedBox(height: 89),
-              _customTextField('メールアドレス', '※半角英数字6文字以上30文字以下'),
-              SizedBox(height: 17),
-              _customTextField('パスワード確認', ''),
-              SizedBox(height: 115),
+              _text2('本人確認を行います。'),
+              _text2('ご登録のメールアドレスを入力してください。'),
+              SizedBox(height: 50),
+              _customTextField('メールアドレス'),
+              SizedBox(height: 75),
               SizedBox(
                 height: 38,
                 width: 140,
-                child: _buttonClick('設定', _onClickButton),
+                child: _buttonClick('送信する', onClick),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.1),
             ],
@@ -42,7 +45,6 @@ class _DemoState extends State<RestPasswordScreen> {
       ),
     );
   }
-
   //----------------------------------------------------------------
   //Widget
 
@@ -70,7 +72,7 @@ class _DemoState extends State<RestPasswordScreen> {
     );
   }
 
-  Widget _customTextField(String text, String text2) {
+  Widget _customTextField(String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 38),
       child: Container(
@@ -78,36 +80,25 @@ class _DemoState extends State<RestPasswordScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 5.0),
-              child: Row(
-                children: [
-                  Text(
-                    text,
-                    style: TextStyle(
-                      fontFamily: 'NotoSanJP',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16.0,
-                      color: AppColors.blackColor,
-                    ),
-                  ),
-                  SizedBox(width: 26),
-                  Text(
-                    text2,
-                    style: TextStyle(
-                      fontFamily: 'NotoSanJP',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12.0,
-                      color: AppColors.blackColor,
-                    ),
-                  ),
-                ],
+              padding: const EdgeInsets.only(bottom: 5),
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontFamily: 'NotoSanJP',
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16.0,
+                  color: AppColors.blackColor,
+                ),
               ),
             ),
-            TextField(
-              //obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Container(
+              constraints: BoxConstraints(maxWidth: 500),
+              child: TextField(
+                //obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
             )
@@ -139,12 +130,13 @@ class _DemoState extends State<RestPasswordScreen> {
   }
 
   //----------------------------------------------------------------
-  //Function
+  //Funtion
 
-  void _onClickButton() {
-    print('hello world');
+  void onClick() {
+    print('hello');
+    Route route = MaterialPageRoute(builder: (context) => RestPasswordScreen());
+    Navigator.push(context, route);
   }
 
   //----------------------------------------------------------------
-
 }
