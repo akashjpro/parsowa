@@ -195,13 +195,14 @@ class AttendListWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
+                Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildTimeRow('予定', item.scheduledStartTime,
+                      _buildTimeRow(context, '予定', item.scheduledStartTime,
                           item.scheduledLeaveTime),
-                      _buildTimeRow('実績', item.startTime, item.leaveTime),
+                      _buildTimeRow(
+                          context, '実績', item.startTime, item.leaveTime),
                     ],
                   ),
                 ),
@@ -221,7 +222,8 @@ class AttendListWidget {
           ],
         ),
       );
-  static _buildTimeRow(String type, String startTime, String endTime) =>
+  static _buildTimeRow(BuildContext context, String type, String startTime,
+          String endTime) =>
       Container(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -248,7 +250,6 @@ class AttendListWidget {
               width: 7,
             ),
             Flexible(
-              flex: 10,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -266,8 +267,10 @@ class AttendListWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Expanded(
-                        flex: 1,
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                            minWidth: 70,
+                            maxWidth: MediaQuery.of(context).size.width),
                         child: Text(
                           startTime.compareTo('') != 0 ? startTime : '-',
                           textAlign: TextAlign.center,
@@ -279,7 +282,6 @@ class AttendListWidget {
                           ),
                         ),
                       ),
-                      Expanded(child: SizedBox())
                     ],
                   ),
                   Row(
@@ -296,8 +298,10 @@ class AttendListWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Expanded(
-                        flex: 1,
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                            minWidth: 70,
+                            maxWidth: MediaQuery.of(context).size.width),
                         child: Text(
                           startTime.compareTo('') != 0 ? endTime : '-',
                           textAlign: TextAlign.center,
@@ -309,12 +313,11 @@ class AttendListWidget {
                           ),
                         ),
                       ),
-                      Expanded(child: SizedBox())
                     ],
                   )
                 ],
               ),
-            )
+            ),
           ],
         ),
       );
