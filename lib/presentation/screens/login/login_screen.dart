@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const String routeName = "/LoginScreen";
+
   const LoginScreen({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
   State<StatefulWidget> createState() => LoginScreenState();
 }
@@ -12,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> {
   late TextEditingController usernameController;
   late TextEditingController passwordController;
+
   @override
   void initState() {
     // ignore: todo
@@ -63,6 +68,7 @@ class LoginScreenState extends State<LoginScreen> {
         height: 75,
         fit: BoxFit.cover,
       );
+
   Widget inputSection() => Column(
         children: [
           _buildInput(usernameController, 'メールアドレス', 'username'),
@@ -72,6 +78,7 @@ class LoginScreenState extends State<LoginScreen> {
           _buildInput(passwordController, 'パスワード', 'password'),
         ],
       );
+
   Widget buttonSection() => Column(
         children: [
           Row(
@@ -85,7 +92,9 @@ class LoginScreenState extends State<LoginScreen> {
               ),
               Expanded(
                 child: _buildButton('ログイン', AppColors.primaryColor,
-                    AppColors.whiteColor, AppColors.whiteColor, () {}),
+                    AppColors.whiteColor, AppColors.primaryColor, () {
+                  Navigator.of(context).pushReplacementNamed(JobListScreen.routeName);
+                }),
               ),
             ],
           ),
@@ -118,6 +127,7 @@ class LoginScreenState extends State<LoginScreen> {
           )
         ],
       );
+
   Widget _buildButton(String title, Color bg, Color textColor,
           Color borderColor, Function onPress) =>
       MaterialButton(
@@ -138,8 +148,9 @@ class LoginScreenState extends State<LoginScreen> {
         color: bg,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(19.0),
-            side: BorderSide(color: borderColor)),
+            side: BorderSide(color: borderColor, width: 2)),
       );
+
   _buildInput(TextEditingController controller, String title, String type) =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,

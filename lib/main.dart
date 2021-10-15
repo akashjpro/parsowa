@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parsowa/presentation/routers/router.dart';
 import 'package:parsowa/presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
+import 'package:parsowa/presentation/screens/login/login_screen.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
@@ -24,8 +25,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      home: JobListScreen(
-        title: Strings.jobListTitle,
+      home: LoginScreen(
+        title: "",
       ),
       onGenerateRoute: RouteGenerator.generateRoute,
     );

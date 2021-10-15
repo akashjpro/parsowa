@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/strings.dart';
@@ -13,6 +12,7 @@ import 'package:parsowa/presentation/screens/job_detail/confirm/confirm_screen.d
 import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
+import 'package:parsowa/presentation/screens/login/login_screen.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
 import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
@@ -83,7 +83,8 @@ class RouteGenerator {
         );
       case AttendListScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => const AttendListScreen(title: Strings.attendListTitle),
+          builder: (_) =>
+              const AttendListScreen(title: Strings.attendListTitle),
         );
       case RecordScreen.routeName:
         return MaterialPageRoute(
@@ -91,11 +92,13 @@ class RouteGenerator {
         );
       case PreviousAttendScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => const PreviousAttendScreen(title: Strings.recordTitle),
+          builder: (_) =>
+              const PreviousAttendScreen(title: Strings.recordTitle),
         );
       case MakeJobRecordScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => const MakeJobRecordScreen(title: Strings.jobRecordScreenName),
+          builder: (_) =>
+              const MakeJobRecordScreen(title: Strings.jobRecordScreenName),
         );
       case MyPageScreen.routeName:
         return MaterialPageRoute(
@@ -103,7 +106,8 @@ class RouteGenerator {
         );
       case QRCodeReadScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => const QRCodeReadScreen(title: Strings.qrCodeReadTitle),
+          builder: (_) =>
+              const QRCodeReadScreen(title: Strings.qrCodeReadTitle),
         );
       case ContentsFixRequestDetailScreen.routeName:
         return MaterialPageRoute(
@@ -112,6 +116,10 @@ class RouteGenerator {
       case CompleteFixRequestDetailScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => const CompleteFixRequestDetailScreen(),
+        );
+      case LoginScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const LoginScreen(title: ""),
         );
 
       default:
