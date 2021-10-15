@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/strings.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
+import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ContactUsScreen extends StatelessWidget {
@@ -12,16 +13,17 @@ class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: AppBarCustom(
-    stringTitle: Strings.contactUsTitle,
-    isLeadingHide: false,
-    isActionHide: true,
-    onBackPress: () => {Navigator.of(context).pop()},
-    onClosePress: () => {}),
-      body:const WebView(
+      appBar: AppBarCustom(
+          stringTitle: Strings.contactUsTitle,
+          isLeadingHide: false,
+          isActionHide: true,
+          onBackPress: () => {Navigator.of(context).pop()},
+          onClosePress: () => {}),
+      body: const WebView(
         initialUrl: 'https://flutter.io',
         javascriptMode: JavascriptMode.unrestricted,
       ),
+      bottomNavigationBar: BottomNavBar(currentIndex: 4),
     );
   }
 }
