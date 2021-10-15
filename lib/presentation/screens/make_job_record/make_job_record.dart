@@ -73,7 +73,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           stringTitle: 'サービス提供記録作成',
           isLeadingHide: false,
           isActionHide: true,
-          onBackPress: () {},
+          onBackPress: () => {Navigator.of(context).pop()},
           onClosePress: () {},
         ),
         body: SingleChildScrollView(

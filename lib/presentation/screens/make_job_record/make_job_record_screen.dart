@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record.dart';
+import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
 import '../../../core/constants/strings.dart';
@@ -14,9 +15,12 @@ class MakeJobRecordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: AppBarCustom(
+          stringTitle: Strings.contactUsTitle,
+          isLeadingHide: false,
+          isActionHide: true,
+          onBackPress: () => {Navigator.of(context).pop()},
+          onClosePress: () => {}),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +38,7 @@ class MakeJobRecordScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 3),
+      bottomNavigationBar: BottomNavBar(currentIndex: 4),
     );
   }
 }
