@@ -111,7 +111,7 @@ class AttendListWidget {
                           );
                         }),
                       if (typeScreen == 3)
-                        _buildButton('記録を書く', AppColors.primaryColor,
+                        _buildButton('記録を書', AppColors.primaryColor,
                             AppColors.whiteColor, AppColors.whiteColor, () {
                           // #36 Fix Request detail
                           Navigator.of(context).pushNamed(
@@ -193,11 +193,18 @@ class AttendListWidget {
               height: 17,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildTimeRow(
-                    '予定', item.scheduledStartTime, item.scheduledLeaveTime),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildTimeRow('予定', item.scheduledStartTime,
+                          item.scheduledLeaveTime),
+                      _buildTimeRow('実績', item.startTime, item.leaveTime),
+                    ],
+                  ),
+                ),
                 if (typeScreen == 1)
                   _buildButton('修正はこちら', AppColors.primaryColor,
                       AppColors.whiteColor, AppColors.whiteColor, () {
@@ -211,17 +218,18 @@ class AttendListWidget {
             const SizedBox(
               height: 15,
             ),
-            _buildTimeRow('実績', item.startTime, item.leaveTime),
           ],
         ),
       );
-
   static _buildTimeRow(String type, String startTime, String endTime) =>
-      IntrinsicHeight(
+      Container(
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
                 width: 40,
+                height: 55,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     border:
@@ -239,8 +247,8 @@ class AttendListWidget {
             const SizedBox(
               width: 7,
             ),
-            SizedBox(
-              width: 111,
+            Flexible(
+              flex: 10,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -259,6 +267,7 @@ class AttendListWidget {
                         width: 10,
                       ),
                       Expanded(
+                        flex: 1,
                         child: Text(
                           startTime.compareTo('') != 0 ? startTime : '-',
                           textAlign: TextAlign.center,
@@ -269,42 +278,43 @@ class AttendListWidget {
                             color: AppColors.unselectedColor,
                           ),
                         ),
-                      )
+                      ),
+                      Expanded(child: SizedBox())
                     ],
                   ),
-                  SizedBox(
-                    child: Row(
-                      children: [
-                        const Text(
-                          '退勤',
-                          style: TextStyle(
-                            fontFamily: 'NotoSanJP',
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w400,
+                  Row(
+                    children: [
+                      const Text(
+                        '退勤',
+                        style: TextStyle(
+                          fontFamily: 'NotoSanJP',
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.unselectedColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          startTime.compareTo('') != 0 ? endTime : '-',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontFamily: 'OpenSans',
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w700,
                             color: AppColors.unselectedColor,
                           ),
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Text(
-                            endTime.compareTo('') != 0 ? endTime : '-',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontFamily: 'OpenSans',
-                              fontSize: 25.0,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.unselectedColor,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      Expanded(child: SizedBox())
+                    ],
                   )
                 ],
               ),
-            ),
+            )
           ],
         ),
       );
