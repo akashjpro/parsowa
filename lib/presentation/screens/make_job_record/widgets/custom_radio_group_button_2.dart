@@ -21,48 +21,51 @@ class _CustomRadioGroupButtonTwoState extends State<CustomRadioGroupButtonTwo> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(width: 24.0),
-        Row(
-          children: [
-            Radio(
-              value: widget.labels[0],
-              groupValue: groupValue,
-              onChanged: widget.isChecked
-                  ? (String? value) {
-                      setState(() {
-                        groupValue = value!;
-                      });
-                    }
-                  : null,
-            ),
-            _buildSubLabel(
-                label: widget.labels[0], isChecked: widget.isChecked),
-          ],
-        ),
-        widget.labels[1].length > 5
-            ? const SizedBox(width: 0.0)
-            : const SizedBox(width: 30.0),
-        Expanded(
-          child: Row(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(width: 24.0),
+          Row(
             children: [
               Radio(
-                value: widget.labels[1],
+                value: widget.labels[0],
                 groupValue: groupValue,
                 onChanged: widget.isChecked
                     ? (String? value) {
-                        setState(() => groupValue = value!);
+                        setState(() {
+                          groupValue = value!;
+                        });
                       }
                     : null,
               ),
               _buildSubLabel(
-                  label: widget.labels[1], isChecked: widget.isChecked),
+                  label: widget.labels[0], isChecked: widget.isChecked),
             ],
           ),
-        ),
-      ],
+          widget.labels[1].length > 5
+              ? const SizedBox(width: 0.0)
+              : const SizedBox(width: 30.0),
+          Expanded(
+            child: Row(
+              children: [
+                Radio(
+                  value: widget.labels[1],
+                  groupValue: groupValue,
+                  onChanged: widget.isChecked
+                      ? (String? value) {
+                          setState(() => groupValue = value!);
+                        }
+                      : null,
+                ),
+                _buildSubLabel(
+                    label: widget.labels[1], isChecked: widget.isChecked),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 

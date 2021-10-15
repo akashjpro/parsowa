@@ -94,60 +94,93 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
     );
   }
 
-  CustomExpansionPanelList _buildExpansionSection() {
-    return CustomExpansionPanelList(
-      elevation: 0.0,
-      expandedHeaderPadding: const EdgeInsets.symmetric(vertical: 12.0),
-      dividerColor: AppColors.lineStandardColor,
+  Widget _buildJobTypeSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (_jobTypeActive.jobTypeSelect.isNotEmpty) ..._buildJobTypeArea(),
+          // change
+          if (_jobTypeActive.changesSelect.isNotEmpty) ..._buildChangesArea(),
+          // non-insurences
+          if (_jobTypeActive.isNonInsurenceService)
+            ..._buildNonInsuranceServiceArea(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildExpansionSection() {
+    return Column(
       children: [
-        _buildSingleExpansionPanel(
-          index: 0,
-          label: 'サービスの種類',
-          body: _buildServiceTypeSection(),
+        const Divider(
+          height: 1.0,
+          thickness: 0.8,
+          color: AppColors.borderColor,
         ),
-        _buildSingleExpansionPanel(
-          index: 1,
-          label: '事前チェック・記録など',
-          body: _buildAdvanceCheckSection(),
+        CustomExpansionPanelList(
+          elevation: 0.0,
+          expandedHeaderPadding: const EdgeInsets.symmetric(vertical: 12.0),
+          dividerColor: AppColors.lineStandardColor,
+          children: [
+            _buildSingleExpansionPanel(
+              index: 0,
+              label: 'サービスの種類',
+              body: _buildServiceTypeSection(),
+            ),
+            _buildSingleExpansionPanel(
+              index: 1,
+              label: '事前チェック・記録など',
+              body: _buildAdvanceCheckSection(),
+            ),
+            _buildSingleExpansionPanel(
+              index: 2,
+              label: '身体介護',
+              body: _buildBodyCareSection(),
+            ),
+            _buildSingleExpansionPanel(
+              index: 3,
+              label: '生活援助',
+              body: _buildLivingAssistanceSection(),
+            ),
+            _buildSingleExpansionPanel(
+              index: 4,
+              label: '買物記録',
+              body: _buildShoppingRecordSection(),
+            ),
+            _buildSingleExpansionPanel(
+              index: 5,
+              label: '退室確認',
+              body: _buildExitConfirmingSection(),
+            ),
+            _buildSingleExpansionPanel(
+              index: 6,
+              label: '特記・連絡事項',
+              body: _buildNoteSection(),
+            ),
+          ],
+          expansionCallback: (i, isOpen) =>
+              setState(() => _isOpenExpandPanels[i] = !isOpen),
         ),
-        _buildSingleExpansionPanel(
-          index: 2,
-          label: '身体介護',
-          body: _buildBodyCareSection(),
-        ),
-        _buildSingleExpansionPanel(
-          index: 3,
-          label: '生活援助',
-          body: _buildLivingAssistanceSection(),
-        ),
-        _buildSingleExpansionPanel(
-          index: 4,
-          label: '買物記録',
-          body: _buildShoppingRecordSection(),
-        ),
-        _buildSingleExpansionPanel(
-          index: 5,
-          label: '退室確認',
-          body: _buildExitConfirmingSection(),
-        ),
-        _buildSingleExpansionPanel(
-          index: 6,
-          label: '特記・連絡事項',
-          body: _buildNoteSection(),
-        ),
+        !_isOpenExpandPanels[6]
+            ? const Divider(
+                height: 1.0,
+                thickness: 0.8,
+                color: AppColors.borderColor,
+              )
+            : SizedBox.shrink(),
       ],
-      expansionCallback: (i, isOpen) =>
-          setState(() => _isOpenExpandPanels[i] = !isOpen),
     );
   }
 
   Widget _buildAdvanceCheckSection() {
     return Column(
       children: [
-        const Divider(
-          color: AppColors.borderColor,
-          thickness: 0.8,
-          height: 1.0,
+        const DottedLine(
+          dashColor: AppColors.borderColor,
+          dashLength: 1.0,
+          dashGapLength: 1.5,
         ),
         const SizedBox(height: 10.0),
         Padding(
@@ -171,10 +204,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildBodyCareSection() {
     return Column(
       children: [
-        const Divider(
-          color: AppColors.borderColor,
-          thickness: 0.8,
-          height: 1.0,
+        const DottedLine(
+          dashColor: AppColors.borderColor,
+          dashLength: 1.0,
+          dashGapLength: 1.5,
         ),
         const SizedBox(height: 10.0),
         Padding(
@@ -218,10 +251,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildServiceTypeSection() {
     return Column(
       children: [
-        const Divider(
-          color: AppColors.borderColor,
-          thickness: 0.8,
-          height: 1.0,
+        const DottedLine(
+          dashColor: AppColors.borderColor,
+          dashLength: 1.0,
+          dashGapLength: 1.5,
         ),
         const SizedBox(height: 10.0),
         Padding(
@@ -253,10 +286,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildExitConfirmingSection() {
     return Column(
       children: [
-        const Divider(
-          color: AppColors.borderColor,
-          thickness: 0.8,
-          height: 1.0,
+        const DottedLine(
+          dashColor: AppColors.borderColor,
+          dashLength: 1.0,
+          dashGapLength: 1.5,
         ),
         const SizedBox(height: 10.0),
         Padding(
@@ -272,10 +305,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildNoteSection() {
     return Column(
       children: [
-        const Divider(
-          color: AppColors.borderColor,
-          thickness: 0.8,
-          height: 1.0,
+        const DottedLine(
+          dashColor: AppColors.borderColor,
+          dashLength: 1.0,
+          dashGapLength: 1.5,
         ),
         const SizedBox(height: 10.0),
         Row(
@@ -312,48 +345,25 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   }
 
   Widget _buildSendSection() {
-    return Column(
-      children: [
-        const Divider(
-            color: AppColors.borderColor, thickness: 0.8, height: 1.0),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Spacer(),
-              Expanded(
-                flex: 2,
-                child: SizedBox(
-                  height: 38.0,
-                  child: _buildButton(
-                    title: '送信する',
-                    primaryColor: AppColors.primaryColor,
-                    changeColor: AppColors.whiteColor,
-                    onPressed: () {},
-                  ),
-                ),
-              ),
-              const Spacer(),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildJobTypeSection() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      padding: const EdgeInsets.symmetric(vertical: 40.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (_jobTypeActive.jobTypeSelect.isNotEmpty) ..._buildJobTypeArea(),
-          // change
-          if (_jobTypeActive.changesSelect.isNotEmpty) ..._buildChangesArea(),
-          // non-insurences
-          if (_jobTypeActive.isNonInsurenceService)
-            ..._buildNonInsuranceServiceArea(),
+          const Spacer(),
+          Expanded(
+            flex: 2,
+            child: SizedBox(
+              height: 38.0,
+              child: _buildButton(
+                title: '送信する',
+                primaryColor: AppColors.primaryColor,
+                changeColor: AppColors.whiteColor,
+                onPressed: () {},
+              ),
+            ),
+          ),
+          const Spacer(),
         ],
       ),
     );
@@ -362,10 +372,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildShoppingRecordSection() {
     return Column(
       children: [
-        const Divider(
-          color: AppColors.borderColor,
-          thickness: 0.8,
-          height: 1.0,
+        const DottedLine(
+          dashColor: AppColors.borderColor,
+          dashLength: 1.0,
+          dashGapLength: 1.5,
         ),
         const SizedBox(height: 10.0),
         Padding(
@@ -390,7 +400,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 ),
                 _buildRowSpendTotal(),
                 const SizedBox(height: 20.0),
-                const DottedLine(dashColor: AppColors.borderColor),
+                const DottedLine(
+                  dashColor: AppColors.borderColor,
+                  dashLength: 1.0,
+                  dashGapLength: 1.5,
+                ),
                 _buildSingleColumLabelAndInputWithoutCheckBox(
                   label: '内訳',
                   onChanged: (v) {},
@@ -406,10 +420,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildLivingAssistanceSection() {
     return Column(
       children: [
-        const Divider(
-          color: AppColors.borderColor,
-          thickness: 0.8,
-          height: 1.0,
+        const DottedLine(
+          dashColor: AppColors.borderColor,
+          dashLength: 1.0,
+          dashGapLength: 1.5,
         ),
         const SizedBox(height: 10.0),
         Padding(
@@ -1413,7 +1427,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           ),
         );
         newChild.add(
-          const DottedLine(dashColor: AppColors.borderColor),
+          const DottedLine(
+            dashColor: AppColors.borderColor,
+            dashLength: 1.0,
+            dashGapLength: 1.5,
+          ),
         );
       }
       newChild.removeLast();
@@ -1434,7 +1452,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         _buildSingleCheckBox(
           cb: cb,
         ),
-        const DottedLine(dashColor: AppColors.borderColor),
+        const DottedLine(
+          dashColor: AppColors.borderColor,
+          dashLength: 1.0,
+          dashGapLength: 1.5,
+        ),
         ...newChild
       ],
     );
@@ -1442,7 +1464,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
 
   Widget _buildInputGroup(CheckBoxModel cb) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -1465,7 +1487,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
 
   Widget _buildInputGroupWithSlash(CheckBoxModel cb, {String label = ''}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -1504,7 +1526,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       required CheckBoxModel cb,
       required Function(String)? onChanged}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -1583,7 +1605,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       required CheckBoxModel cb,
       required Function(String)? onChanged}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+      padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 5.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -1618,7 +1640,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       required CheckBoxModel cb,
       required Function(String)? onChanged}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

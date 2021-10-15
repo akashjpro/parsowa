@@ -24,76 +24,79 @@ class _CustomRadioGroupButtonThreeState
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(width: 30.0),
-        Expanded(
-          child: Row(
-            children: [
-              Radio(
-                value: widget.labels[0],
-                groupValue: groupValue,
-                onChanged: _visitTypeActive
-                        .visitChoices[widget.indexOfListCheck].isChecked
-                    ? (String? value) {
-                        setState(() {
-                          groupValue = value!;
-                        });
-                      }
-                    : null,
-              ),
-              _buildSubLabel(
-                  label: widget.labels[0],
-                  isChecked: _visitTypeActive
-                      .visitChoices[widget.indexOfListCheck].isChecked),
-            ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(width: 30.0),
+          Expanded(
+            child: Row(
+              children: [
+                Radio(
+                  value: widget.labels[0],
+                  groupValue: groupValue,
+                  onChanged: _visitTypeActive
+                          .visitChoices[widget.indexOfListCheck].isChecked
+                      ? (String? value) {
+                          setState(() {
+                            groupValue = value!;
+                          });
+                        }
+                      : null,
+                ),
+                _buildSubLabel(
+                    label: widget.labels[0],
+                    isChecked: _visitTypeActive
+                        .visitChoices[widget.indexOfListCheck].isChecked),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(width: 18.0),
-        Expanded(
-          child: Row(
-            children: [
-              Radio(
-                value: widget.labels[1],
-                groupValue: groupValue,
-                onChanged: _visitTypeActive
-                        .visitChoices[widget.indexOfListCheck].isChecked
-                    ? (String? value) {
-                        setState(() => groupValue = value!);
-                      }
-                    : null,
-              ),
-              _buildSubLabel(
-                  label: widget.labels[1],
-                  isChecked: _visitTypeActive
-                      .visitChoices[widget.indexOfListCheck].isChecked),
-            ],
+          const SizedBox(width: 18.0),
+          Expanded(
+            child: Row(
+              children: [
+                Radio(
+                  value: widget.labels[1],
+                  groupValue: groupValue,
+                  onChanged: _visitTypeActive
+                          .visitChoices[widget.indexOfListCheck].isChecked
+                      ? (String? value) {
+                          setState(() => groupValue = value!);
+                        }
+                      : null,
+                ),
+                _buildSubLabel(
+                    label: widget.labels[1],
+                    isChecked: _visitTypeActive
+                        .visitChoices[widget.indexOfListCheck].isChecked),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(width: 18.0),
-        Expanded(
-          child: Row(
-            children: [
-              Radio(
-                value: widget.labels[2],
-                groupValue: groupValue,
-                onChanged: _visitTypeActive
-                        .visitChoices[widget.indexOfListCheck].isChecked
-                    ? (String? value) {
-                        setState(() => groupValue = value!);
-                      }
-                    : null,
-              ),
-              _buildSubLabel(
-                  label: widget.labels[2],
-                  isChecked: _visitTypeActive
-                      .visitChoices[widget.indexOfListCheck].isChecked),
-            ],
+          const SizedBox(width: 18.0),
+          Expanded(
+            child: Row(
+              children: [
+                Radio(
+                  value: widget.labels[2],
+                  groupValue: groupValue,
+                  onChanged: _visitTypeActive
+                          .visitChoices[widget.indexOfListCheck].isChecked
+                      ? (String? value) {
+                          setState(() => groupValue = value!);
+                        }
+                      : null,
+                ),
+                _buildSubLabel(
+                    label: widget.labels[2],
+                    isChecked: _visitTypeActive
+                        .visitChoices[widget.indexOfListCheck].isChecked),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(width: 18.0),
-      ],
+          const SizedBox(width: 18.0),
+        ],
+      ),
     );
   }
 
