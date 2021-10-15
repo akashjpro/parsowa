@@ -16,6 +16,8 @@ import 'package:parsowa/presentation/screens/login/login_screen.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
 import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
+import 'package:parsowa/presentation/screens/reset_password/reset_password_input_mail_screen.dart';
+import 'package:parsowa/presentation/screens/reset_password/reset_password_screen.dart';
 import 'package:parsowa/presentation/screens/search/search_screen.dart';
 
 // @MaterialAutoRouter(replaceInRouteName: "Page,Route", routes: [
@@ -120,6 +122,14 @@ class RouteGenerator {
       case LoginScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => const LoginScreen(title: ""),
+        );
+      case RestPasswordScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const RestPasswordScreen(),
+        );
+      case RestPasswordInputMailScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const RestPasswordInputMailScreen(),
         );
 
       default:

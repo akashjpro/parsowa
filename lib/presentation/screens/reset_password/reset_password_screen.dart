@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 
 class RestPasswordScreen extends StatefulWidget {
+  static const String routeName = "/RestPasswordScreen";
+
   const RestPasswordScreen({Key? key}) : super(key: key);
 
   @override
@@ -9,6 +11,27 @@ class RestPasswordScreen extends StatefulWidget {
 }
 
 class _DemoState extends State<RestPasswordScreen> {
+  late TextEditingController passwordController;
+  late TextEditingController passwordConfirmController;
+
+  @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    super.initState();
+    passwordController = TextEditingController();
+    passwordConfirmController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // ignore: todo
+    // TODO: implement dispose
+    passwordController.dispose();
+    passwordConfirmController = TextEditingController();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +49,15 @@ class _DemoState extends State<RestPasswordScreen> {
               SizedBox(height: 18),
               _text2('パスワードを再設定してください。'),
               SizedBox(height: 89),
-              _customTextField('メールアドレス', '※半角英数字6文字以上30文字以下'),
+              Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 38),
+                  alignment: Alignment.center,
+                  child: _buildInput(passwordController, 'メールアドレス', 'password', '※半角英数字6文字以上30文字以下')),
               SizedBox(height: 17),
-              _customTextField('パスワード確認', ''),
+              Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 38),
+                  alignment: Alignment.center,
+                  child: _buildInput(passwordController, 'パスワード確認', 'password', null)),
               SizedBox(height: 115),
               SizedBox(
                 height: 38,
@@ -70,53 +99,6 @@ class _DemoState extends State<RestPasswordScreen> {
     );
   }
 
-  Widget _customTextField(String text, String text2) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 38),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5.0),
-              child: Row(
-                children: [
-                  Text(
-                    text,
-                    style: TextStyle(
-                      fontFamily: 'NotoSanJP',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16.0,
-                      color: AppColors.blackColor,
-                    ),
-                  ),
-                  SizedBox(width: 26),
-                  Text(
-                    text2,
-                    style: TextStyle(
-                      fontFamily: 'NotoSanJP',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12.0,
-                      color: AppColors.blackColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            TextField(
-              //obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buttonClick(String text, Function() onPressed) {
     return ElevatedButton(
       onPressed: onPressed,
@@ -138,6 +120,63 @@ class _DemoState extends State<RestPasswordScreen> {
     );
   }
 
+  _buildInput(TextEditingController controller, String title, String type,
+      String? supplement) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                  fontFamily: 'NotoSanJP',
+                  fontSize: 16.0,
+                  color: AppColors.unselectedColor,
+                  fontWeight: FontWeight.w700),
+            ),
+            supplement != null
+                ? Text(
+                    "※半角英数字6文字以上30文字以下",
+                    style: TextStyle(
+                      fontFamily: 'NotoSanJP',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12.0,
+                      color: AppColors.blackColor,
+                    ),
+                  )
+                : SizedBox(width: 0)
+          ],
+        ),
+        const SizedBox(
+          height: 7,
+        ),
+        SizedBox(
+          height: 40,
+          child: TextField(
+            textAlignVertical: TextAlignVertical.center,
+            controller: controller,
+            obscureText: type.compareTo('password') == 0 ? true : false,
+            style: const TextStyle(
+                fontFamily: 'NotoSanJP',
+                fontSize: 16.0,
+                color: AppColors.unselectedColor,
+                fontWeight: FontWeight.w500),
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+              filled: false,
+              border: OutlineInputBorder(
+                borderSide:
+                    const BorderSide(color: AppColors.borderColor, width: 1),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   //----------------------------------------------------------------
   //Function
 
@@ -145,6 +184,6 @@ class _DemoState extends State<RestPasswordScreen> {
     print('hello world');
   }
 
-  //----------------------------------------------------------------
+//----------------------------------------------------------------
 
 }

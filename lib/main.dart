@@ -8,7 +8,7 @@ import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
 
 import 'presentation/screens/job_detail/complete/complete_screen.dart';
-import 'presentation/screens/reset_password/mail_screen.dart';
+import 'presentation/screens/reset_password/reset_password_input_mail_screen.dart';
 
 void main() {
   runApp(const MyApp());
