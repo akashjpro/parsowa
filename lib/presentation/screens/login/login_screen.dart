@@ -37,26 +37,29 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: AppColors.whiteColor,
-        body: SafeArea(
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 38),
-            alignment: Alignment.center,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  logoSection(),
-                  const SizedBox(
-                    height: 120,
-                  ),
-                  inputSection(),
-                  const SizedBox(
-                    height: 115,
-                  ),
-                  buttonSection(),
-                ],
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
+          body: SafeArea(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 38),
+              alignment: Alignment.center,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    logoSection(),
+                    const SizedBox(
+                      height: 120,
+                    ),
+                    inputSection(),
+                    const SizedBox(
+                      height: 115,
+                    ),
+                    buttonSection(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -94,7 +97,8 @@ class LoginScreenState extends State<LoginScreen> {
               Expanded(
                 child: _buildButton('ログイン', AppColors.primaryColor,
                     AppColors.whiteColor, AppColors.primaryColor, () {
-                  Navigator.of(context).pushReplacementNamed(JobListScreen.routeName);
+                  Navigator.of(context)
+                      .pushReplacementNamed(JobListScreen.routeName);
                 }),
               ),
             ],
@@ -123,7 +127,8 @@ class LoginScreenState extends State<LoginScreen> {
                       fontWeight: FontWeight.w400),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed(RestPasswordInputMailScreen.routeName);
+                  Navigator.of(context)
+                      .pushNamed(RestPasswordInputMailScreen.routeName);
                 },
               )
             ],

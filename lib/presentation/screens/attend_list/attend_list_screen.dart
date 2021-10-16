@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:parsowa/core/constants/colors.dart';
@@ -48,7 +47,7 @@ class AttendListScreenState extends State<AttendListScreen>
           onClosePress: () => {}),
       body: Column(
         children: <Widget>[
-          AttendListWidget.searchSection(date),
+          AttendListWidget.searchSection(date, 1),
           Container(
             color: AppColors.whiteColor,
             height: 10,

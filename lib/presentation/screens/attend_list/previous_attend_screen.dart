@@ -45,7 +45,7 @@ class PreviousAttendState extends State<PreviousAttendScreen> {
       body: SafeArea(
           child: Column(
         children: [
-          AttendListWidget.searchSection(date),
+          AttendListWidget.searchSection(date, 4),
           const SizedBox(
             height: 10,
           ),

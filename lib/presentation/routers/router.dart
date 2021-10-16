@@ -96,7 +96,7 @@ class RouteGenerator {
       case PreviousAttendScreen.routeName:
         return MaterialPageRoute(
           builder: (_) =>
-              const PreviousAttendScreen(title: Strings.recordTitle),
+              const PreviousAttendScreen(title: Strings.previousAttendTitle),
         );
       case MakeJobRecordScreen.routeName:
         return MaterialPageRoute(

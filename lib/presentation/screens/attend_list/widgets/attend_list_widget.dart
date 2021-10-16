@@ -8,10 +8,16 @@ import 'package:parsowa/presentation/screens/attend_list/data/attebd_list_data.d
 import 'package:parsowa/presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
 import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
+import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
 
+//type screen
+//1:attent
+//2:requesting revison
+//3:record
+//4:previous
 class AttendListWidget {
-  static searchSection(DateTime date) => Container(
+  static searchSection(DateTime date, int typeScreen) => Container(
         decoration: BoxDecoration(
             color: AppColors.whiteColor,
             border: Border(
@@ -25,7 +31,7 @@ class AttendListWidget {
           children: [
             _buildIconButton('assets/icons/icon_svg/back_btn.svg', () {}),
             Text(
-              _formatDate(date),
+              typeScreen == 4 ? _formatDate(date) : _formatDateFull(date),
               style: const TextStyle(
                   fontFamily: 'OpenSans',
                   fontWeight: FontWeight.w700,
@@ -77,7 +83,7 @@ class AttendListWidget {
                       height: 5,
                     ),
                     Text(
-                      '${item.sex}/${item.age}代',
+                      '(${item.sex}/${item.age}代)',
                       style: const TextStyle(
                           fontFamily: 'NotoSanJP',
                           fontSize: 14.0,
@@ -99,7 +105,7 @@ class AttendListWidget {
                         final data = JobData.initData();
                         Navigator.of(context).pushNamed(
                           ContentJobDetailScreen.routeName,
-                          arguments: data,
+                          arguments: data[0],
                         );
                       }),
                       if (typeScreen == 1)
@@ -115,7 +121,7 @@ class AttendListWidget {
                             AppColors.whiteColor, AppColors.whiteColor, () {
                           // #36 Fix Request detail
                           Navigator.of(context).pushNamed(
-                            ContentsFixRequestDetailScreen.routeName,
+                            MakeJobRecordScreen.routeName,
                           );
                         })
                     ],
@@ -331,23 +337,29 @@ class AttendListWidget {
         fit: BoxFit.cover,
       ));
 
-  static _formatDate(DateTime date) {
+  static _formatDateFull(DateTime date) {
     var formatter = DateFormat('yyyy / MM / dd');
     String formattedDate = formatter.format(date);
     return formattedDate;
   }
 
+  static _formatDate(DateTime date) {
+    var formatter = DateFormat('yyyy / MM');
+    String formattedDate = formatter.format(date);
+    return formattedDate;
+  }
+
   static Widget _dottedLine() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 17),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 17),
       child: DottedLine(
         direction: Axis.horizontal,
         lineLength: double.infinity,
-        lineThickness: 1.0,
+        lineThickness: 1,
         dashGapLength: 1,
         dashColor: Color(0xffC9C9C9),
-        dashRadius: 100,
-        dashGapRadius: 30,
+        dashRadius: 16,
+        dashLength: 1,
       ),
     );
   }
