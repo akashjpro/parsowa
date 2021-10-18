@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
@@ -57,15 +58,17 @@ class CompleteFixRequestDetailScreen extends StatelessWidget {
         SizedBox(
           width: 139,
           height: 38,
-          child: _btnOK(),
+          child: _btnOK(context),
         )
       ],
     );
   }
 
-  Widget _btnOK() {
+  Widget _btnOK(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed(AttendListScreen.routeName);
+      },
       child: const Text(
         'OK',
         style: TextStyle(

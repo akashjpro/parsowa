@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/login/login_screen.dart';
 
 class RestPasswordScreen extends StatefulWidget {
   static const String routeName = "/RestPasswordScreen";
@@ -34,40 +36,82 @@ class _DemoState extends State<RestPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        //height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        height: double.infinity,
-        color: AppColors.whiteColor,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-              _text1('パスワード再設定'),
-              SizedBox(height: 18),
-              _text2('パスワードを再設定してください。'),
-              SizedBox(height: 89),
-              Container(
+    return KeyboardDismisser(
+      gestures: [GestureType.onTap, GestureType.onPanUpdateDownDirection],
+      child: Scaffold(
+        body: Container(
+          //height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          height: double.infinity,
+          color: AppColors.whiteColor,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                _text1('パスワード再設定'),
+                SizedBox(height: 18),
+                _text2('パスワードを再設定してください。'),
+                SizedBox(height: 89),
+                Container(
                   margin: const EdgeInsets.symmetric(horizontal: 38),
                   alignment: Alignment.center,
-                  child: _buildInput(passwordController, 'パスワード', 'password', '※半角英数字6文字以上30文字以下')),
-              SizedBox(height: 17),
-              Container(
+                  child: _buildInput(
+                    passwordController,
+                    'パスワード',
+                    'password',
+                    '※半角英数字6文字以上30文字以下',
+                  ),
+                ),
+                SizedBox(height: 17),
+                Container(
                   margin: const EdgeInsets.symmetric(horizontal: 38),
                   alignment: Alignment.center,
-                  child: _buildInput(passwordController, 'パスワード確認', 'password', null)),
-              SizedBox(height: 115),
-              SizedBox(
-                height: 38,
-                width: 140,
-                child: _buttonClick('設定', _onClickButton),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-            ],
+                  child: _buildInput(
+                    passwordConfirmController,
+                    'パスワード確認',
+                    'password',
+                    null,
+                  ),
+                ),
+                SizedBox(height: 115),
+                SizedBox(
+                  height: 38,
+                  width: 140,
+                  child: _buttonClick(
+                    '設定',
+                    () => _showDialog(context),
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+
+  Future<String?> _showDialog(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('パスワード再設定完了'),
+        content: const Text('パスワードの再設定が完了しました。'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () =>
+                Navigator.of(context).pushNamed(LoginScreen.routeName),
+            child: const Text(
+              'OK',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                fontFamily: "NotoSanJP",
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -180,9 +224,9 @@ class _DemoState extends State<RestPasswordScreen> {
   //----------------------------------------------------------------
   //Function
 
-  void _onClickButton() {
-    print('hello world');
-  }
+  // void _onClickButton() {
+  //   Navigator.of(context).pushNamed(LoginScreen.routeName);
+  // }
 
 //----------------------------------------------------------------
 

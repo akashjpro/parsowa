@@ -41,6 +41,7 @@ dependencies:
   intl: ^0.17.0
   dotted_line: ^3.0.1
   webview_flutter: ^2.1.1
+  keyboard_dismisser: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
