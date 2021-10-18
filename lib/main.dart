@@ -8,6 +8,9 @@ import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
 
 import 'presentation/screens/job_detail/complete/complete_screen.dart';
+import 'presentation/screens/qr_code_read/clock_In_completed_screen.dart';
+import 'presentation/screens/qr_code_read/clock_out_completed_screen.dart';
+import 'presentation/screens/qr_code_read/qr_code_read_screen.dart';
 import 'presentation/screens/reset_password/reset_password_input_mail_screen.dart';
 
 void main() {
@@ -25,8 +28,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      home: LoginScreen(
-        title: "",
+      // home: LoginScreen(
+      //   title: "",
+      // ),
+      home: QRCodeReadScreen(
+        title: '',
       ),
       onGenerateRoute: RouteGenerator.generateRoute,
     );

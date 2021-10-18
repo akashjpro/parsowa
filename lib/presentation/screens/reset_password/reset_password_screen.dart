@@ -52,12 +52,14 @@ class _DemoState extends State<RestPasswordScreen> {
               Container(
                   margin: const EdgeInsets.symmetric(horizontal: 38),
                   alignment: Alignment.center,
-                  child: _buildInput(passwordController, 'パスワード', 'password', '※半角英数字6文字以上30文字以下')),
+                  child: _buildInput(passwordController, 'パスワード', 'password',
+                      '※半角英数字6文字以上30文字以下')),
               SizedBox(height: 17),
               Container(
                   margin: const EdgeInsets.symmetric(horizontal: 38),
                   alignment: Alignment.center,
-                  child: _buildInput(passwordController, 'パスワード確認', 'password', null)),
+                  child: _buildInput(
+                      passwordController, 'パスワード確認', 'password', null)),
               SizedBox(height: 115),
               SizedBox(
                 height: 38,
