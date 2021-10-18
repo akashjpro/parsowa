@@ -62,6 +62,49 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   // dynamic variables
   final int _totalPrice = 0;
 
+  // controllers
+
+  // ServiceType Section
+  final _numberOfTimesOfPhysicalCareController = TextEditingController();
+  final _numberOfTimesOfLifeCareController = TextEditingController();
+  final _numberOfMinutesOfSupportOfCarGettingOnOrOffController =
+      TextEditingController();
+  final _numberOfMinutesOfPhysicalCareController = TextEditingController();
+  final _numberOfMinutesOfHouseworkAssistanceController =
+      TextEditingController();
+  final _numberOfMinutesOfFullCareForServiceDisabilitiesController =
+      TextEditingController();
+  final _numberOfMinutesOfActionSupportController = TextEditingController();
+  final _numberOfMinutesOfAccompanyingSupportController =
+      TextEditingController();
+  final _numberOfMinutesOfAssistanceWhenGoingToHospitalController =
+      TextEditingController();
+  final _mituneController = TextEditingController();
+  final _destinationInputController = TextEditingController();
+
+  // AdvanceCheck Section
+  final _complextionStatusController = TextEditingController();
+  final _sweatingStatusController = TextEditingController();
+  final _bodyTemperatureController = TextEditingController();
+  final _bloodPressureHighestController = TextEditingController();
+  final _bloodPressureLowestController = TextEditingController();
+
+  // BodyCare Section
+  final _urineStatusController = TextEditingController();
+  final _fecesStatusController = TextEditingController();
+  final _hydrationAmountController = TextEditingController();
+  final _leftOverFoodAmountNumeratorController = TextEditingController();
+  final _leftOverFoodAmountDenomiratorController = TextEditingController();
+  final _noTableCookingController = TextEditingController();
+
+  // LivingAssistance Section
+  final _mealsMenuController = TextEditingController();
+
+  // ShopingRecord Section
+  final _receivedAmountController = TextEditingController();
+  final _spendAmountController = TextEditingController();
+  final _detailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -310,11 +353,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           dashLength: 1.0,
           dashGapLength: 1.5,
         ),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 15.0),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(width: 41.0),
+            const SizedBox(width: 25.0),
             Expanded(
               child: SizedBox(
                 height: 71.0,
@@ -326,7 +369,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     ),
-                    contentPadding: EdgeInsets.only(left: 10.0),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                   ),
                   autofocus: false,
                   minLines: 4,
@@ -336,7 +380,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 ),
               ),
             ),
-            const SizedBox(width: 18.0),
           ],
         ),
         const SizedBox(height: 10.0),
@@ -385,12 +428,12 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               children: [
                 _buildRowAmountInput(
                   label: '預り金',
-                  onChanged: (v) {},
+                  controller: _receivedAmountController,
                 ),
                 const SizedBox(height: 20.0),
                 _buildRowAmountInput(
                   label: '買い物',
-                  onChanged: (v) {},
+                  controller: _spendAmountController,
                 ),
                 const SizedBox(height: 20.0),
                 const Divider(
@@ -407,7 +450,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 ),
                 _buildSingleColumLabelAndInputWithoutCheckBox(
                   label: '内訳',
-                  onChanged: (v) {},
+                  controller: _detailController,
                 ),
               ],
             ),
@@ -494,7 +537,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   }
 
   Widget _buildRowAmountInput(
-      {required String label, required Function(String)? onChanged}) {
+      {required String label, required TextEditingController controller}) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -505,6 +548,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             height: 56.0,
             color: AppColors.whiteColor,
             child: TextField(
+              controller: controller,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -518,7 +562,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               autofocus: false,
               maxLines: 1,
               keyboardType: TextInputType.number,
-              onChanged: onChanged,
             ),
           ),
         ),
@@ -580,7 +623,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               _buildSingleColumLabelAndInput(
                 label: '献立',
                 cb: _preparingMealTypeActive[4],
-                onChanged: (v) {},
+                controller: _mealsMenuController,
               ),
             ],
           ),
@@ -800,7 +843,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               _buildSingleRowLabelAndInput(
                 label: 'CC',
                 cb: _mealAssistanceTypeActive[2],
-                onChanged: (v) {},
+                controller: _hydrationAmountController,
               ),
             ],
           ),
@@ -814,6 +857,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               ),
               _buildInputGroupWithSlash(
                 _mealAssistanceTypeActive[4],
+                [
+                  _leftOverFoodAmountNumeratorController,
+                  _leftOverFoodAmountDenomiratorController
+                ],
                 label: '残量',
               ),
             ],
@@ -824,7 +871,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               _buildSingleRowLabelAndMultiLinesInput(
                 label: '',
                 cb: _mealAssistanceTypeActive[5],
-                onChanged: (v) {},
+                controller: _noTableCookingController,
               ),
             ],
           ),
@@ -850,7 +897,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               _buildSingleMultiLinesInputWithHintLabel(
                 hintLabel: '状態',
                 cb: _excretionAssistanceTypeActive[5],
-                onChanged: (v) {},
+                controller: _urineStatusController,
               ),
             ],
           ),
@@ -860,7 +907,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               _buildSingleMultiLinesInputWithHintLabel(
                 hintLabel: '状態',
                 cb: _excretionAssistanceTypeActive[6],
-                onChanged: (v) {},
+                controller: _fecesStatusController,
               ),
             ],
           ),
@@ -896,7 +943,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 _buildSingleMultiLinesInputWithHintLabel(
                   hintLabel: '状態',
                   cb: _physicalConRecType.physicalConRecType[0],
-                  onChanged: (v) {},
+                  controller: _complextionStatusController,
                 ),
               ],
             ),
@@ -906,7 +953,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 _buildSingleMultiLinesInputWithHintLabel(
                   hintLabel: '状態',
                   cb: _physicalConRecType.physicalConRecType[1],
-                  onChanged: (v) {},
+                  controller: _sweatingStatusController,
                 ),
               ],
             ),
@@ -916,7 +963,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 _buildSingleRowLabelAndInput(
                   label: '℃',
                   cb: _physicalConRecType.physicalConRecType[2],
-                  onChanged: (v) {},
+                  controller: _bodyTemperatureController,
                 ),
               ],
             ),
@@ -924,7 +971,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               cb: _physicalConRecType.physicalConRecType[3],
               child: [
                 _buildInputGroupWithSlash(
-                    _physicalConRecType.physicalConRecType[3]),
+                    _physicalConRecType.physicalConRecType[3], [
+                  _bloodPressureHighestController,
+                  _bloodPressureLowestController
+                ]),
               ],
             ),
           ],
@@ -1034,38 +1084,40 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       data: ThemeData(
         unselectedWidgetColor: AppColors.borderColor,
         checkboxTheme: CheckboxThemeData(
-          // overlayColor: MaterialStateProperty.all(AppColors.whiteColor),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3.0),
           ),
         ),
       ),
       child: Container(
+        constraints: BoxConstraints(maxHeight: 72.0, minHeight: 52.0),
         color: AppColors.whiteColor,
-        child: CheckboxListTile(
-          contentPadding: const EdgeInsets.only(left: 15.5),
-          title: Container(
-            constraints: const BoxConstraints(maxWidth: 208.0),
-            child: Text(
-              cb.title,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontFamily: 'NotoSanJP',
-                fontWeight: FontWeight.w500,
-                fontSize: 16.0,
-                height: 1.2,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Checkbox(
+              value: cb.isChecked,
+              activeColor: AppColors.primaryColor,
+              onChanged: (value) {
+                setState(() {
+                  cb.isChecked = value!;
+                });
+              },
+            ),
+            Container(
+              constraints: BoxConstraints(maxWidth: 250.0),
+              child: Text(
+                cb.title,
+                maxLines: 2,
+                style: const TextStyle(
+                  fontFamily: 'NotoSanJP',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.0,
+                  height: 1.2,
+                ),
               ),
             ),
-          ),
-          controlAffinity: ListTileControlAffinity.leading,
-          value: cb.isChecked,
-          activeColor: AppColors.primaryColor,
-          onChanged: (value) {
-            setState(() {
-              cb.isChecked = value!;
-            });
-          },
+          ],
         ),
       ),
     );
@@ -1232,16 +1284,15 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                   isChecked: _serviceForCommunityLifeTypeActive
                       .serviceForCommunityLifeType[0].isChecked),
               _buildSingleRowLabelAndInput(
-                label: '分',
-                cb: _serviceForCommunityLifeTypeActive
-                    .serviceForCommunityLifeType[0],
-                onChanged: (v) {},
-              ),
+                  label: '分',
+                  cb: _serviceForCommunityLifeTypeActive
+                      .serviceForCommunityLifeType[0],
+                  controller: _mituneController),
               _buildSingleRowLabelAndMultiLinesInput(
                 label: '行先',
                 cb: _serviceForCommunityLifeTypeActive
                     .serviceForCommunityLifeType[0],
-                onChanged: (v) {},
+                controller: _destinationInputController,
               ),
             ],
           ),
@@ -1260,11 +1311,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             cb: _serviceForDisableTypeActive.serviceForDisableTypeChoices[0],
             child: [
               _buildSingleRowLabelAndInput(
-                label: '分',
-                cb: _serviceForDisableTypeActive
-                    .serviceForDisableTypeChoices[0],
-                onChanged: (v) {},
-              ),
+                  label: '分',
+                  cb: _serviceForDisableTypeActive
+                      .serviceForDisableTypeChoices[0],
+                  controller: _numberOfMinutesOfPhysicalCareController),
             ],
           ),
           _buildColumnCheckBoxAndChildren(
@@ -1274,7 +1324,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 label: '分',
                 cb: _serviceForDisableTypeActive
                     .serviceForDisableTypeChoices[1],
-                onChanged: (v) {},
+                controller: _numberOfMinutesOfHouseworkAssistanceController,
               ),
             ],
           ),
@@ -1285,7 +1335,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 label: '分',
                 cb: _serviceForDisableTypeActive
                     .serviceForDisableTypeChoices[2],
-                onChanged: (v) {},
+                controller:
+                    _numberOfMinutesOfFullCareForServiceDisabilitiesController,
               ),
             ],
           ),
@@ -1296,7 +1347,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 label: '分',
                 cb: _serviceForDisableTypeActive
                     .serviceForDisableTypeChoices[3],
-                onChanged: (v) {},
+                controller: _numberOfMinutesOfActionSupportController,
               ),
             ],
           ),
@@ -1312,7 +1363,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 label: '分',
                 cb: _serviceForDisableTypeActive
                     .serviceForDisableTypeChoices[4],
-                onChanged: (v) {},
+                controller: _numberOfMinutesOfAccompanyingSupportController,
               ),
             ],
           ),
@@ -1328,7 +1379,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 label: '分',
                 cb: _serviceForDisableTypeActive
                     .serviceForDisableTypeChoices[5],
-                onChanged: (v) {},
+                controller:
+                    _numberOfMinutesOfAssistanceWhenGoingToHospitalController,
               ),
             ],
           ),
@@ -1347,8 +1399,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             _buildColumnCheckBoxAndChildren(
               cb: _visitTypeActive.visitChoices[0],
               child: [
-                const CustomRadioGroupButtonThree(
-                  indexOfListCheck: 0,
+                CustomRadioGroupButtonThree(
+                  isChecked: _visitTypeActive.visitChoices[0].isChecked,
                   labels: ['I', 'II', 'III'],
                 ),
               ],
@@ -1356,8 +1408,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             _buildColumnCheckBoxAndChildren(
               cb: _visitTypeActive.visitChoices[1],
               child: [
-                const CustomRadioGroupButtonThree(
-                  indexOfListCheck: 1,
+                CustomRadioGroupButtonThree(
+                  isChecked: _visitTypeActive.visitChoices[1].isChecked,
                   labels: ['I', 'II', 'III'],
                 ),
               ],
@@ -1403,7 +1455,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 _buildSingleRowLabelAndInput(
                   label: '分',
                   cb: _serviceTypeActive.careChoices[2],
-                  onChanged: (v) {},
+                  controller:
+                      _numberOfMinutesOfSupportOfCarGettingOnOrOffController,
                 )
               ],
             ),
@@ -1421,8 +1474,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
       for (var e in child) {
         newChild.add(
           Container(
-            // height: 58.0,
-            color: !cb.isChecked ? AppColors.disabledColor : null,
+            color:
+                !cb.isChecked ? AppColors.disabledColor : AppColors.whiteColor,
             child: e,
           ),
         );
@@ -1440,7 +1493,8 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         newChild.add(
           Container(
             // height: 58.0,
-            color: !cb.isChecked ? AppColors.disabledColor : null,
+            color:
+                !cb.isChecked ? AppColors.disabledColor : AppColors.whiteColor,
             child: e,
           ),
         );
@@ -1472,20 +1526,22 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           _buildRowLabelAndInput(
             label: '身体',
             cb: cb,
-            onChanged: (v) {},
+            controller: _numberOfTimesOfPhysicalCareController,
           ),
           const SizedBox(width: 18.0),
           _buildRowLabelAndInput(
             label: '生活',
             cb: cb,
-            onChanged: (v) {},
+            controller: _numberOfTimesOfLifeCareController,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildInputGroupWithSlash(CheckBoxModel cb, {String label = ''}) {
+  Widget _buildInputGroupWithSlash(
+      CheckBoxModel cb, List<TextEditingController> listController,
+      {String label = ''}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
@@ -1495,7 +1551,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           _buildRowLabelAndInputWithSlash(
             label: label,
             cb: cb,
-            onChanged: (v) {},
+            controller: listController[0],
           ),
           const SizedBox(width: 15.5),
           Text(
@@ -1514,7 +1570,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           _buildRowLabelAndInputWithSlash(
             label: '',
             cb: cb,
-            onChanged: (v) {},
+            controller: listController[1],
           ),
         ],
       ),
@@ -1524,7 +1580,10 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildSingleMultiLinesInputWithHintLabel(
       {required String hintLabel,
       required CheckBoxModel cb,
-      required Function(String)? onChanged}) {
+      required TextEditingController controller}) {
+    if (!cb.isChecked) {
+      controller.clear();
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
@@ -1535,6 +1594,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             child: SizedBox(
               height: 38.0,
               child: TextField(
+                controller: controller,
                 decoration: InputDecoration(
                   enabled: cb.isChecked,
                   border: const OutlineInputBorder(
@@ -1550,7 +1610,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 minLines: 1,
                 maxLines: null,
                 keyboardType: TextInputType.multiline,
-                onChanged: onChanged,
               ),
             ),
           ),
@@ -1563,7 +1622,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildSingleRowLabelAndInput(
       {required String label,
       required CheckBoxModel cb,
-      required Function(String)? onChanged}) {
+      required TextEditingController controller}) {
+    if (!cb.isChecked) {
+      controller.clear();
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Row(
@@ -1574,6 +1637,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             width: 70.0,
             height: 38.0,
             child: TextField(
+              controller: controller,
               decoration: InputDecoration(
                 enabled: cb.isChecked,
                 border: const OutlineInputBorder(
@@ -1587,7 +1651,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               autofocus: false,
               maxLines: 1,
               keyboardType: TextInputType.text,
-              onChanged: onChanged,
             ),
           ),
           const SizedBox(width: 6.0),
@@ -1603,7 +1666,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildSingleColumLabelAndInput(
       {required String label,
       required CheckBoxModel cb,
-      required Function(String)? onChanged}) {
+      required TextEditingController controller}) {
+    if (!cb.isChecked) {
+      controller.clear();
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 5.0),
       child: Column(
@@ -1613,6 +1680,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           SizedBox(
             height: 38.0,
             child: TextField(
+              controller: controller,
               decoration: InputDecoration(
                 enabled: cb.isChecked,
                 border: const OutlineInputBorder(
@@ -1626,7 +1694,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               autofocus: false,
               maxLines: 1,
               keyboardType: TextInputType.text,
-              onChanged: onChanged,
             ),
           ),
           const SizedBox(height: 10.0),
@@ -1638,7 +1705,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildSingleRowLabelAndMultiLinesInput(
       {required String label,
       required CheckBoxModel cb,
-      required Function(String)? onChanged}) {
+      required TextEditingController controller}) {
+    if (!cb.isChecked) {
+      controller.clear();
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
@@ -1651,6 +1722,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             child: SizedBox(
               height: 38.0,
               child: TextField(
+                controller: controller,
                 decoration: InputDecoration(
                   enabled: cb.isChecked,
                   border: const OutlineInputBorder(
@@ -1666,7 +1738,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
                 minLines: 2,
                 maxLines: null,
                 keyboardType: TextInputType.multiline,
-                onChanged: onChanged,
               ),
             ),
           ),
@@ -1677,7 +1748,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   }
 
   Widget _buildSingleColumLabelAndInputWithoutCheckBox(
-      {required String label, required Function(String)? onChanged}) {
+      {required String label, required TextEditingController controller}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0),
       child: Column(
@@ -1687,6 +1758,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           Container(
             color: AppColors.whiteColor,
             child: TextField(
+              controller: controller,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -1701,7 +1773,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
               minLines: 2,
               maxLines: null,
               keyboardType: TextInputType.multiline,
-              onChanged: onChanged,
             ),
           ),
           const SizedBox(height: 10.0),
@@ -1726,7 +1797,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildRowLabelAndInput(
       {required String label,
       required CheckBoxModel cb,
-      required Function(String)? onChanged}) {
+      required TextEditingController controller}) {
+    if (!cb.isChecked) {
+      controller.clear();
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -1736,21 +1811,21 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           width: 70.0,
           height: 38.0,
           child: TextField(
-            decoration: InputDecoration(
-              enabled: cb.isChecked,
-              border: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColors.borderColor,
+              controller: controller,
+              decoration: InputDecoration(
+                enabled: cb.isChecked,
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColors.borderColor,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                contentPadding: const EdgeInsets.only(left: 5.0),
               ),
-              contentPadding: const EdgeInsets.only(left: 5.0),
-            ),
-            autofocus: false,
-            maxLines: 1,
-            keyboardType: TextInputType.text,
-            onChanged: onChanged,
-          ),
+              autofocus: false,
+              maxLines: 1,
+              keyboardType: TextInputType.text,
+              onChanged: (String v) {}),
         ),
       ],
     );
@@ -1759,7 +1834,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   Widget _buildRowLabelAndInputWithSlash(
       {required String label,
       required CheckBoxModel cb,
-      required Function(String)? onChanged}) {
+      required TextEditingController controller}) {
+    if (!cb.isChecked) {
+      controller.clear();
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -1769,6 +1848,7 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
           width: 80.0,
           height: 38.0,
           child: TextField(
+            controller: controller,
             decoration: InputDecoration(
               enabled: cb.isChecked,
               border: const OutlineInputBorder(
@@ -1782,7 +1862,6 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             autofocus: false,
             maxLines: 1,
             keyboardType: TextInputType.text,
-            onChanged: onChanged,
           ),
         ),
       ],

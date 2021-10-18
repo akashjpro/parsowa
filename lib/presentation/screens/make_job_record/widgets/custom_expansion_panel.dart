@@ -410,7 +410,7 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
         margin: const EdgeInsetsDirectional.only(end: 0.0),
         child: CustomExpandIcon(
           isExpanded: _isChildExpanded(index),
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 19.0),
           onPressed: !child.canTapOnHeader
               ? (bool isExpanded) => _handlePressed(isExpanded, index)
               : null,
@@ -436,9 +436,9 @@ class _CustomExpansionPanelListState extends State<CustomExpansionPanelList> {
             child: AnimatedContainer(
               duration: widget.animationDuration,
               curve: Curves.fastOutSlowIn,
-              margin: _isChildExpanded(index)
-                  ? widget.expandedHeaderPadding
-                  : EdgeInsets.zero,
+              // margin: _isChildExpanded(index)
+              //     ? widget.expandedHeaderPadding
+              //     : EdgeInsets.zero,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
                     minHeight: _kPanelHeaderCollapsedHeight),
