@@ -16,7 +16,10 @@ class CompleteJobDetailScreen extends StatelessWidget {
         stringTitle: '申し込み',
         onBackPress: () {},
         onClosePress: () {
-          Navigator.of(context).pop();
+          int count = 0;
+          Navigator.popUntil(context, (route) {
+            return count++ == 2;
+          });
         },
       ),
       body: Container(
@@ -76,7 +79,9 @@ class CompleteJobDetailScreen extends StatelessWidget {
           width: 139,
           height: 38,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
             child: const Text(
               'OK',
               style: TextStyle(
