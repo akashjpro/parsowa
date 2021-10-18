@@ -105,6 +105,45 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
   final _spendAmountController = TextEditingController();
   final _detailController = TextEditingController();
 
+  _disposeAllController() {
+    _numberOfTimesOfPhysicalCareController.dispose();
+    _numberOfTimesOfLifeCareController.dispose();
+    _numberOfMinutesOfSupportOfCarGettingOnOrOffController.dispose();
+    _numberOfMinutesOfPhysicalCareController.dispose();
+    _numberOfMinutesOfHouseworkAssistanceController.dispose();
+    _numberOfMinutesOfFullCareForServiceDisabilitiesController.dispose();
+    _numberOfMinutesOfActionSupportController.dispose();
+    _numberOfMinutesOfAssistanceWhenGoingToHospitalController.dispose();
+    _numberOfMinutesOfAccompanyingSupportController.dispose();
+    _mituneController.dispose();
+    _destinationInputController.dispose();
+
+    _complextionStatusController.dispose();
+    _sweatingStatusController.dispose();
+    _bodyTemperatureController.dispose();
+    _bloodPressureHighestController.dispose();
+    _bloodPressureLowestController.dispose();
+
+    _urineStatusController.dispose();
+    _fecesStatusController.dispose();
+    _hydrationAmountController.dispose();
+    _leftOverFoodAmountNumeratorController.dispose();
+    _leftOverFoodAmountDenomiratorController.dispose();
+    _noTableCookingController.dispose();
+
+    _mealsMenuController.dispose();
+
+    _receivedAmountController.dispose();
+    _spendAmountController.dispose();
+    _detailController.dispose();
+  }
+
+  @override
+  void dispose() {
+    _disposeAllController();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
