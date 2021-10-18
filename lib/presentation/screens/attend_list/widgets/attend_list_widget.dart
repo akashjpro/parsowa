@@ -8,6 +8,7 @@ import 'package:parsowa/presentation/screens/attend_list/data/attebd_list_data.d
 import 'package:parsowa/presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
 import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
+import 'package:parsowa/presentation/screens/make_job_record/make_job_record.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
 
@@ -119,9 +120,9 @@ class AttendListWidget {
                       if (typeScreen == 3)
                         _buildButton('記録を書', AppColors.primaryColor,
                             AppColors.whiteColor, AppColors.whiteColor, () {
-                          // #36 Fix Request detail
+                          // #37 MakeJobRecord
                           Navigator.of(context).pushNamed(
-                            MakeJobRecordScreen.routeName,
+                            MakeJobRecord.routeName,
                           );
                         })
                     ],

@@ -17,6 +17,8 @@ import 'package:parsowa/presentation/screens/make_job_record/widgets/custom_radi
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
 class MakeJobRecord extends StatefulWidget {
+  static const String routeName = "/MakeJobRecord";
+
   const MakeJobRecord({Key? key}) : super(key: key);
 
   @override

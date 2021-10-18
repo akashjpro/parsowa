@@ -14,6 +14,7 @@ import 'package:parsowa/presentation/screens/job_detail/content/content_screen.d
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
 import 'package:parsowa/presentation/screens/login/login_screen.dart';
+import 'package:parsowa/presentation/screens/make_job_record/make_job_record.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
 import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
@@ -136,6 +137,11 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const ContactUsScreen(),
         );
+      case MakeJobRecord.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const MakeJobRecord(),
+        );
+
 
       default:
         // If there is no such named route in the switch statement, e.g. /third

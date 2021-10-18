@@ -30,9 +30,9 @@ class MakeJobRecordScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.headline4,
             ),
             TextButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => MakeJobRecord(),
-              )),
+              onPressed: () => Navigator.of(context).pushNamed(
+                MakeJobRecord.routeName,
+              ),
               child: const Text('Push to make job record'),
             ),
           ],
