@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/account_regist/subscreens/auth_code_subscreen.dart';
+import 'package:parsowa/presentation/screens/account_regist/widgets/custom_description.dart';
+
+import 'widgets/custom_title.dart';
 
 class AccountRegistScreen extends StatefulWidget {
   const AccountRegistScreen({Key? key}) : super(key: key);
@@ -53,6 +56,16 @@ class _AccountRegistScreenState extends State<AccountRegistScreen> {
     _confirmPasswordController.dispose();
   }
 
+  void onNextPress() {
+    if (!_formKey.currentState!.validate()) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => AuthCodeSubScreen(),
+        ),
+      );
+    }
+  }
+
   @override
   void dispose() {
     _disposeAll();
@@ -87,10 +100,11 @@ class _AccountRegistScreenState extends State<AccountRegistScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                _buildTitle('アカウント情報'),
+                                CustomTitle(title: 'アカウント情報'),
                                 const SizedBox(height: 15.0),
-                                _buildDescription(
-                                  'Parsowaを利用するアカウント情報を入力してください。\n 仮登録のあと、メールに認証コードをお送りします。',
+                                CustomDescription(
+                                  description:
+                                      'Parsowaを利用するアカウント情報を入力してください。\n 仮登録のあと、メールに認証コードをお送りします。',
                                 ),
                                 const SizedBox(height: 48.0),
                                 // Email
@@ -183,30 +197,6 @@ class _AccountRegistScreenState extends State<AccountRegistScreen> {
     ];
   }
 
-  Text _buildDescription(String description) {
-    return Text(
-      description,
-      style: TextStyle(
-        fontFamily: 'NotoSanJP',
-        fontSize: 16.0,
-        fontWeight: FontWeight.w400,
-        height: 1.5,
-      ),
-    );
-  }
-
-  Text _buildTitle(String title) {
-    return Text(
-      title,
-      style: TextStyle(
-        fontFamily: 'NotoSanJP',
-        fontSize: 22.0,
-        fontWeight: FontWeight.w700,
-        height: 1.75,
-      ),
-    );
-  }
-
   InputDecoration _buildInputDecoration() {
     return InputDecoration(
       focusedBorder: OutlineInputBorder(
@@ -219,13 +209,6 @@ class _AccountRegistScreenState extends State<AccountRegistScreen> {
           color: AppColors.borderColor,
         ),
       ),
-      // enabledBorder: OutlineInputBorder(
-      //   borderRadius: BorderRadius.circular(5.0),
-      //   borderSide: BorderSide(
-      //     color: AppColors.primaryColor,
-      //     width: 1,
-      //   ),
-      // ),
     );
   }
 
@@ -253,15 +236,7 @@ class _AccountRegistScreenState extends State<AccountRegistScreen> {
                 title: '次へ',
                 primaryColor: AppColors.primaryColor,
                 changeColor: AppColors.whiteColor,
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => AuthCodeSubScreen(),
-                      ),
-                    );
-                  }
-                },
+                onPressed: onNextPress,
               ),
             ),
           ],
