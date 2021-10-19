@@ -85,7 +85,7 @@ class JobListBodyWidget extends StatelessWidget {
                         ),
                         children: const [
                           TextSpan(
-                              text: '円/日',
+                              text: '円/時',
                               style: TextStyle(
                                 fontFamily: 'NotoSanJP',
                                 fontSize: 20.0,
