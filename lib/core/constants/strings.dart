@@ -18,7 +18,7 @@ class Strings {
   static const jobRecordScreenName = 'Job record';
 
   // My page
-  static const myPageScreenName = 'My page';
+  static const myPageScreenName = 'マイページ';
 
   //========Title===============================================================
 
