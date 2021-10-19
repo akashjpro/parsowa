@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:parsowa/presentation/routers/router.dart';
-import 'package:parsowa/presentation/screens/fix_request_detail/content/content_fix_request_detail.dart';
-import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
 import 'package:parsowa/presentation/screens/login/login_screen.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
-
-import 'presentation/screens/fix_request_detail/completed/completed_fix_request_detail.dart';
-import 'presentation/screens/job_detail/complete/complete_screen.dart';
-import 'presentation/screens/reset_password/reset_password_input_mail_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +23,7 @@ class MyApp extends StatelessWidget {
       // home: LoginScreen(
       //   title: "",
       // ),
-      home: CompleteFixRequestDetailScreen(),
+      home: LoginScreen(title: "",),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
