@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/account_regist/data/data.dart';
+import 'package:parsowa/presentation/screens/account_regist/subscreens/image_attach_subscreen.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/check_box_model.dart';
 
 class SkillsSubScreen extends StatefulWidget {
@@ -17,10 +18,10 @@ class _SkillsSubScreenState extends State<SkillsSubScreen> {
   final _selfPrController = TextEditingController();
 
   onNextPress() {
-    if (_formKey.currentState!.validate()) {
+    if (!_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => SkillsSubScreen(),
+          builder: (_) => ImageAttachSubScreen(),
         ),
       );
     }
