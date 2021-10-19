@@ -83,16 +83,22 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                       SizedBox(
                         width: 200,
                         height: 38,
-                        child: _customButton('アップロードする', () async {
-                          final cameras = await availableCameras();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  DisplayCamera(cameras: cameras),
-                            ),
-                          );
-                        }, AppColors.whiteColor, AppColors.primaryColor),
+                        child: _customButton(
+                            'アップロードする',
+                            () {}
+                            //  async {
+                            //   final cameras = await availableCameras();
+                            //   Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: (context) =>
+                            //           DisplayCamera(cameras: cameras),
+                            //     ),
+                            //   );
+                            // }
+                            ,
+                            AppColors.whiteColor,
+                            AppColors.primaryColor),
                       ),
                       SizedBox(height: 25),
                       Divider(
@@ -106,16 +112,22 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                       SizedBox(
                         width: 200,
                         height: 38,
-                        child: _customButton('アップロードする', () async {
-                          final cameras = await availableCameras();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  DisplayCamera(cameras: cameras),
-                            ),
-                          );
-                        }, AppColors.primaryColor, AppColors.whiteColor),
+                        child: _customButton(
+                            'アップロードする',
+                            () {}
+                            // async {
+                            //   final cameras = await availableCameras();
+                            //   Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: (context) =>
+                            //           DisplayCamera(cameras: cameras),
+                            //     ),
+                            //   );
+                            // }
+                            ,
+                            AppColors.primaryColor,
+                            AppColors.whiteColor),
                       ),
                       SizedBox(height: 56),
                     ],
