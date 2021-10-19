@@ -55,4 +55,7 @@ class Strings {
   // Privacy Policy
   static const privacyPolicyTitle = '利用規約';
 
+  // Account Info
+  static const accountInfoTitle = 'アカウント情報';
+
 }
