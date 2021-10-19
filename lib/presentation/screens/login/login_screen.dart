@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/account_regist/account_regist_screen.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
 import 'package:parsowa/presentation/screens/reset_password/reset_password_input_mail_screen.dart';
 import 'package:parsowa/presentation/screens/search/search_screen.dart';
@@ -90,7 +91,11 @@ class LoginScreenState extends State<LoginScreen> {
             children: [
               Expanded(
                 child: _buildButton('新規登録', AppColors.whiteColor,
-                    AppColors.primaryColor, AppColors.primaryColor, () {}),
+                    AppColors.primaryColor, AppColors.primaryColor, () {
+                  Navigator.of(context).pushNamed(
+                    AccountRegistScreen.routeName,
+                  );
+                }),
               ),
               const SizedBox(
                 width: 20,

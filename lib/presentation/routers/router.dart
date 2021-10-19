@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/strings.dart';
 import 'package:parsowa/presentation/screens/account_info/account_info_screen.dart';
+import 'package:parsowa/presentation/screens/account_regist/account_regist_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/record_screen.dart';
@@ -164,6 +165,11 @@ class RouteGenerator {
           builder: (_) => AccountInfoScreen(
             title: Strings.accountInfoTitle,
           ),
+        );
+
+      case AccountRegistScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => AccountRegistScreen(),
         );
       default:
         // If there is no such named route in the switch statement, e.g. /third

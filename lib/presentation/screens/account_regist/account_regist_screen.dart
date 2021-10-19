@@ -6,6 +6,8 @@ import 'package:parsowa/presentation/screens/account_regist/widgets/custom_descr
 import 'widgets/custom_title.dart';
 
 class AccountRegistScreen extends StatefulWidget {
+  static const String routeName = "/AccountRegistScreen";
+
   const AccountRegistScreen({Key? key}) : super(key: key);
 
   @override
