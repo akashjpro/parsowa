@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
 import 'package:parsowa/presentation/screens/reset_password/reset_password_input_mail_screen.dart';
+import 'package:parsowa/presentation/screens/search/search_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = "/LoginScreen";
@@ -98,7 +99,7 @@ class LoginScreenState extends State<LoginScreen> {
                 child: _buildButton('ログイン', AppColors.primaryColor,
                     AppColors.whiteColor, AppColors.primaryColor, () {
                   Navigator.of(context)
-                      .pushReplacementNamed(JobListScreen.routeName);
+                      .pushReplacementNamed(SearchScreen.routeName);
                 }),
               ),
             ],

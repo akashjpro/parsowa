@@ -23,7 +23,7 @@ class Strings {
   //========Title===============================================================
 
   // Job list
-  static const jobListTitle = '業務依頼一覧';
+  static const jobListTitle = '申込中一覧';
 
   // Content job detail
   static const contentJobDetailTitle = '業務依頼詳細';
@@ -43,5 +43,6 @@ class Strings {
   // Contact us
   static const contactUsTitle = 'お問い合わせ';
 
-
+  // Search
+  static const searchScreenTitle = '業務依頼一覧';
 }

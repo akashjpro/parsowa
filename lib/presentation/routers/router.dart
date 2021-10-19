@@ -83,7 +83,7 @@ class RouteGenerator {
         );
       case SearchScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => const SearchScreen(title: Strings.searchScreenName),
+          builder: (_) => SearchScreen(title: Strings.searchScreenTitle),
         );
       case AttendListScreen.routeName:
         return MaterialPageRoute(
@@ -141,7 +141,6 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const MakeJobRecord(),
         );
-
 
       default:
         // If there is no such named route in the switch statement, e.g. /third

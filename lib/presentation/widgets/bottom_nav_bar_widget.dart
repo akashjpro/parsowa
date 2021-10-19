@@ -76,7 +76,8 @@ class BottomNavBarState extends State<BottomNavBar> {
             Navigator.of(context).pushReplacementNamed(JobListScreen.routeName);
             break;
           case 2:
-            Navigator.of(context).pushReplacementNamed(AttendListScreen.routeName);
+            Navigator.of(context)
+                .pushReplacementNamed(AttendListScreen.routeName);
             break;
           case 3:
             Navigator.of(context).pushReplacementNamed(RecordScreen.routeName);

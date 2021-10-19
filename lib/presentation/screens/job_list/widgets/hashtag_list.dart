@@ -10,29 +10,26 @@ class HashTagList extends StatefulWidget {
 }
 
 class _hashtag_listState extends State<HashTagList> {
-  int selectIndex = 0;
+  int selectIndex = -1;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
-        child: Row(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 38,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: widget.category.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) => listItem(index, context),
-              ),
+      child: Row(
+        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 38,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: widget.category.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) => listItem(index, context),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -55,7 +52,7 @@ class _hashtag_listState extends State<HashTagList> {
             borderRadius: BorderRadius.circular(19),
             color: selectIndex == index
                 ? const Color(0xffc2b5a5)
-                : Color(0xffFFFFFF),
+                : const Color(0xffFFFFFF),
             border: Border.all(
               color: const Color(0xffc2b5a5),
             ),
