@@ -45,4 +45,14 @@ class Strings {
 
   // Search
   static const searchScreenTitle = '業務依頼一覧';
+
+  // Service And Usage
+  static const serviceAndUsageTitle = 'サービス内容・使い方';
+
+  // Terms Of Use
+  static const termsOfUseTitle = 'プライバシーポリシー';
+
+  // Privacy Policy
+  static const privacyPolicyTitle = '利用規約';
+
 }
