@@ -43,5 +43,6 @@ class Strings {
   // Contact us
   static const contactUsTitle = 'お問い合わせ';
 
-
+  // Account Info
+  static const accountInfoTitle = 'アカウント情報';
 }
