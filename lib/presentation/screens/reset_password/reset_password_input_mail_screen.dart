@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:parsowa/core/constants/colors.dart';
 
 import 'reset_password_screen.dart';
@@ -35,37 +36,40 @@ class _MailState extends State<RestPasswordInputMailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        //height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        height: double.infinity,
-        color: AppColors.whiteColor,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-              _buildText('パスワードリセット', 22, 'NotoSanJP', FontWeight.w700,
-                  AppColors.blackColor),
-              SizedBox(height: 18),
-              _buildText('本人確認を行います。', 14, 'NotoSanJP', FontWeight.w400,
-                  AppColors.blackColor),
-              _buildText('ご登録のメールアドレスを入力してください。', 14, 'NotoSanJP',
-                  FontWeight.w400, AppColors.blackColor),
-              SizedBox(height: 50),
-              Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 38),
-                  alignment: Alignment.center,
-                  child: _buildInput(mailController, 'メールアドレス', 'mail')),
-              SizedBox(height: 75),
-              SizedBox(
-                height: 38,
-                width: 140,
-                child: _buttonClick('送信する', onClick),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-            ],
+    return KeyboardDismisser(
+      gestures: [GestureType.onTap, GestureType.onPanUpdateDownDirection],
+      child: Scaffold(
+        body: Container(
+          //height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          height: double.infinity,
+          color: AppColors.whiteColor,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                _buildText('パスワードリセット', 22, 'NotoSanJP', FontWeight.w700,
+                    AppColors.blackColor),
+                SizedBox(height: 18),
+                _buildText('本人確認を行います。', 14, 'NotoSanJP', FontWeight.w400,
+                    AppColors.blackColor),
+                _buildText('ご登録のメールアドレスを入力してください。', 14, 'NotoSanJP',
+                    FontWeight.w400, AppColors.blackColor),
+                SizedBox(height: 50),
+                Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 38),
+                    alignment: Alignment.center,
+                    child: _buildInput(mailController, 'メールアドレス', 'mail')),
+                SizedBox(height: 75),
+                SizedBox(
+                  height: 38,
+                  width: 140,
+                  child: _buttonClick('送信する', onClick),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+              ],
+            ),
           ),
         ),
       ),

@@ -39,6 +39,7 @@ dependencies:
   intl: ^0.17.0
   webview_flutter: ^2.1.1
   expandable: ^5.0.1
+  keyboard_dismisser: ^2.0.0
 dev_dependencies:
   auto_route_generator: ^2.4.1
   build_runner: ^2.1.4
