@@ -57,7 +57,7 @@ class _AccountRegistScreenState extends State<AccountRegistScreen> {
   }
 
   void onNextPress() {
-    if (!_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => AuthCodeSubScreen(),

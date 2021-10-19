@@ -43,7 +43,7 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
   String _choosenSex = '';
 
   onNextPress() {
-    if (!_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => SkillsSubScreen(),
@@ -67,6 +67,26 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
       return 'Required.';
     }
     return null;
+  }
+
+  disposeAll() {
+    _familyNameController.dispose();
+    _firstNameController.dispose();
+    _furiganaFamilyNameController.dispose();
+    _furiganaFirstNameController.dispose();
+    _postalCode1Controller.dispose();
+    _postalCode2Controller.dispose();
+    _cityNameController.dispose();
+    _buildingNameController.dispose();
+    _phoneNumber1Controller.dispose();
+    _phoneNumber2Controller.dispose();
+    _phoneNumber3Controller.dispose();
+  }
+
+  @override
+  void dispose() {
+    disposeAll();
+    super.dispose();
   }
 
   @override

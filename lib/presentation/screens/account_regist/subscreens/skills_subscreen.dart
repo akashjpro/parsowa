@@ -18,7 +18,7 @@ class _SkillsSubScreenState extends State<SkillsSubScreen> {
   final _selfPrController = TextEditingController();
 
   onNextPress() {
-    if (!_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ImageAttachSubScreen(),
@@ -32,6 +32,13 @@ class _SkillsSubScreenState extends State<SkillsSubScreen> {
       return 'Required.';
     }
     return null;
+  }
+
+  @override
+  void dispose() {
+    _yearsOfExpController.dispose();
+    _selfPrController.dispose();
+    super.dispose();
   }
 
   @override
