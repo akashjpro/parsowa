@@ -19,4 +19,5 @@ class AppColors {
   static const lineStandardColor = Color(0xFFC9C9C9);
   static const disabledColor = Color(0xFFF4F4F3);
   static const disableTextColor = Color(0xFFC9C6C3);
+  static const errorBackgroundColor = Color(0xffffd9e1);
 }

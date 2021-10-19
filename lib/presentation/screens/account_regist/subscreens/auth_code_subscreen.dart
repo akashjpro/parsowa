@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/account_regist/subscreens/personal_info_subscreen.dart';
 import 'package:parsowa/presentation/screens/account_regist/widgets/custom_description.dart';
 import 'package:parsowa/presentation/screens/account_regist/widgets/custom_title.dart';
 
@@ -12,16 +13,22 @@ class AuthCodeSubScreen extends StatefulWidget {
 
 class _AuthCodeSubScreenState extends State<AuthCodeSubScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _verificationCode = TextEditingController();
+  final _verificationCodeController = TextEditingController();
 
   onNextPress() {
     if (_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => AuthCodeSubScreen(),
+          builder: (_) => PersonalInfoSubScreen(),
         ),
       );
     }
+  }
+
+  @override
+  void dispose() {
+    _verificationCodeController.dispose();
+    super.dispose();
   }
 
   @override
@@ -71,7 +78,7 @@ class _AuthCodeSubScreenState extends State<AuthCodeSubScreen> {
                                 ),
                                 const SizedBox(height: 50.0),
                                 TextFormField(
-                                  controller: _verificationCode,
+                                  controller: _verificationCodeController,
                                   keyboardType: TextInputType.text,
                                   // autovalidateMode: AutovalidateMode.onUserInteraction,
                                   decoration: _buildInputDecoration(),
