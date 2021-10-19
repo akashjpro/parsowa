@@ -43,5 +43,15 @@ class Strings {
   // Contact us
   static const contactUsTitle = 'お問い合わせ';
 
+  // Service And Usage
+  static const serviceAndUsageTitle = 'サービス内容・使い方';
+
+  // Terms Of Use
+  static const termsOfUseTitle = 'プライバシーポリシー';
+
+  // Privacy Policy
+  static const privacyPolicyTitle = '利用規約';
+
+
 
 }

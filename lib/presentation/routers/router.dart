@@ -21,6 +21,8 @@ import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.da
 import 'package:parsowa/presentation/screens/reset_password/reset_password_input_mail_screen.dart';
 import 'package:parsowa/presentation/screens/reset_password/reset_password_screen.dart';
 import 'package:parsowa/presentation/screens/search/search_screen.dart';
+import 'package:parsowa/presentation/screens/service_and_usage/service_and_usage.dart';
+import 'package:parsowa/presentation/screens/web_view/web_view.dart';
 
 // @MaterialAutoRouter(replaceInRouteName: "Page,Route", routes: [
 //   AutoRoute(path: Paths.homePath, page: HomeScreen, children: [
@@ -141,8 +143,18 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const MakeJobRecord(),
         );
+      case ServiceAndUsageScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => ServiceAndUsageScreen(),
+        );
+      case WebViewScreen.routeName:
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => WebViewScreen(title: args,),
+          );
+        }
 
-
+        return _errorRoute();
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
