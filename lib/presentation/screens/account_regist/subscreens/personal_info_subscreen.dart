@@ -2,7 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:parsowa/core/constants/colors.dart';
-import 'package:parsowa/presentation/screens/account_regist/data/prefecture.dart';
+import 'package:parsowa/presentation/screens/account_regist/data/data.dart';
+import 'package:parsowa/presentation/screens/account_regist/subscreens/skills_subscreen.dart';
 import 'package:parsowa/presentation/screens/account_regist/widgets/custom_description.dart';
 import 'package:parsowa/presentation/screens/account_regist/widgets/custom_title.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -45,7 +46,7 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
     if (!_formKey.currentState!.validate()) {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => PersonalInfoSubScreen(),
+          builder: (_) => SkillsSubScreen(),
         ),
       );
     }
@@ -114,50 +115,7 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
                         ..._buildFuriganaSection(),
                         ..._buildSexSection(),
                         ..._buildBirthdaySection(),
-                        _buildHeading(title: '住所'),
-                        const SizedBox(height: 15.0),
-                        _buildSubLabel(label: '郵便番号'),
-                        const SizedBox(height: 5.0),
-                        _buildRowSingleLabelAndTextField(
-                          firstController: _postalCode1Controller,
-                          secondController: _postalCode2Controller,
-                          label: 'ー',
-                          firstValidator: isEmptyValidator,
-                          secondValidator: isEmptyValidator,
-                        ),
-                        _buildSubLabel(label: '都道府県'),
-                        const SizedBox(height: 5.0),
-                        _buildDropDownPrefecture(),
-                        const SizedBox(height: 15.0),
-                        _buildSubLabel(label: '市区町村'),
-                        const SizedBox(height: 5.0),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 38.0),
-                          child: _buildTextFormField(
-                              controller: _cityNameController,
-                              validator: isEmptyValidator),
-                        ),
-                        _buildSubLabel(label: 'マンション名(任意)'),
-                        const SizedBox(height: 5.0),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 38.0),
-                          child: _buildTextFormField(
-                            controller: _buildingNameController,
-                            validator: isEmptyValidator,
-                          ),
-                        ),
-                        _buildSubLabel(label: '電話番号'),
-                        const SizedBox(height: 5.0),
-                        _buildRowTripleLabelAndTextField(
-                          firstController: _phoneNumber1Controller,
-                          secondController: _phoneNumber2Controller,
-                          thirdController: _phoneNumber3Controller,
-                          label: 'ー',
-                          firstValidator: isEmptyValidator,
-                          secondValidator: isEmptyValidator,
-                          thirdValidator: isEmptyValidator,
-                        ),
-                        const SizedBox(height: 25.0),
+                        ..._buildLastSection(),
                       ],
                     ),
                   ),
@@ -169,6 +127,54 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
         ),
       ),
     );
+  }
+
+  List<Widget> _buildLastSection() {
+    return [
+      _buildHeading(title: '住所'),
+      const SizedBox(height: 15.0),
+      _buildSubLabel(label: '郵便番号'),
+      const SizedBox(height: 5.0),
+      _buildRowSingleLabelAndTextField(
+        firstController: _postalCode1Controller,
+        secondController: _postalCode2Controller,
+        label: 'ー',
+        firstValidator: isEmptyValidator,
+        secondValidator: isEmptyValidator,
+      ),
+      _buildSubLabel(label: '都道府県'),
+      const SizedBox(height: 5.0),
+      _buildDropDownPrefecture(),
+      const SizedBox(height: 15.0),
+      _buildSubLabel(label: '市区町村'),
+      const SizedBox(height: 5.0),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 38.0),
+        child: _buildTextFormField(
+            controller: _cityNameController, validator: isEmptyValidator),
+      ),
+      _buildSubLabel(label: 'マンション名(任意)'),
+      const SizedBox(height: 5.0),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 38.0),
+        child: _buildTextFormField(
+          controller: _buildingNameController,
+          validator: isEmptyValidator,
+        ),
+      ),
+      _buildSubLabel(label: '電話番号'),
+      const SizedBox(height: 5.0),
+      _buildRowTripleLabelAndTextField(
+        firstController: _phoneNumber1Controller,
+        secondController: _phoneNumber2Controller,
+        thirdController: _phoneNumber3Controller,
+        label: 'ー',
+        firstValidator: isEmptyValidator,
+        secondValidator: isEmptyValidator,
+        thirdValidator: isEmptyValidator,
+      ),
+      const SizedBox(height: 25.0),
+    ];
   }
 
   List<Widget> _buildBirthdaySection() {

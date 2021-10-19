@@ -1,3 +1,5 @@
+import 'package:parsowa/presentation/screens/make_job_record/data/check_box_model.dart';
+
 final prefecture = [
   '北海道',
   '青森県',
@@ -46,4 +48,13 @@ final prefecture = [
   '宮崎県',
   '鹿児島県',
   '沖縄県',
+];
+
+final haveQualifications = <CheckBoxModel>[
+  CheckBoxModel(title: '介護職員初任者研修修了'),
+  CheckBoxModel(title: '実務者研修修了'),
+  CheckBoxModel(title: '介護福祉士(国家資格)'),
+  CheckBoxModel(title: '訪問介護職員養成研修1級課程'),
+  CheckBoxModel(title: '訪問介護職員養成研修2級課程'),
+  CheckBoxModel(title: '介護職員基礎研修修了'),
 ];
