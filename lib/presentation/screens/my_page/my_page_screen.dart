@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/account_info/account_info_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.dart';
 import 'package:parsowa/presentation/screens/contact_us/contact_us_screen.dart';
@@ -82,7 +83,7 @@ class MyPageScreen extends StatelessWidget {
                   onTap: () {
                     // show screen 39 user info
                     Navigator.of(context).pushNamed(
-                      ContactUsScreen.routeName,
+                      AccountInfoScreen.routeName,
                     );
                   },
                 ),
