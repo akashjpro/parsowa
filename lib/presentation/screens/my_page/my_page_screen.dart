@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.dart';
 import 'package:parsowa/presentation/screens/contact_us/contact_us_screen.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 
 import 'package:parsowa/presentation/screens/service_and_usage/service_and_usage.dart';
+import 'package:parsowa/presentation/screens/web_view/web_view.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
@@ -79,6 +81,9 @@ class MyPageScreen extends StatelessWidget {
                   label: 'ユーザ情報',
                   onTap: () {
                     // show screen 39 user info
+                    Navigator.of(context).pushNamed(
+                      ContactUsScreen.routeName,
+                    );
                   },
                 ),
                 _buildListTile(
@@ -91,6 +96,9 @@ class MyPageScreen extends StatelessWidget {
                   label: '過去の出退勤',
                   onTap: () {
                     // show screen 34 attend list
+                    Navigator.of(context).pushNamed(
+                      AttendListScreen.routeName,
+                    );
                   },
                 ),
                 _buildListTile(
@@ -115,18 +123,53 @@ class MyPageScreen extends StatelessWidget {
                   label: '利用規約',
                   onTap: () {
                     // show screen 45 terms of use
+                    Navigator.of(context).pushNamed(WebViewScreen.routeName,
+                        arguments: Strings.termsOfUseTitle);
                   },
                 ),
                 _buildListTile(
                   label: 'プライバシーポリシー',
                   onTap: () {
                     // show screen 44 privacy policy
+                    Navigator.of(context).pushNamed(WebViewScreen.routeName,
+                        arguments: Strings.privacyPolicyTitle);
                   },
                 ),
                 _buildListTile(
                   label: '退会する',
                   onTap: () {
                     // show screen 41 quit service
+                  },
+                ),
+
+                //Todo
+                _buildListTile(
+                  label: 'Make job record',
+                  onTap: () {
+                    // Make job record
+                    Navigator.of(context).pushNamed(
+                      MakeJobRecord.routeName,
+                    );
+                  },
+                ),
+                //Todo
+                _buildListTile(
+                  label: 'Service And Usage ',
+                  onTap: () {
+                    // ServiceAndUsageScreen
+                    Navigator.of(context).pushNamed(
+                      ServiceAndUsageScreen.routeName,
+                    );
+                  },
+                ),
+                //Todo
+                _buildListTile(
+                  label: 'Previous Attend',
+                  onTap: () {
+                    // Previous Attend
+                    Navigator.of(context).pushReplacementNamed(
+                      PreviousAttendScreen.routeName,
+                    );
                   },
                 ),
                 const ListTile(),

@@ -5,14 +5,18 @@ import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
 class AccountInfoScreen extends StatefulWidget {
+  static const String routeName = "/AccountInfoScreen";
+
   const AccountInfoScreen({Key? key, required this.title}) : super(key: key);
   final String title;
+
   @override
   State<StatefulWidget> createState() => AccountInfoScreenState();
 }
 
 class AccountInfoScreenState extends State<AccountInfoScreen> {
   final TextEditingController mailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: AppColors.jobListBodyColor,
@@ -107,6 +111,7 @@ xxxxxxxxxxxxxx
           ],
         ),
       );
+
   _buildContentRow(String title, String iconName, String content) => Container(
         color: AppColors.whiteColor,
         child: Column(
@@ -116,6 +121,7 @@ xxxxxxxxxxxxxx
           ],
         ),
       );
+
   _buildContentRowInut(String title, String iconName,
           TextEditingController controller, String? mail) =>
       Container(
@@ -148,6 +154,7 @@ xxxxxxxxxxxxxx
           ],
         ),
       );
+
   _buildTitleRow(String title, String iconName) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 13),
         decoration: const BoxDecoration(
@@ -178,6 +185,7 @@ xxxxxxxxxxxxxx
           ],
         ),
       );
+
   _buildContentLabelRow(String content) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 13),
         alignment: Alignment.centerLeft,
@@ -194,6 +202,7 @@ xxxxxxxxxxxxxx
               fontWeight: FontWeight.w500),
         ),
       );
+
   Widget _buildButton(String title, Color bg, Color textColor,
           Color borderColor, Function onPress) =>
       MaterialButton(
@@ -216,6 +225,7 @@ xxxxxxxxxxxxxx
             borderRadius: BorderRadius.circular(19.0),
             side: BorderSide(color: borderColor, width: 2)),
       );
+
   void _showCupertinoDialog() {
     showDialog(
         context: context,
