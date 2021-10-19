@@ -18,7 +18,7 @@ class Strings {
   static const jobRecordScreenName = 'Job record';
 
   // My page
-  static const myPageScreenName = 'My page';
+  static const myPageScreenName = 'マイページ';
 
   //========Title===============================================================
 
@@ -42,6 +42,4 @@ class Strings {
 
   // Contact us
   static const contactUsTitle = 'お問い合わせ';
-
-
 }
