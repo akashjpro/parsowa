@@ -26,9 +26,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      home: LoginScreen(
-        title: "",
-      ),
+      home: AccountRegistScreen(),
+      // LoginScreen(
+      //   title: "",
+      // ),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

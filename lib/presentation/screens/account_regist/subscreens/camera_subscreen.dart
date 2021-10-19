@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
-import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:parsowa/core/constants/colors.dart';
 
 class DisplayCamera extends StatefulWidget {
-  const DisplayCamera({Key? key, required}) : super(key: key);
+  final List<CameraDescription> cameras;
+  const DisplayCamera({Key? key, required this.cameras}) : super(key: key);
 
   @override
   State<DisplayCamera> createState() => _DisplayCameraState();
@@ -15,7 +15,7 @@ class DisplayCamera extends StatefulWidget {
 
 class _DisplayCameraState extends State<DisplayCamera>
     with WidgetsBindingObserver {
-  late CameraController _controller;
+  CameraController? _controller;
 
   late Future<void> _initController;
 
@@ -24,17 +24,15 @@ class _DisplayCameraState extends State<DisplayCamera>
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-    initCamera();
     WidgetsBinding.instance!.addObserver(this);
+    initCamera();
+    super.initState();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     WidgetsBinding.instance!.removeObserver(this);
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 
@@ -42,62 +40,119 @@ class _DisplayCameraState extends State<DisplayCamera>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       _initController =
-          (_controller != null ? _controller.initialize() : null)!;
+          (_controller != null ? _controller?.initialize() : null)!;
     }
     if (!mounted) {
       isCameraReady = true;
     }
+
+    final CameraController? cameraController = _controller;
+
+    // App state changed before we got the chance to initialize.
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      return;
+    }
+
+    if (state == AppLifecycleState.inactive) {
+      cameraController.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      onNewCameraSelected(cameraController.description);
+    }
   }
 
-  Widget cameraWidget(context) {
-    var camera = _controller.value;
+  Widget cameraWidget(BuildContext context) {
+    var camera = _controller!.value;
     final size = MediaQuery.of(context).size;
     var scale = size.aspectRatio * camera.aspectRatio;
     if (scale < 1) scale = 1 / scale;
     return Transform.scale(
-        scale: scale, child: Center(child: CameraPreview(_controller)));
+        scale: scale, child: Center(child: CameraPreview(_controller!)));
+  }
+
+  void onNewCameraSelected(CameraDescription cameraDescription) async {
+    if (_controller != null) {
+      await _controller!.dispose();
+    }
+
+    final CameraController cameraController = CameraController(
+      cameraDescription,
+      ResolutionPreset.max,
+      enableAudio: false,
+      imageFormatGroup: ImageFormatGroup.jpeg,
+    );
+
+    _controller = cameraController;
+
+    // If the controller is updated then update the UI.
+    cameraController.addListener(() {
+      if (mounted) setState(() {});
+    });
+
+    try {
+      await cameraController.initialize();
+    } on CameraException catch (e) {}
+
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder(
-      future: _initController,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Column(
-            children: [
-              Expanded(
-                flex: 4,
-                child: cameraWidget(context),
+      body: Column(
+        children: [
+          Expanded(flex: 4, child: _cameraPreviewWidget()
+              // cameraWidget(context),
               ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  width: double.infinity,
-                  color: AppColors.primaryColor,
-                ),
-              )
-            ],
-          );
-        } else
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-      },
-    ));
+          Expanded(
+            flex: 1,
+            child: Container(
+              width: double.infinity,
+              color: AppColors.primaryColor,
+            ),
+          )
+        ],
+      ),
+    );
   }
 
-  Future<void> initCamera() async {
-    final cameras = await availableCameras();
-    final firstCamera = cameras.first;
-    _controller = CameraController(firstCamera, ResolutionPreset.high);
-    _initController = _controller.initialize();
-    if (!mounted) {
-      return;
+  Widget _cameraPreviewWidget() {
+    final CameraController? cameraController = _controller;
+
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      return const Text(
+        'Tap a camera',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 24.0,
+          fontWeight: FontWeight.w900,
+        ),
+      );
+    } else {
+      return Listener(
+        child: CameraPreview(
+          _controller!,
+          child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+            return GestureDetector(
+              behavior: HitTestBehavior.opaque,
+            );
+          }),
+        ),
+      );
     }
-    setState(() {
-      isCameraReady = true;
+  }
+
+  initCamera() {
+    _controller = CameraController(widget.cameras[0], ResolutionPreset.max);
+    _initController = _controller!.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        isCameraReady = false;
+      });
     });
   }
 }
