@@ -4,24 +4,25 @@ import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 import 'package:parsowa/presentation/screens/job_list/data/prefecture_list.dart';
-import 'package:parsowa/presentation/screens/search/apply_fillter_screen.dart';
-import 'package:parsowa/presentation/screens/search/widgets/hashtag_list.dart';
 import 'package:parsowa/presentation/screens/search/widgets/job_list_widget.dart';
+
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
-class SearchScreen extends StatefulWidget {
-  static const String routeName = "/SearchScreen";
+import 'widgets/hashtag_list.dart';
 
-  SearchScreen({Key? key, required this.title}) : super(key: key);
+class ApplyFillterScreen extends StatefulWidget {
+  static const String routeName = "/ApplySearchScreen";
+
+  ApplyFillterScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
   final data = JobData.initData();
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<ApplyFillterScreen> createState() => _ApplyFillterScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _ApplyFillterScreenState extends State<ApplyFillterScreen> {
   List<String> category = [
     '午前中',
     '午後',
@@ -29,123 +30,25 @@ class _SearchScreenState extends State<SearchScreen> {
     '身体・生活',
     '身体・生活 身体・生活 身体・生活',
   ];
-  late ExpandableController expandableCheck;
+  final expandableCheck = ExpandableController(initialExpanded: false);
   String? initDropdown = '';
-  late TextEditingController searchController;
-  late bool exCheck;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    expandableCheck = ExpandableController(initialExpanded: false);
-    exCheck = false;
-    searchController = TextEditingController();
-  }
-
+  final searchController = TextEditingController();
+  bool exCheck = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarCustom(
           stringTitle: widget.title,
-          isLeadingHide: true,
+          isLeadingHide: false,
           isActionHide: true,
-          onBackPress: () => {},
+          onBackPress: () => {Navigator.of(context).pop()},
           onClosePress: () => {}),
-      body: _buildBottomAppbar(context),
+      body: JobListBodyWidget(
+        data: widget.data,
+      ),
       bottomNavigationBar: BottomNavBar(currentIndex: 0),
     );
   }
-
-  _buildBottomAppbar(BuildContext context) => ExpandableNotifier(
-        controller: expandableCheck,
-        child: Column(
-          children: [
-            ExpandablePanel(
-                theme: const ExpandableThemeData(
-                  hasIcon: false,
-                ),
-                header: Container(
-                  decoration: const BoxDecoration(
-                      border: Border(
-                          bottom:
-                              BorderSide(color: Color(0xffC9C9C9), width: 1))),
-                  child: Row(
-                    children: [
-                      Flexible(
-                        child: Container(
-                          alignment: Alignment.centerLeft,
-                          height: 60,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            style: const TextStyle(
-                                fontSize: 18,
-                                color: AppColors.unselectedColor,
-                                fontFamily: 'NotoSanJP',
-                                fontWeight: FontWeight.w700),
-                            decoration: InputDecoration(
-                                prefixIconConstraints: const BoxConstraints(
-                                    maxHeight: 18, maxWidth: 28),
-                                prefixIcon: Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: SvgPicture.asset(
-                                    'assets/icons/icon_svg/Search_icon_on.svg',
-                                    color: const Color(0xff929191),
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                errorBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                hintText: '絞り込み',
-                                hintStyle: const TextStyle(
-                                    fontSize: 18,
-                                    color: Color(0xff7C7C7C),
-                                    fontFamily: 'NotoSanJP',
-                                    fontWeight: FontWeight.w700)),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          exCheck = !exCheck;
-                          expandableCheck.value = !expandableCheck.value;
-                          setState(() {});
-                        },
-                        child: ExpandableIcon(
-                          theme: const ExpandableThemeData(
-                            expandIcon: Icons.keyboard_arrow_down,
-                            collapseIcon: Icons.keyboard_arrow_up,
-                            iconColor: AppColors.unselectedColor,
-                            iconSize: 30.0,
-                            iconPadding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 20),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                expanded: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [expandedSection()],
-                ),
-                collapsed: Container()),
-            Flexible(
-              child: Stack(children: [
-                JobListBodyWidget(
-                  data: widget.data,
-                ),
-                if (exCheck)
-                  Container(
-                    color: AppColors.unselectedColor.withOpacity(0.5),
-                  )
-              ]),
-            ),
-          ],
-        ),
-      );
 
   Widget _buildSmallButton(String title, Color bg, Color textColor,
           Color borderColor, Function onPress) =>
@@ -264,7 +167,6 @@ class _SearchScreenState extends State<SearchScreen> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(flex: 1, child: _buildDropDown()),
@@ -315,9 +217,7 @@ class _SearchScreenState extends State<SearchScreen> {
           padding: const EdgeInsets.symmetric(vertical: 20),
           alignment: Alignment.center,
           child: _buildButton('この条件で絞り込む', AppColors.primaryColor,
-              AppColors.whiteColor, AppColors.whiteColor, () {
-            Navigator.of(context).pushNamed(ApplyFillterScreen.routeName);
-          }),
+              AppColors.whiteColor, AppColors.whiteColor, () {}),
         )
       ],
     );
