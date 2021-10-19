@@ -24,7 +24,9 @@ class AccountInfoScreenState extends State<AccountInfoScreen> {
           isLeadingHide: false,
           isActionHide: true,
           stringTitle: widget.title,
-          onBackPress: () {},
+          onBackPress: () {
+            Navigator.of(context).pop();
+          },
           onClosePress: () {},
         ),
         body: ListView(
