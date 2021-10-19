@@ -43,7 +43,7 @@ dependencies:
   url_launcher: ^6.0.12
   image_picker: ^0.8.4+2
   camera: ^0.9.4+2
-
+  qr_code_scanner: ^0.5.2
 dev_dependencies:
   auto_route_generator: ^2.4.1
   build_runner: ^2.1.4
