@@ -21,10 +21,13 @@ class QRCodeReadScreen extends StatefulWidget {
   State<QRCodeReadScreen> createState() => _QRCodeReadScreenState();
 }
 
-class _QRCodeReadScreenState extends State<QRCodeReadScreen> {
+class _QRCodeReadScreenState extends State<QRCodeReadScreen>
+    with WidgetsBindingObserver {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? QRcontroller;
+
+  bool isBackButtonActivated = false;
 
   @override
   void reassemble() {
@@ -34,6 +37,29 @@ class _QRCodeReadScreenState extends State<QRCodeReadScreen> {
     } else if (Platform.isIOS) {
       QRcontroller!.resumeCamera();
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    QRcontroller!.dispose();
+    super.dispose();
+  }
+
+  @override
+  didPopRoute() {
+    bool override;
+    if (isBackButtonActivated)
+      override = false;
+    else
+      override = true;
+    return new Future<bool>.value(override);
   }
 
   @override
@@ -121,12 +147,6 @@ class _QRCodeReadScreenState extends State<QRCodeReadScreen> {
   _onClick() {
     //Navigator.pop(context);
     print('hello');
-  }
-
-  @override
-  void dispose() {
-    QRcontroller!.dispose();
-    super.dispose();
   }
 }
 
