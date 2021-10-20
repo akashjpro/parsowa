@@ -91,27 +91,30 @@ class _QRCodeReadScreenState extends State<QRCodeReadScreen> {
   // Todo: Navigate to Clock in completed
   void _onQRViewCreated(QRViewController controller) {
     this.QRcontroller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      result = scanData;
-      print(
-          'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}');
-      if (result!.code == "clock out") {
-        controller.pauseCamera();
-        Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ClockOutCompletedScreen()))
-            .then((value) => controller.resumeCamera());
-      } else if (result!.code == "clock in") {
-        controller.pauseCamera();
-        Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ClockInCompletedScreen()))
-            .then((value) => controller.resumeCamera());
-      } else {
-        return;
-      }
+    setState(() {
+      controller.scannedDataStream.listen((scanData) {
+        result = scanData;
+        print(
+            'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}');
+        if (result!.code == "clock out") {
+          controller.pauseCamera();
+          Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ClockOutCompletedScreen()))
+              .then((value) => controller.resumeCamera());
+        } else if (result!.code == "clock in") {
+          controller.pauseCamera();
+          Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ClockInCompletedScreen()))
+              .then((value) => controller.resumeCamera());
+        } else {
+          controller.pauseCamera();
+          _showDialog(context).then((value) => controller.resumeCamera());
+        }
+      });
     });
   }
 
@@ -125,6 +128,29 @@ class _QRCodeReadScreenState extends State<QRCodeReadScreen> {
     QRcontroller!.dispose();
     super.dispose();
   }
+}
+
+Future<String?> _showDialog(BuildContext context) {
+  return showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: const Text('パスワード再設定完了'),
+      content: const Text('パスワードの再設定が完了しました。'),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => {Navigator.of(context).pop()},
+          child: const Text(
+            'OK',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              fontFamily: "NotoSanJP",
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
 
 Widget _btnOK(String text, Function() onPressed) {
