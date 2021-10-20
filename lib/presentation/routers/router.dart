@@ -22,6 +22,7 @@ import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
 import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
 import 'package:parsowa/presentation/screens/reset_password/reset_password_input_mail_screen.dart';
 import 'package:parsowa/presentation/screens/reset_password/reset_password_screen.dart';
+import 'package:parsowa/presentation/screens/salary_detail/salary_detail.dart';
 import 'package:parsowa/presentation/screens/search/apply_fillter_screen.dart';
 import 'package:parsowa/presentation/screens/search/search_screen.dart';
 import 'package:parsowa/presentation/screens/service_and_usage/service_and_usage.dart';
@@ -176,6 +177,14 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => AccountRegistScreen(),
         );
+
+      case SalaryDetailScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => SalaryDetailScreen(
+            title: Strings.salaryDetailTitle,
+          ),
+        );
+
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();

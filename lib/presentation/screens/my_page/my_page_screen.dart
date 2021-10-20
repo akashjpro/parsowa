@@ -7,6 +7,7 @@ import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.
 import 'package:parsowa/presentation/screens/contact_us/contact_us_screen.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
+import 'package:parsowa/presentation/screens/salary_detail/salary_detail.dart';
 
 import 'package:parsowa/presentation/screens/service_and_usage/service_and_usage.dart';
 import 'package:parsowa/presentation/screens/web_view/web_view.dart';
@@ -91,6 +92,9 @@ class MyPageScreen extends StatelessWidget {
                   label: '報酬確認',
                   onTap: () {
                     // show screen 40 salary detail
+                    Navigator.of(context).pushNamed(
+                      SalaryDetailScreen.routeName,
+                    );
                   },
                 ),
                 _buildListTile(
