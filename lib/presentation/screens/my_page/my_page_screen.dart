@@ -100,9 +100,9 @@ class MyPageScreen extends StatelessWidget {
                 _buildListTile(
                   label: '過去の出退勤',
                   onTap: () {
-                    // show screen 34 attend list
-                    Navigator.of(context).pushNamed(
-                      AttendListScreen.routeName,
+                    // Previous Attend
+                    Navigator.of(context).pushReplacementNamed(
+                      PreviousAttendScreen.routeName,
                     );
                   },
                 ),
@@ -144,37 +144,6 @@ class MyPageScreen extends StatelessWidget {
                   label: '退会する',
                   onTap: () {
                     // show screen 41 quit service
-                  },
-                ),
-
-                //Todo
-                _buildListTile(
-                  label: 'Make job record',
-                  onTap: () {
-                    // Make job record
-                    Navigator.of(context).pushNamed(
-                      MakeJobRecord.routeName,
-                    );
-                  },
-                ),
-                //Todo
-                _buildListTile(
-                  label: 'Service And Usage ',
-                  onTap: () {
-                    // ServiceAndUsageScreen
-                    Navigator.of(context).pushNamed(
-                      ServiceAndUsageScreen.routeName,
-                    );
-                  },
-                ),
-                //Todo
-                _buildListTile(
-                  label: 'Previous Attend',
-                  onTap: () {
-                    // Previous Attend
-                    Navigator.of(context).pushReplacementNamed(
-                      PreviousAttendScreen.routeName,
-                    );
                   },
                 ),
                 const ListTile(),
