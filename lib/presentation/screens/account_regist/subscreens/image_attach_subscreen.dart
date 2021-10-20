@@ -19,6 +19,15 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
     );
   }
 
+  onPressCamera() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DisplayCamera(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,14 +75,8 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                       SizedBox(
                         width: 200,
                         height: 38,
-                        child: _customButton('アップロードする', () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DisplayCamera(),
-                            ),
-                          );
-                        }, AppColors.whiteColor, AppColors.primaryColor),
+                        child: _customButton('アップロードする', onPressCamera,
+                            AppColors.whiteColor, AppColors.primaryColor),
                       ),
                       const SizedBox(height: 25),
                       const Divider(
@@ -87,7 +90,7 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                       SizedBox(
                         width: 200,
                         height: 38,
-                        child: _customButton('アップロードする', () {},
+                        child: _customButton('アップロードする', onPressCamera,
                             AppColors.primaryColor, AppColors.whiteColor),
                       ),
                       const SizedBox(height: 15),
@@ -102,7 +105,7 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                       SizedBox(
                         width: 200,
                         height: 38,
-                        child: _customButton('アップロードする', () {},
+                        child: _customButton('アップロードする', onPressCamera,
                             AppColors.primaryColor, AppColors.whiteColor),
                       ),
                       const SizedBox(height: 56),
@@ -168,8 +171,8 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
         SizedBox(
           width: 200,
           height: 38,
-          child: _customButton(
-              'アップロードする', () {}, AppColors.whiteColor, AppColors.primaryColor),
+          child: _customButton('アップロードする', onPressCamera, AppColors.whiteColor,
+              AppColors.primaryColor),
         ),
       ],
     );
