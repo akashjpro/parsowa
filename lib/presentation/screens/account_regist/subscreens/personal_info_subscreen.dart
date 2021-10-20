@@ -102,9 +102,12 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  height: 40.0,
-                  color: Colors.amber,
-                  child: Center(child: Text('Image Processing')),
+                  margin: EdgeInsets.symmetric(vertical: 25.0),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/progress_display/Progress_display_03.png',
+                    ),
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 38.0),
@@ -355,11 +358,9 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
         children: [
           Container(
             constraints: BoxConstraints(maxWidth: 73.0),
-            child: Expanded(
-              child: _buildTextFormField(
-                validator: firstValidator,
-                controller: firstController,
-              ),
+            child: _buildTextFormField(
+              validator: firstValidator,
+              controller: firstController,
             ),
           ),
           const SizedBox(width: 5.0),
@@ -375,11 +376,9 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
           const SizedBox(width: 5.0),
           Container(
             constraints: BoxConstraints(maxWidth: 103.0),
-            child: Expanded(
-              child: _buildTextFormField(
-                validator: secondValidator,
-                controller: secondController,
-              ),
+            child: _buildTextFormField(
+              validator: secondValidator,
+              controller: secondController,
             ),
           ),
         ],
@@ -410,37 +409,35 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
             child: ButtonTheme(
               alignedDropdown: true,
               minWidth: 103.0,
-              child: Expanded(
-                child: DropdownButton<String>(
-                  items: List<DropdownMenuItem<String>>.generate(
-                    prefecture.length,
-                    (index) => DropdownMenuItem(
-                      value: prefecture[index],
-                      child: Text(
-                        '${prefecture[index]}',
-                        style: const TextStyle(
-                          fontFamily: 'NotoSanJP',
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w500,
-                          height: 1.2,
-                        ),
+              child: DropdownButton<String>(
+                items: List<DropdownMenuItem<String>>.generate(
+                  prefecture.length,
+                  (index) => DropdownMenuItem(
+                    value: prefecture[index],
+                    child: Text(
+                      '${prefecture[index]}',
+                      style: const TextStyle(
+                        fontFamily: 'NotoSanJP',
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                        height: 1.2,
                       ),
                     ),
                   ),
-                  isExpanded: true,
-                  underline: Container(),
-                  icon: const Icon(
-                    Icons.arrow_drop_down,
-                    color: AppColors.blackColor,
-                  ),
-                  elevation: 1,
-                  value: _selectedPrefectureDropDownValue,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedPrefectureDropDownValue = value!;
-                    });
-                  },
                 ),
+                isExpanded: true,
+                underline: Container(),
+                icon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: AppColors.blackColor,
+                ),
+                elevation: 1,
+                value: _selectedPrefectureDropDownValue,
+                onChanged: (value) {
+                  setState(() {
+                    _selectedPrefectureDropDownValue = value!;
+                  });
+                },
               ),
             ),
           ),
@@ -470,37 +467,35 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
           ),
           child: ButtonTheme(
             alignedDropdown: true,
-            child: Expanded(
-              child: DropdownButton<int>(
-                items: List<DropdownMenuItem<int>>.generate(
-                  32,
-                  (index) => DropdownMenuItem(
-                    value: index,
-                    child: Text(
-                      '${index + 1}',
-                      style: const TextStyle(
-                        fontFamily: 'NotoSanJP',
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        height: 1.2,
-                      ),
+            child: DropdownButton<int>(
+              items: List<DropdownMenuItem<int>>.generate(
+                32,
+                (index) => DropdownMenuItem(
+                  value: index,
+                  child: Text(
+                    '${index + 1}',
+                    style: const TextStyle(
+                      fontFamily: 'NotoSanJP',
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      height: 1.2,
                     ),
                   ),
                 ),
-                isExpanded: true,
-                underline: Container(),
-                icon: const Icon(
-                  Icons.arrow_drop_down,
-                  color: AppColors.blackColor,
-                ),
-                elevation: 1,
-                value: _selectedDayDropDownValue,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedDayDropDownValue = value!;
-                  });
-                },
               ),
+              isExpanded: true,
+              underline: Container(),
+              icon: const Icon(
+                Icons.arrow_drop_down,
+                color: AppColors.blackColor,
+              ),
+              elevation: 1,
+              value: _selectedDayDropDownValue,
+              onChanged: (value) {
+                setState(() {
+                  _selectedDayDropDownValue = value!;
+                });
+              },
             ),
           ),
         ),
@@ -527,37 +522,35 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
           ),
           child: ButtonTheme(
             alignedDropdown: true,
-            child: Expanded(
-              child: DropdownButton<int>(
-                items: List<DropdownMenuItem<int>>.generate(
-                  13,
-                  (index) => DropdownMenuItem(
-                    value: index,
-                    child: Text(
-                      '${index + 1}',
-                      style: const TextStyle(
-                        fontFamily: 'NotoSanJP',
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        height: 1.2,
-                      ),
+            child: DropdownButton<int>(
+              items: List<DropdownMenuItem<int>>.generate(
+                13,
+                (index) => DropdownMenuItem(
+                  value: index,
+                  child: Text(
+                    '${index + 1}',
+                    style: const TextStyle(
+                      fontFamily: 'NotoSanJP',
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      height: 1.2,
                     ),
                   ),
                 ),
-                isExpanded: true,
-                underline: Container(),
-                icon: const Icon(
-                  Icons.arrow_drop_down,
-                  color: AppColors.blackColor,
-                ),
-                elevation: 1,
-                value: _selectedMonthDropDownValue,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedMonthDropDownValue = value!;
-                  });
-                },
               ),
+              isExpanded: true,
+              underline: Container(),
+              icon: const Icon(
+                Icons.arrow_drop_down,
+                color: AppColors.blackColor,
+              ),
+              elevation: 1,
+              value: _selectedMonthDropDownValue,
+              onChanged: (value) {
+                setState(() {
+                  _selectedMonthDropDownValue = value!;
+                });
+              },
             ),
           ),
         ),
@@ -584,37 +577,35 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
           ),
           child: ButtonTheme(
             alignedDropdown: true,
-            child: Expanded(
-              child: DropdownButton<int>(
-                items: List<DropdownMenuItem<int>>.generate(
-                  56,
-                  (index) => DropdownMenuItem(
-                    value: index,
-                    child: Text(
-                      '${2021 - 70 + index}',
-                      style: const TextStyle(
-                        fontFamily: 'NotoSanJP',
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        height: 1.2,
-                      ),
+            child: DropdownButton<int>(
+              items: List<DropdownMenuItem<int>>.generate(
+                56,
+                (index) => DropdownMenuItem(
+                  value: index,
+                  child: Text(
+                    '${2021 - 70 + index}',
+                    style: const TextStyle(
+                      fontFamily: 'NotoSanJP',
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      height: 1.2,
                     ),
                   ),
                 ),
-                isExpanded: true,
-                underline: Container(),
-                icon: const Icon(
-                  Icons.arrow_drop_down,
-                  color: AppColors.blackColor,
-                ),
-                elevation: 1,
-                value: _selectedYearDropDownValue,
-                onChanged: (value) {
-                  setState(() {
-                    _selectedYearDropDownValue = value!;
-                  });
-                },
               ),
+              isExpanded: true,
+              underline: Container(),
+              icon: const Icon(
+                Icons.arrow_drop_down,
+                color: AppColors.blackColor,
+              ),
+              elevation: 1,
+              value: _selectedYearDropDownValue,
+              onChanged: (value) {
+                setState(() {
+                  _selectedYearDropDownValue = value!;
+                });
+              },
             ),
           ),
         ),
@@ -759,7 +750,7 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
     required String? Function(String? v) secondValidator,
   }) {
     return Container(
-      constraints: BoxConstraints(minWidth: 100.0, minHeight: 40.0),
+      // constraints: BoxConstraints(minWidth: 100.0, minHeight: 40.0),
       margin: const EdgeInsets.only(
         left: 38.0,
         right: 38.0,

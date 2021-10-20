@@ -1,12 +1,7 @@
-import 'dart:io';
-
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/account_regist/subscreens/approval_pending_subscreen.dart';
 import 'package:parsowa/presentation/screens/account_regist/subscreens/display_camera_subscreen.dart';
-import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
 class ImageAttachSubScreen extends StatefulWidget {
   const ImageAttachSubScreen({Key? key}) : super(key: key);
@@ -16,8 +11,6 @@ class ImageAttachSubScreen extends StatefulWidget {
 }
 
 class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
-  XFile? _image;
-
   onNextPress() {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -29,20 +22,19 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarCustom(
-          stringTitle: '',
-          isLeadingHide: true,
-          isActionHide: true,
-          onBackPress: () {},
-          onClosePress: () {}),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: AppColors.whiteColor,
+      backgroundColor: AppColors.whiteColor,
+      body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 10),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 25.0),
+                child: Center(
+                  child: Image.asset(
+                    'assets/progress_display/Progress_display_05.png',
+                  ),
+                ),
+              ),
               Container(
                 width: double.infinity,
                 height: 28,
@@ -139,12 +131,6 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                 ),
               ),
               _buildBottomButtonSection(),
-              SizedBox(height: 20),
-              Center(
-                  child: _image == null
-                      ? Text("")
-                      : Image.file(File(_image!.path))),
-              SizedBox(height: 20),
             ],
           ),
         ),
