@@ -96,37 +96,36 @@ class AttendListWidget {
                     ),
                   ],
                 ),
-                if (typeScreen != 2)
-                  Column(
-                    children: [
-                      _buildButton('業務詳細', AppColors.primaryColor,
+                Column(
+                  children: [
+                    _buildButton('業務詳細', AppColors.primaryColor,
+                        AppColors.whiteColor, AppColors.whiteColor, () {
+                      // #33 Job detail screen
+                      // TODO: implement JobData
+                      final data = JobData.initData();
+                      Navigator.of(context).pushNamed(
+                        ContentJobDetailScreen.routeName,
+                        arguments: data[0],
+                      );
+                    }),
+                    if (typeScreen == 1)
+                      _buildButton('QRコード読込', AppColors.primaryColor,
                           AppColors.whiteColor, AppColors.whiteColor, () {
-                        // #33 Job detail screen
-                        // TODO: implement JobData
-                        final data = JobData.initData();
+                        // #35 QR code screen
                         Navigator.of(context).pushNamed(
-                          ContentJobDetailScreen.routeName,
-                          arguments: data[0],
+                          QRCodeReadScreen.routeName,
                         );
                       }),
-                      if (typeScreen == 1)
-                        _buildButton('QRコード読込', AppColors.primaryColor,
-                            AppColors.whiteColor, AppColors.whiteColor, () {
-                          // #35 QR code screen
-                          Navigator.of(context).pushNamed(
-                            QRCodeReadScreen.routeName,
-                          );
-                        }),
-                      if (typeScreen == 3)
-                        _buildButton('記録を書く', AppColors.primaryColor,
-                            AppColors.whiteColor, AppColors.whiteColor, () {
-                          // #37 MakeJobRecord
-                          Navigator.of(context).pushNamed(
-                            MakeJobRecord.routeName,
-                          );
-                        })
-                    ],
-                  )
+                    if (typeScreen == 3)
+                      _buildButton('記録を書く', AppColors.primaryColor,
+                          AppColors.whiteColor, AppColors.whiteColor, () {
+                        // #37 MakeJobRecord
+                        Navigator.of(context).pushNamed(
+                          MakeJobRecord.routeName,
+                        );
+                      })
+                  ],
+                )
               ],
             ),
             _buildRowIconAndText(
@@ -215,6 +214,14 @@ class AttendListWidget {
                 ),
                 if (typeScreen == 1)
                   _buildButton('修正はこちら', AppColors.primaryColor,
+                      AppColors.whiteColor, AppColors.whiteColor, () {
+                    // #36 Fix Request detail
+                    Navigator.of(context).pushNamed(
+                      ContentsFixRequestDetailScreen.routeName,
+                    );
+                  }),
+                if (typeScreen == 2)
+                  _buildButton('修正内容確認', AppColors.primaryColor,
                       AppColors.whiteColor, AppColors.whiteColor, () {
                     // #36 Fix Request detail
                     Navigator.of(context).pushNamed(
