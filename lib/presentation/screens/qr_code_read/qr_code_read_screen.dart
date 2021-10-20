@@ -92,29 +92,26 @@ class _QRCodeReadScreenState extends State<QRCodeReadScreen> {
   void _onQRViewCreated(QRViewController controller) {
     this.QRcontroller = controller;
     controller.scannedDataStream.listen((scanData) {
-      setState(
-        () {
-          print(
-              'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}');
-          if (scanData.code == "clock out") {
-            controller.pauseCamera();
-            Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ClockOutCompletedScreen()))
-                .then((value) => controller.resumeCamera());
-          } else if (scanData.code == "clock in") {
-            controller.pauseCamera();
-            Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ClockInCompletedScreen()))
-                .then((value) => (value) => controller.resumeCamera());
-          } else {
-            return;
-          }
-        },
-      );
+      result = scanData;
+      print(
+          'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}');
+      if (result!.code == "clock out") {
+        controller.pauseCamera();
+        Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ClockOutCompletedScreen()))
+            .then((value) => controller.resumeCamera());
+      } else if (result!.code == "clock in") {
+        controller.pauseCamera();
+        Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ClockInCompletedScreen()))
+            .then((value) => controller.resumeCamera());
+      } else {
+        return;
+      }
     });
   }
 
