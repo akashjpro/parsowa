@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:parsowa/presentation/screens/make_job_record/data/check_box_model.dart';
 
 class BodyCareType {
@@ -15,6 +16,7 @@ class BodyCareType {
   static final mealAssistanceTypeActive = <CheckBoxModel>[
     CheckBoxModel(title: '全介助'),
     CheckBoxModel(title: '一部介助'),
+    CheckBoxModel(title: '見守り'),
     CheckBoxModel(title: '水分補給'),
     CheckBoxModel(title: 'メニューの説明'),
     CheckBoxModel(title: '食事量'),
@@ -65,7 +67,7 @@ class BodyCareType {
   ];
 
   static final independenceSupportActive = <CheckBoxModel>[
-    CheckBoxModel(title: '入浴・行為・移動時等の自立への声かけと安全の見守り'),
+    CheckBoxModel(title: '入浴・更衣・移動時等の自立への声かけと安全の見守り'),
     CheckBoxModel(title: '共に行う（掃除・調理・洗濯・衣類整理・買物'),
     CheckBoxModel(title: '体位変意欲・関心の引き出し換'),
   ];

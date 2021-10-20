@@ -878,26 +878,27 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
         _buildCustomContainer([
           _buildSingleCheckBox(cb: _mealAssistanceTypeActive[0]),
           _buildSingleCheckBox(cb: _mealAssistanceTypeActive[1]),
+          _buildSingleCheckBox(cb: _mealAssistanceTypeActive[2]),
           _buildColumnCheckBoxAndChildren(
-            cb: _mealAssistanceTypeActive[2],
+            cb: _mealAssistanceTypeActive[3],
             child: [
               _buildSingleRowLabelAndInput(
                 label: 'CC',
-                cb: _mealAssistanceTypeActive[2],
+                cb: _mealAssistanceTypeActive[3],
                 controller: _hydrationAmountController,
               ),
             ],
           ),
-          _buildSingleCheckBox(cb: _mealAssistanceTypeActive[3]),
+          _buildSingleCheckBox(cb: _mealAssistanceTypeActive[4]),
           _buildColumnCheckBoxAndChildren(
-            cb: _mealAssistanceTypeActive[4],
+            cb: _mealAssistanceTypeActive[5],
             child: [
               CustomRadioGroupButtonTwo(
                 labels: const ['完食', '残しあり'],
-                isChecked: _mealAssistanceTypeActive[4].isChecked,
+                isChecked: _mealAssistanceTypeActive[5].isChecked,
               ),
               _buildInputGroupWithSlash(
-                _mealAssistanceTypeActive[4],
+                _mealAssistanceTypeActive[5],
                 [
                   _leftOverFoodAmountNumeratorController,
                   _leftOverFoodAmountDenomiratorController
@@ -907,11 +908,11 @@ class _MakeJobRecordState extends State<MakeJobRecord> {
             ],
           ),
           _buildColumnCheckBoxAndChildren(
-            cb: _mealAssistanceTypeActive[5],
+            cb: _mealAssistanceTypeActive[6],
             child: [
               _buildSingleRowLabelAndMultiLinesInput(
                 label: '',
-                cb: _mealAssistanceTypeActive[5],
+                cb: _mealAssistanceTypeActive[6],
                 controller: _noTableCookingController,
               ),
             ],
