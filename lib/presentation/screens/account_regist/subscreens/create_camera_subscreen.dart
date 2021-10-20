@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:parsowa/core/constants/colors.dart';
+import 'package:parsowa/presentation/screens/account_regist/subscreens/image_attach_subscreen.dart';
 
 import 'display_camera_subscreen.dart';
 
@@ -71,8 +72,14 @@ class UploadImage extends StatelessWidget {
                           SizedBox(
                             width: 140,
                             height: 38,
-                            child: _customButton2('アップロード', () {},
-                                AppColors.primaryColor, AppColors.whiteColor),
+                            child: _customButton2('アップロード', () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ImageAttachSubScreen(),
+                                ),
+                              );
+                            }, AppColors.primaryColor, AppColors.whiteColor),
                           ),
                         ],
                       ),
