@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/account_regist/subscreens/approval_pending_subscreen.dart';
-import 'package:parsowa/presentation/screens/account_regist/subscreens/camera_subscreen.dart';
+import 'package:parsowa/presentation/screens/account_regist/subscreens/display_camera_subscreen.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
 class ImageAttachSubScreen extends StatefulWidget {
@@ -17,15 +17,6 @@ class ImageAttachSubScreen extends StatefulWidget {
 
 class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
   XFile? _image;
-
-  Future _cameraUpload() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-
-    setState(() {
-      _image = photo!;
-    });
-  }
 
   onNextPress() {
     Navigator.of(context).push(
@@ -83,22 +74,14 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                       SizedBox(
                         width: 200,
                         height: 38,
-                        child: _customButton(
-                            'アップロードする',
-                            () {}
-                            //  async {
-                            //   final cameras = await availableCameras();
-                            //   Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) =>
-                            //           DisplayCamera(cameras: cameras),
-                            //     ),
-                            //   );
-                            // }
-                            ,
-                            AppColors.whiteColor,
-                            AppColors.primaryColor),
+                        child: _customButton('アップロードする', () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DisplayCamera(),
+                            ),
+                          );
+                        }, AppColors.whiteColor, AppColors.primaryColor),
                       ),
                       SizedBox(height: 25),
                       Divider(
@@ -112,22 +95,8 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                       SizedBox(
                         width: 200,
                         height: 38,
-                        child: _customButton(
-                            'アップロードする',
-                            () {}
-                            // async {
-                            //   final cameras = await availableCameras();
-                            //   Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: (context) =>
-                            //           DisplayCamera(cameras: cameras),
-                            //     ),
-                            //   );
-                            // }
-                            ,
-                            AppColors.primaryColor,
-                            AppColors.whiteColor),
+                        child: _customButton('アップロードする', () {},
+                            AppColors.primaryColor, AppColors.whiteColor),
                       ),
                       SizedBox(height: 56),
                     ],
