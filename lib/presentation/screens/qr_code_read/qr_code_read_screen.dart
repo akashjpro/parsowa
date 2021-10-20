@@ -53,16 +53,6 @@ class _QRCodeReadScreenState extends State<QRCodeReadScreen>
   }
 
   @override
-  didPopRoute() {
-    bool override;
-    if (isBackButtonActivated)
-      override = false;
-    else
-      override = true;
-    return new Future<bool>.value(override);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
