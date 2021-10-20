@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parsowa/presentation/routers/router.dart';
 import 'package:parsowa/presentation/screens/login/login_screen.dart';
+import 'package:parsowa/presentation/screens/salary_detail/salary_detail.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      home: LoginScreen(
-        title: "",
+      home: SalaryDetailScreen(
+        title: Strings.salaryDetailTitle,
       ),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
