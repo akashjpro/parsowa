@@ -40,7 +40,7 @@ class PreviousAttendState extends State<PreviousAttendScreen> {
           stringTitle: widget.title,
           isLeadingHide: false,
           isActionHide: true,
-          onBackPress: () => {},
+          onBackPress: () => {Navigator.of(context).pop()},
           onClosePress: () => {}),
       body: SafeArea(
           child: Column(

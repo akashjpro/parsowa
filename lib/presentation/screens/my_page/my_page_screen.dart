@@ -35,42 +35,6 @@ class MyPageScreen extends StatelessWidget {
         onBackPress: () {},
         onClosePress: () {},
       ),
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: <Widget>[
-      //       // Text(
-      //       //   Strings.myPageScreenName,
-      //       //   style: Theme.of(context).textTheme.headline4,
-      //       // ),
-      //
-      //       _buildButton('Past attendance', AppColors.primaryColor,
-      //           AppColors.whiteColor, AppColors.whiteColor, () {
-      //             Navigator.of(context).pushReplacementNamed(
-      //               PreviousAttendScreen.routeName,
-      //             );
-      //           }),
-      //       SizedBox(height: 25),
-      //       _buildButton('Contact Us', AppColors.primaryColor,
-      //           AppColors.whiteColor, AppColors.whiteColor, () {
-      //             Navigator.of(context).pushNamed(
-      //               ContactUsScreen.routeName,
-      //             );
-      //           }),
-      //       SizedBox(height: 25),
-      //       _buildButton('Make job record', AppColors.primaryColor,
-      //           AppColors.whiteColor, AppColors.whiteColor, () {
-      //             Navigator.of(context).pushNamed(
-      //               MakeJobRecord.routeName,
-      //             );
-      //           }),
-      //       SizedBox(height: 25),
-      //       _buildButton('Service and usage', AppColors.primaryColor,
-      //           AppColors.whiteColor, AppColors.whiteColor, () {
-      //             Navigator.of(context).pushNamed(
-      //               ServiceAndUsageScreen.routeName,
-      //             );
-      //           })
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: ListView(
