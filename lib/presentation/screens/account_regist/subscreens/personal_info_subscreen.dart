@@ -102,7 +102,7 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 25.0),
+                  margin: const EdgeInsets.only(top: 25.0, bottom: 45.0),
                   child: Center(
                     child: Image.asset(
                       'assets/progress_display/Progress_display_03.png',
@@ -685,8 +685,8 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
                       });
                     },
                   ),
-                  const Text(
-                    '出勤',
+                  Text(
+                    sex[0],
                     style: TextStyle(
                       fontFamily: 'NotoSanJP',
                       fontWeight: FontWeight.w500,
@@ -723,8 +723,8 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
                       });
                     },
                   ),
-                  const Text(
-                    '退勤',
+                  Text(
+                    sex[1],
                     style: TextStyle(
                       fontFamily: 'NotoSanJP',
                       fontWeight: FontWeight.w500,
@@ -984,7 +984,7 @@ class _PersonalInfoSubScreenState extends State<PersonalInfoSubScreen> {
         ),
       ),
       helperText: '  ',
-      contentPadding: EdgeInsets.all(10.0),
+      contentPadding: EdgeInsets.all(8.0),
     );
   }
 }
