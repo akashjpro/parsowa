@@ -50,8 +50,6 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
               periodSection(),
               _buildTitle('注意事項'),
               cautionSection(),
-              _buildTitle('持ち物'),
-              toBringSection(),
               _buildTitle('参考資料'),
               documentSection(),
               _buildTitle('事業所詳細'),
@@ -259,20 +257,6 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
       color: AppColors.whiteColor,
       child: Text(
         widget.job.caution,
-        style: const TextStyle(
-            fontFamily: 'NotoSanJP',
-            fontSize: 16.0,
-            color: AppColors.unselectedColor,
-            fontWeight: FontWeight.w400),
-      ));
-
-  toBringSection() => Container(
-      width: double.infinity,
-      padding: const EdgeInsets.only(
-          top: 20.0, bottom: 20.0, left: 45.0, right: 25.0),
-      color: AppColors.whiteColor,
-      child: Text(
-        widget.job.whatToBring,
         style: const TextStyle(
             fontFamily: 'NotoSanJP',
             fontSize: 16.0,
