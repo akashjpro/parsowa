@@ -21,11 +21,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      // home: LoginScreen(
-      //   title: "",
-      // ),
-      home: QRCodeReadScreen(
-        title: '',
+      home: LoginScreen(
+        title: "",
       ),
       onGenerateRoute: RouteGenerator.generateRoute,
     );

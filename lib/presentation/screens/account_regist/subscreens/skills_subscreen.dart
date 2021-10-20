@@ -57,9 +57,12 @@ class _SkillsSubScreenState extends State<SkillsSubScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: 40.0,
-                        color: Colors.amber,
-                        child: Center(child: Text('Image Processing')),
+                        margin: EdgeInsets.symmetric(vertical: 25.0),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/progress_display/Progress_display_04.png',
+                          ),
+                        ),
                       ),
                       Expanded(
                         child: Container(

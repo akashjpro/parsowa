@@ -90,9 +90,12 @@ class _AccountRegistScreenState extends State<AccountRegistScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: 40.0,
-                        color: Colors.amber,
-                        child: Center(child: Text('Image Processing')),
+                        margin: EdgeInsets.symmetric(vertical: 25.0),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/progress_display/Progress_display_01.png',
+                          ),
+                        ),
                       ),
                       Expanded(
                         child: Container(
