@@ -2,19 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/account_info/account_info_screen.dart';
-import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/previous_attend_screen.dart';
 import 'package:parsowa/presentation/screens/contact_us/contact_us_screen.dart';
-import 'package:parsowa/presentation/screens/make_job_record/make_job_record.dart';
-import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
+import 'package:parsowa/presentation/screens/quit_service/quit_service.dart';
 import 'package:parsowa/presentation/screens/salary_detail/salary_detail.dart';
-
 import 'package:parsowa/presentation/screens/service_and_usage/service_and_usage.dart';
 import 'package:parsowa/presentation/screens/web_view/web_view.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
-
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
-
 import '../../../core/constants/strings.dart';
 
 class MyPageScreen extends StatelessWidget {
@@ -108,6 +103,7 @@ class MyPageScreen extends StatelessWidget {
                   label: '退会する',
                   onTap: () {
                     // show screen 41 quit service
+                    Navigator.of(context).pushNamed(QuitServiceScreen.routeName);
                   },
                 ),
                 const ListTile(),

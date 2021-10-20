@@ -68,18 +68,21 @@ class ServiceAndUsageScreenState extends State<ServiceAndUsageScreen> {
                 child: Stack(
                   alignment: AlignmentDirectional.bottomCenter,
                   children: <Widget>[
-                    PageView.builder(
-                      scrollDirection: Axis.horizontal,
-                      controller: _pageController,
-                      onPageChanged: _onPageChanged,
-                      itemCount: slideList.length,
-                      itemBuilder: (ctx, i) => SlideItem(i),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 30),
+                      child: PageView.builder(
+                        scrollDirection: Axis.horizontal,
+                        controller: _pageController,
+                        onPageChanged: _onPageChanged,
+                        itemCount: slideList.length,
+                        itemBuilder: (ctx, i) => SlideItem(i),
+                      ),
                     ),
                     Stack(
                       alignment: AlignmentDirectional.topStart,
                       children: <Widget>[
                         Container(
-                          margin: const EdgeInsets.only(bottom: 58),
+                          margin: const EdgeInsets.only(bottom: 20),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -99,7 +102,6 @@ class ServiceAndUsageScreenState extends State<ServiceAndUsageScreen> {
               ),
             ],
           ),
-
         ),
       ),
     );

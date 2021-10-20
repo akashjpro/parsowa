@@ -22,6 +22,7 @@ import 'package:parsowa/presentation/screens/make_job_record/make_job_record.dar
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
 import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
 import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.dart';
+import 'package:parsowa/presentation/screens/quit_service/quit_service.dart';
 import 'package:parsowa/presentation/screens/reset_password/reset_password_input_mail_screen.dart';
 import 'package:parsowa/presentation/screens/reset_password/reset_password_screen.dart';
 import 'package:parsowa/presentation/screens/salary_detail/salary_detail.dart';
@@ -165,24 +166,25 @@ class RouteGenerator {
         }
 
         return _errorRoute();
-
       case AccountInfoScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => AccountInfoScreen(
             title: Strings.accountInfoTitle,
           ),
         );
-
       case AccountRegistScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => AccountRegistScreen(),
         );
-
       case SalaryDetailScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => SalaryDetailScreen(
             title: Strings.salaryDetailTitle,
           ),
+        );
+      case QuitServiceScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => QuitServiceScreen(),
         );
 
       default:

@@ -13,109 +13,109 @@ class SlideItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          width: 375,
-          height: 450,
-          decoration: BoxDecoration(
-            color: Color(0xFFE9E9E9),
-            shape: BoxShape.rectangle,
-            image: DecorationImage(
-              image: AssetImage(slideList[index].imageUrl),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 26.4,
-        ),
-        Text(
-          slideList[index].title,
-          style: TextStyle(
-            fontFamily: 'NotoSanJP',
-            fontSize: 22,
-            color: AppColors.blackColor,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        SizedBox(
-          height: 10.0,
-        ),
-        Container(
-            margin: EdgeInsets.only(left: 30, right: 30),
-            child: Text(
-              slideList[index].description,
-              style: TextStyle(
-                fontFamily: 'NotoSanJP',
-                fontSize: 16,
-                color: AppColors.blackColor,
-                fontWeight: FontWeight.w400,
+    return SingleChildScrollView(
+        reverse: true,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 375,
+              height: 450,
+              decoration: BoxDecoration(
+                color: Color(0xFFE9E9E9),
+                shape: BoxShape.rectangle,
+                image: DecorationImage(
+                  image: AssetImage(slideList[index].imageUrl),
+                  fit: BoxFit.cover,
+                ),
               ),
-            )),
-        SizedBox(
-          height: 10.0,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "利用規約",
-              style: TextStyle(
-                  fontFamily: 'NotoSanJP',
-                  fontSize: 16.0,
-                  decoration: TextDecoration.underline,
-                  color: AppColors.primaryColor,
-                  fontWeight: FontWeight.w400),
             ),
             SizedBox(
-              width: 39.9,
+              height: 26.4,
             ),
             Text(
-              "プライバシーポリシー",
+              slideList[index].title,
               style: TextStyle(
-                  fontFamily: 'NotoSanJP',
-                  fontSize: 16.0,
-                  decoration: TextDecoration.underline,
-                  color: AppColors.primaryColor,
-                  fontWeight: FontWeight.w400),
-            )
+                fontFamily: 'NotoSanJP',
+                fontSize: 22,
+                color: AppColors.blackColor,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Container(
+                margin: EdgeInsets.only(left: 30, right: 30),
+                child: Text(
+                  slideList[index].description,
+                  style: TextStyle(
+                    fontFamily: 'NotoSanJP',
+                    fontSize: 16,
+                    color: AppColors.blackColor,
+                    fontWeight: FontWeight.w400,
+                  ),
+                )),
+            SizedBox(
+              height: 10.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "利用規約",
+                  style: TextStyle(
+                      fontFamily: 'NotoSanJP',
+                      fontSize: 16.0,
+                      decoration: TextDecoration.underline,
+                      color: AppColors.primaryColor,
+                      fontWeight: FontWeight.w400),
+                ),
+                SizedBox(
+                  width: 39.9,
+                ),
+                Text(
+                  "プライバシーポリシー",
+                  style: TextStyle(
+                      fontFamily: 'NotoSanJP',
+                      fontSize: 16.0,
+                      decoration: TextDecoration.underline,
+                      color: AppColors.primaryColor,
+                      fontWeight: FontWeight.w400),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 25.0,
+            ),
+            _buildButton(slideList[index].textButton, AppColors.primaryColor,
+                AppColors.whiteColor, AppColors.primaryColor, () {
+              switch (index) {
+                case 0:
+                  Navigator.of(context).pushNamed(
+                    WebViewScreen.routeName,
+                    arguments: Strings.termsOfUseTitle,
+                  );
+                  break;
+                case 1:
+                  Navigator.of(context).pushNamed(
+                    WebViewScreen.routeName,
+                    arguments: Strings.termsOfUseTitle,
+                  );
+                  break;
+                case 2:
+                  Navigator.of(context)
+                      .pushReplacementNamed(LoginScreen.routeName);
+                  break;
+                case 3:
+                  Navigator.of(context)
+                      .pushReplacementNamed(MyPageScreen.routeName);
+                  break;
+              }
+            }),
           ],
-        ),
-        SizedBox(
-          height: 25.0,
-        ),
-        _buildButton(slideList[index].textButton, AppColors.primaryColor,
-            AppColors.whiteColor, AppColors.primaryColor, () {
-          switch (index) {
-            case 0:
-              Navigator.of(context).pushNamed(
-                WebViewScreen.routeName,
-                arguments: Strings.termsOfUseTitle,
-              );
-              break;
-            case 1:
-              Navigator.of(context).pushNamed(
-                WebViewScreen.routeName,
-                arguments: Strings.termsOfUseTitle,
-              );
-              break;
-            case 2:
-              Navigator.of(context).pushReplacementNamed(
-                LoginScreen.routeName
-              );
-              break;
-            case 3:
-              Navigator.of(context).pushReplacementNamed(
-                  MyPageScreen.routeName
-              );
-              break;
-          }
-        })
-      ],
-    );
+        ));
   }
 
   Widget _buildButton(String title, Color bg, Color textColor,

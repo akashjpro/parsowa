@@ -14,6 +14,8 @@ class Slide {
   });
 }
 
+// TODO: Update image //////////////////////////////////////////////////////////
+
 final slideList = [
   Slide(
       imageUrl: 'assets/images/image1.jpg',
