@@ -102,7 +102,8 @@ class _SkillsSubScreenState extends State<SkillsSubScreen> {
           controller: _selfPrController,
           validator: isEmptyValidator,
           keyboardType: TextInputType.multiline,
-          decoration: _buildInputDecoration(hint: '過去の業務歴、経験などをお書きください'),
+          decoration:
+              _buildInputDecoration(hint: '上記以外の保有資格、過去の業務歴、経験などをお書きください'),
           autofocus: false,
           minLines: 3,
           maxLines: null,

@@ -54,7 +54,7 @@ final haveQualifications = <CheckBoxModel>[
   CheckBoxModel(title: '介護職員初任者研修修了'),
   CheckBoxModel(title: '実務者研修修了'),
   CheckBoxModel(title: '介護福祉士(国家資格)'),
-  CheckBoxModel(title: '訪問介護職員養成研修1級課程'),
-  CheckBoxModel(title: '訪問介護職員養成研修2級課程'),
+  CheckBoxModel(title: 'ヘルパー1級相当'),
+  CheckBoxModel(title: 'ヘルパー2級相当'),
   CheckBoxModel(title: '介護職員基礎研修修了'),
 ];

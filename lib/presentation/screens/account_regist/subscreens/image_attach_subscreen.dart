@@ -54,15 +54,15 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _richTextLabel(),
-                      SizedBox(height: 14),
-                      Divider(
+                      const SizedBox(height: 14),
+                      const Divider(
                         height: 1,
                         color: AppColors.lineStandardColor,
                       ),
-                      SizedBox(height: 11),
-                      _buildText('表面', 16, 'NotoSansJP', FontWeight.w700,
-                          AppColors.blackColor),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 11),
+                      _buildText('本人確認書類(表面)', 16, 'NotoSansJP',
+                          FontWeight.w700, AppColors.blackColor),
+                      const SizedBox(height: 10),
                       SizedBox(
                         width: 200,
                         height: 38,
@@ -75,22 +75,37 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                           );
                         }, AppColors.whiteColor, AppColors.primaryColor),
                       ),
-                      SizedBox(height: 25),
-                      Divider(
+                      const SizedBox(height: 25),
+                      const Divider(
                         height: 1,
                         color: AppColors.lineStandardColor,
                       ),
-                      SizedBox(height: 15),
-                      _buildText('表面', 16, 'NotoSansJP', FontWeight.w700,
-                          AppColors.blackColor),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 15),
+                      _buildText('本人確認書類(裏面)', 16, 'NotoSansJP',
+                          FontWeight.w700, AppColors.blackColor),
+                      const SizedBox(height: 10),
                       SizedBox(
                         width: 200,
                         height: 38,
                         child: _customButton('アップロードする', () {},
                             AppColors.primaryColor, AppColors.whiteColor),
                       ),
-                      SizedBox(height: 56),
+                      const SizedBox(height: 15),
+                      const Divider(
+                        height: 1,
+                        color: AppColors.lineStandardColor,
+                      ),
+                      const SizedBox(height: 15),
+                      _buildText('顔写真', 16, 'NotoSansJP', FontWeight.w700,
+                          AppColors.blackColor),
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        width: 200,
+                        height: 38,
+                        child: _customButton('アップロードする', () {},
+                            AppColors.primaryColor, AppColors.whiteColor),
+                      ),
+                      const SizedBox(height: 56),
                     ],
                   ),
                 ),
@@ -120,9 +135,9 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
                       SizedBox(height: 16),
                       _buildGroupButton('介護福祉士(国家資格)'),
                       SizedBox(height: 16),
-                      _buildGroupButton('訪問介護職員養成研修1級課程'),
+                      _buildGroupButton('ヘルパー1級相当'),
                       SizedBox(height: 16),
-                      _buildGroupButton('訪問介護職員養成研修2級課程'),
+                      _buildGroupButton('ヘルパー2級相当'),
                       SizedBox(height: 16),
                       _buildGroupButton('介護職員基礎研修修了'),
                       SizedBox(height: 65),
@@ -142,7 +157,7 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Divider(
+        const Divider(
           height: 1,
           color: AppColors.lineStandardColor,
         ),
@@ -200,7 +215,7 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
     return RichText(
       text: TextSpan(
         children: [
-          _buildTextSpan('顔写真つきの', 16, 'NotoSansJP', FontWeight.w400,
+          _buildTextSpan('顔写真と、顔写真つきの', 16, 'NotoSansJP', FontWeight.w400,
               AppColors.errorColor),
           _buildTextSpan('本人確認できるものをアップロード', 16, 'NotoSansJP', FontWeight.w400,
               AppColors.blackColor),
