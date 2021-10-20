@@ -23,7 +23,7 @@ class ContactUsScreen extends StatelessWidget {
         initialUrl: 'https://flutter.io',
         javascriptMode: JavascriptMode.unrestricted,
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 4),
+      bottomNavigationBar: BottomNavBar(currentIndex: 3),
     );
   }
 }

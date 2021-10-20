@@ -56,7 +56,7 @@ class PreviousAttendState extends State<PreviousAttendScreen> {
           ),
         ],
       )),
-      bottomNavigationBar: BottomNavBar(currentIndex: 4),
+      bottomNavigationBar: BottomNavBar(currentIndex: 3),
     );
   }
 

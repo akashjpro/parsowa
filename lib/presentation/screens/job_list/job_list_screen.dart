@@ -46,7 +46,7 @@ class _JobListScreenState extends State<JobListScreen> {
       body: JobListBodyWidget(
         data: widget.data,
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 1),
+      bottomNavigationBar: BottomNavBar(currentIndex: 0),
     );
   }
 

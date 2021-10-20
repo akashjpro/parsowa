@@ -61,7 +61,7 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavBar(
-        currentIndex: 1,
+        currentIndex: 0,
       ),
     );
   }

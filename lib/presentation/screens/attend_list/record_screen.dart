@@ -42,7 +42,7 @@ class RecordState extends State<RecordScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 3),
+      bottomNavigationBar: BottomNavBar(currentIndex: 2),
     );
   }
 

@@ -29,7 +29,7 @@ class CompleteFixRequestDetailScreen extends StatelessWidget {
           child: _completeBody(context),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 2),
+      bottomNavigationBar: BottomNavBar(currentIndex: 1),
     );
   }
 
