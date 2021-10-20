@@ -60,7 +60,7 @@ class MyPageScreen extends StatelessWidget {
                   label: '過去の出退勤',
                   onTap: () {
                     // Previous Attend
-                    Navigator.of(context).pushReplacementNamed(
+                    Navigator.of(context).pushNamed(
                       PreviousAttendScreen.routeName,
                     );
                   },
