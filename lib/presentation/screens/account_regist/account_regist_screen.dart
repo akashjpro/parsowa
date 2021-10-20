@@ -90,7 +90,7 @@ class _AccountRegistScreenState extends State<AccountRegistScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 25.0),
+                        margin: const EdgeInsets.only(top: 25.0, bottom: 45.0),
                         child: Center(
                           child: Image.asset(
                             'assets/progress_display/Progress_display_01.png',
@@ -214,13 +214,17 @@ class _AccountRegistScreenState extends State<AccountRegistScreen> {
           color: AppColors.borderColor,
         ),
       ),
+      contentPadding: EdgeInsets.all(8.0),
     );
   }
 
   Widget _buildBottomButtonSection() {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 37.5),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 37.5,
+          vertical: 72.0,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

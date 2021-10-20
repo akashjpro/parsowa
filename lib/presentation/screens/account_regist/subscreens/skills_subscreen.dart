@@ -199,7 +199,7 @@ class _SkillsSubScreenState extends State<SkillsSubScreen> {
       ),
       hintText: hint,
       helperText: '  ',
-      contentPadding: EdgeInsets.all(10.0),
+      contentPadding: EdgeInsets.all(8.0),
     );
   }
 

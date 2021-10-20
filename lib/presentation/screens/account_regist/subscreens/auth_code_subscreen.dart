@@ -47,7 +47,7 @@ class _AuthCodeSubScreenState extends State<AuthCodeSubScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        margin: EdgeInsets.symmetric(vertical: 25.0),
+                        margin: const EdgeInsets.only(top: 25.0, bottom: 45.0),
                         child: Center(
                           child: Image.asset(
                             'assets/progress_display/Progress_display_02.png',
@@ -113,7 +113,10 @@ class _AuthCodeSubScreenState extends State<AuthCodeSubScreen> {
   Widget _buildBottomButtonSection() {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 37.5),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 37.5,
+          vertical: 72.0,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -208,13 +211,7 @@ class _AuthCodeSubScreenState extends State<AuthCodeSubScreen> {
           color: AppColors.borderColor,
         ),
       ),
-      // enabledBorder: OutlineInputBorder(
-      //   borderRadius: BorderRadius.circular(5.0),
-      //   borderSide: BorderSide(
-      //     color: AppColors.primaryColor,
-      //     width: 1,
-      //   ),
-      // ),
+      contentPadding: EdgeInsets.all(8.0),
     );
   }
 }

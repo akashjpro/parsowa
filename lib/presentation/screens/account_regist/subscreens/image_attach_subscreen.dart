@@ -28,7 +28,7 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.symmetric(vertical: 25.0),
+                margin: const EdgeInsets.only(top: 25.0, bottom: 45.0),
                 child: Center(
                   child: Image.asset(
                     'assets/progress_display/Progress_display_05.png',
@@ -162,7 +162,7 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
 
   Widget _customButton(
       String text, Function() onPressed, Color color, Color textColor) {
-    return ElevatedButton(
+    return TextButton(
       onPressed: onPressed,
       child: _buildText(text, 16, 'NotoSansJP', FontWeight.w700, textColor),
       style: ButtonStyle(
