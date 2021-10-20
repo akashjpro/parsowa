@@ -145,8 +145,7 @@ class _QRCodeReadScreenState extends State<QRCodeReadScreen>
   }
 
   _onClick() {
-    //Navigator.pop(context);
-    print('hello');
+    Navigator.pop(context);
   }
 }
 
