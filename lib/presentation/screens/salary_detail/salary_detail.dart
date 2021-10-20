@@ -1,11 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parsowa/core/constants/colors.dart';
-import 'package:parsowa/presentation/screens/account_regist/account_regist_screen.dart';
-import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
-import 'package:parsowa/presentation/screens/reset_password/reset_password_input_mail_screen.dart';
 import 'package:parsowa/presentation/screens/salary_detail/data/salary_detail_data.dart';
-import 'package:parsowa/presentation/screens/search/search_screen.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 
 class SalaryDetailScreen extends StatefulWidget {

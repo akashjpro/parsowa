@@ -4,24 +4,23 @@ import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 import 'package:parsowa/presentation/screens/job_list/data/prefecture_list.dart';
-import 'package:parsowa/presentation/screens/search/apply_fillter_screen.dart';
-import 'package:parsowa/presentation/screens/search/widgets/hashtag_list.dart';
-import 'package:parsowa/presentation/screens/search/widgets/job_list_widget.dart';
+import 'package:parsowa/presentation/screens/job_list_new/widgets/hashtag_list.dart';
+import 'package:parsowa/presentation/screens/job_list_new/widgets/job_list_widget.dart';
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';
 
-class SearchScreen extends StatefulWidget {
+class JobListNewScreen extends StatefulWidget {
   static const String routeName = "/SearchScreen";
 
-  SearchScreen({Key? key, required this.title}) : super(key: key);
+  JobListNewScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
   final data = JobData.initData();
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<JobListNewScreen> createState() => _JobListNewScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _JobListNewScreenState extends State<JobListNewScreen> {
   final _focusNode = FocusNode();
   List<String> category = [
     '午前中',

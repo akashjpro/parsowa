@@ -1,10 +1,9 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 import 'package:parsowa/presentation/screens/job_list/data/prefecture_list.dart';
-import 'package:parsowa/presentation/screens/search/widgets/job_list_widget.dart';
+import 'package:parsowa/presentation/screens/job_list_new/widgets/job_list_widget.dart';
 
 import 'package:parsowa/presentation/widgets/app_bar_custom.dart';
 import 'package:parsowa/presentation/widgets/bottom_nav_bar_widget.dart';

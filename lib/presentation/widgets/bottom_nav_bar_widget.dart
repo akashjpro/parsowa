@@ -3,9 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/record_screen.dart';
-import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
+import 'package:parsowa/presentation/screens/job_list_new/job_list_new.dart';
 import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
-import 'package:parsowa/presentation/screens/search/search_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   var currentIndex = 0;
@@ -64,7 +63,7 @@ class BottomNavBarState extends State<BottomNavBar> {
       onTap: (index) {
         switch (index) {
           case 0:
-            Navigator.of(context).pushReplacementNamed(SearchScreen.routeName);
+            Navigator.of(context).pushReplacementNamed(JobListNewScreen.routeName);
             break;
           case 1:
             Navigator.of(context)

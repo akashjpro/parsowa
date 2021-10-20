@@ -15,6 +15,8 @@ import 'package:parsowa/presentation/screens/job_detail/confirm/confirm_screen.d
 import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
+import 'package:parsowa/presentation/screens/job_list_new/apply_fillter_screen.dart';
+import 'package:parsowa/presentation/screens/job_list_new/job_list_new.dart';
 import 'package:parsowa/presentation/screens/login/login_screen.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record_screen.dart';
@@ -23,8 +25,6 @@ import 'package:parsowa/presentation/screens/qr_code_read/qr_code_read_screen.da
 import 'package:parsowa/presentation/screens/reset_password/reset_password_input_mail_screen.dart';
 import 'package:parsowa/presentation/screens/reset_password/reset_password_screen.dart';
 import 'package:parsowa/presentation/screens/salary_detail/salary_detail.dart';
-import 'package:parsowa/presentation/screens/search/apply_fillter_screen.dart';
-import 'package:parsowa/presentation/screens/search/search_screen.dart';
 import 'package:parsowa/presentation/screens/service_and_usage/service_and_usage.dart';
 import 'package:parsowa/presentation/screens/web_view/web_view.dart';
 
@@ -87,9 +87,9 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const CompleteJobDetailScreen(),
         );
-      case SearchScreen.routeName:
+      case JobListNewScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => SearchScreen(title: Strings.searchScreenTitle),
+          builder: (_) => JobListNewScreen(title: Strings.searchScreenTitle),
         );
       case ApplyFillterScreen.routeName:
         return MaterialPageRoute(
