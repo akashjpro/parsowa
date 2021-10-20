@@ -71,7 +71,6 @@ class SalaryDetailScreenState extends State<SalaryDetailScreen> {
         children: [
           Container(
             width: double.infinity,
-            height: 159,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: AppColors.primaryColor, width: 2)),
