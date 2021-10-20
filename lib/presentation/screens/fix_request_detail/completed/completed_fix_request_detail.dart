@@ -72,7 +72,7 @@ class CompleteFixRequestDetailScreen extends StatelessWidget {
       child: const Text(
         'OK',
         style: TextStyle(
-          color: AppColors.primaryColor,
+          color: AppColors.whiteColor,
           fontFamily: 'NotoSanJP',
           fontSize: 16.0,
           fontWeight: FontWeight.w700,
