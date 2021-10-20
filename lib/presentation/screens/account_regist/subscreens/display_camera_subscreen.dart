@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
@@ -19,7 +20,7 @@ class _DisplayCameraState extends State<DisplayCamera>
     with WidgetsBindingObserver {
   late CameraController _controller;
 
-  late Future<void> _initController;
+  Future<void>? _initController;
 
   var isCameraReady = false;
   late XFile imageFile;
@@ -42,8 +43,13 @@ class _DisplayCameraState extends State<DisplayCamera>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      _controller != null ? _initController = _controller.initialize() : null;
+    if (_controller == null || !_controller.value.isInitialized) {
+      return;
+    }
+    if (state == AppLifecycleState.inactive) {
+      if (_controller != null) {
+        _initController = _controller.initialize();
+      }
     }
     if (!mounted) {
       isCameraReady = true;
@@ -61,80 +67,82 @@ class _DisplayCameraState extends State<DisplayCamera>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder(
-      future: _initController,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Column(
-            children: [
-              // Container(
-              //   width: double.infinity,
-              //   color: Color(0xffC4C4C4),
-              //   child: Center(
-              //     child: cameraWidget(context),
-              //   ),
-              // ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  decoration: BoxDecoration(),
-                  child: SizedBox(
-                    child: cameraWidget(context),
+      body: FutureBuilder(
+        future: _initController,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Column(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    decoration: BoxDecoration(),
+                    child: SizedBox(
+                      child: cameraWidget(context),
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  color: Color(0xff000000),
-                  child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25, top: 20),
-                        child: _buildText('＊必ず原本全体を撮影してください。', 16, 'NotoSansJP',
-                            FontWeight.w500, AppColors.whiteColor),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25, top: 10),
-                        child: _buildText('＊枠内に、必要な情報が入るように', 16, 'NotoSansJP',
-                            FontWeight.w500, AppColors.whiteColor),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25),
-                        child: _buildText('撮影をお願いします。', 16, 'NotoSansJP',
-                            FontWeight.w500, AppColors.whiteColor),
-                      ),
-                      SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          IconButton(
-                            onPressed: () => captureImage(context),
-                            icon: SizedBox(
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                color: AppColors.whiteColor,
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    color: Color(0xff000000),
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 25, top: 20),
+                          child: _buildText(
+                              '＊必ず原本全体を撮影してください。',
+                              16,
+                              'NotoSansJP',
+                              FontWeight.w500,
+                              AppColors.whiteColor),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 25, top: 10),
+                          child: _buildText(
+                              '＊枠内に、必要な情報が入るように',
+                              16,
+                              'NotoSansJP',
+                              FontWeight.w500,
+                              AppColors.whiteColor),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 25),
+                          child: _buildText('撮影をお願いします。', 16, 'NotoSansJP',
+                              FontWeight.w500, AppColors.whiteColor),
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            IconButton(
+                              onPressed: () => captureImage(context),
+                              icon: SizedBox(
+                                child: Icon(
+                                  Icons.camera_alt_outlined,
+                                  color: AppColors.whiteColor,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      )
-                    ],
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
-          );
-        } else
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-      },
-    ));
+                )
+              ],
+            );
+          } else
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+        },
+      ),
+    );
   }
 
   Future<void> initCamera() async {
@@ -150,19 +158,21 @@ class _DisplayCameraState extends State<DisplayCamera>
     });
   }
 
-  captureImage(BuildContext context) {
+  captureImage(BuildContext context) async {
     _controller.takePicture().then((file) {
       setState(() {
         imageFile = file;
       });
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => UploadImage(
-            image: imageFile,
+      if (mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => UploadImage(
+              image: imageFile,
+            ),
           ),
-        ),
-      );
+        );
+      }
     });
   }
 }

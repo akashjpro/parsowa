@@ -20,12 +20,14 @@ class _ImageAttachSubScreenState extends State<ImageAttachSubScreen> {
   }
 
   onPressCamera() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DisplayCamera(),
-      ),
-    );
+    setState(() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DisplayCamera(),
+        ),
+      );
+    });
   }
 
   @override
