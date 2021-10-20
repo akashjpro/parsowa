@@ -22,6 +22,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  final _focusNode = FocusNode();
   List<String> category = [
     '午前中',
     '午後',
@@ -29,17 +30,26 @@ class _SearchScreenState extends State<SearchScreen> {
     '身体・生活',
     '身体・生活 身体・生活 身体・生活',
   ];
-  late ExpandableController expandableCheck;
+  ExpandableController expandableCheck = ExpandableController();
   String? initDropdown = '';
+  bool isHide = true;
   late TextEditingController searchController;
-  late bool exCheck;
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
-    expandableCheck = ExpandableController(initialExpanded: false);
-    exCheck = false;
     searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // ignore: todo
+    // TODO: implement dispose
+    expandableCheck.dispose();
+    isHide = true;
+    _focusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -69,67 +79,84 @@ class _SearchScreenState extends State<SearchScreen> {
                       border: Border(
                           bottom:
                               BorderSide(color: Color(0xffC9C9C9), width: 1))),
-                  child: Row(
-                    children: [
-                      Flexible(
-                        child: Container(
-                          alignment: Alignment.centerLeft,
-                          height: 60,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            style: const TextStyle(
-                                fontSize: 18,
-                                color: AppColors.unselectedColor,
-                                fontFamily: 'NotoSanJP',
-                                fontWeight: FontWeight.w700),
-                            decoration: InputDecoration(
-                                prefixIconConstraints: const BoxConstraints(
-                                    maxHeight: 18, maxWidth: 28),
-                                prefixIcon: Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: SvgPicture.asset(
-                                    'assets/icons/icon_svg/Search_icon_on.svg',
-                                    color: const Color(0xff929191),
-                                    fit: BoxFit.contain,
+                  child: GestureDetector(
+                    onTap: () {
+                      expandableCheck.value = !expandableCheck.value;
+                      print(expandableCheck.value);
+                      FocusScope.of(context).unfocus();
+                      searchController.clear();
+                      setState(() {
+                        isHide = !isHide;
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            height: 60,
+                            child: TextField(
+                              enabled: false,
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  color: AppColors.unselectedColor,
+                                  fontFamily: 'NotoSanJP',
+                                  fontWeight: FontWeight.w700),
+                              decoration: InputDecoration(
+                                  prefixIconConstraints: const BoxConstraints(
+                                      maxHeight: 18, maxWidth: 48),
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 10, left: 20),
+                                    child: SvgPicture.asset(
+                                      'assets/icons/icon_svg/Search_icon_on.svg',
+                                      color: const Color(0xff929191),
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
-                                ),
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                errorBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                hintText: '絞り込み',
-                                hintStyle: const TextStyle(
-                                    fontSize: 18,
-                                    color: Color(0xff7C7C7C),
-                                    fontFamily: 'NotoSanJP',
-                                    fontWeight: FontWeight.w700)),
+                                  suffixIconConstraints: const BoxConstraints(
+                                      maxHeight: 16, maxWidth: 46),
+                                  suffixIcon: isHide
+                                      ? Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 20),
+                                          child: SvgPicture.asset(
+                                            'assets/icons/icon_svg/down_btn.svg',
+                                            fit: BoxFit.contain,
+                                            width: 16,
+                                            height: 16,
+                                          ),
+                                        )
+                                      : Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 20),
+                                          child: SvgPicture.asset(
+                                            'assets/icons/icon_svg/up_btn.svg',
+                                            width: 16,
+                                            height: 16,
+                                          ),
+                                        ),
+                                  border: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  errorBorder: InputBorder.none,
+                                  disabledBorder: InputBorder.none,
+                                  hintText: '絞り込み',
+                                  hintStyle: const TextStyle(
+                                      fontSize: 18,
+                                      color: Color(0xff7C7C7C),
+                                      fontFamily: 'NotoSanJP',
+                                      fontWeight: FontWeight.w700)),
+                            ),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          exCheck = !exCheck;
-                          expandableCheck.value = !expandableCheck.value;
-                          setState(() {});
-                        },
-                        child: ExpandableIcon(
-                          theme: const ExpandableThemeData(
-                            expandIcon: Icons.keyboard_arrow_down,
-                            collapseIcon: Icons.keyboard_arrow_up,
-                            iconColor: AppColors.unselectedColor,
-                            iconSize: 30.0,
-                            iconPadding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 20),
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 expanded: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [expandedSection()],
+                  children: [expandedSection(context)],
                 ),
                 collapsed: Container()),
             Flexible(
@@ -137,9 +164,19 @@ class _SearchScreenState extends State<SearchScreen> {
                 JobListBodyWidget(
                   data: widget.data,
                 ),
-                if (exCheck)
+                if (!isHide || expandableCheck.value)
                   Container(
                     color: AppColors.unselectedColor.withOpacity(0.5),
+                    child: GestureDetector(
+                      onTap: () {
+                        expandableCheck.value = !expandableCheck.value;
+                        FocusScope.of(context).unfocus();
+                        searchController.clear();
+                        setState(() {
+                          isHide = !isHide;
+                        });
+                      },
+                    ),
                   )
               ]),
             ),
@@ -150,6 +187,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget _buildSmallButton(String title, Color bg, Color textColor,
           Color borderColor, Function onPress) =>
       MaterialButton(
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         onPressed: () => onPress(),
         child: Text(
           title,
@@ -205,10 +243,12 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       );
 
-  _buildInput() => SizedBox(
+  _buildInput(BuildContext context) => SizedBox(
         height: 40,
         child: TextField(
           textAlignVertical: TextAlignVertical.center,
+          focusNode: _focusNode,
+          autofocus: false,
           controller: searchController,
           style: const TextStyle(
               fontFamily: 'NotoSanJP',
@@ -254,7 +294,7 @@ class _SearchScreenState extends State<SearchScreen> {
             borderRadius: BorderRadius.circular(19.0),
             side: BorderSide(color: borderColor)),
       );
-  expandedSection() {
+  expandedSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -301,7 +341,7 @@ class _SearchScreenState extends State<SearchScreen> {
         const SizedBox(height: 10),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: _buildInput(),
+          child: _buildInput(context),
         ),
         const SizedBox(height: 20),
         Container(
@@ -316,7 +356,13 @@ class _SearchScreenState extends State<SearchScreen> {
           alignment: Alignment.center,
           child: _buildButton('この条件で絞り込む', AppColors.primaryColor,
               AppColors.whiteColor, AppColors.whiteColor, () {
-            Navigator.of(context).pushNamed(ApplyFillterScreen.routeName);
+            expandableCheck.value = !expandableCheck.value;
+            print(expandableCheck.value);
+            FocusScope.of(context).unfocus();
+            searchController.clear();
+            setState(() {
+              isHide = !isHide;
+            });
           }),
         )
       ],

@@ -38,7 +38,7 @@ class PreviousAttendState extends State<PreviousAttendScreen> {
       backgroundColor: AppColors.jobListBodyColor,
       appBar: AppBarCustom(
           stringTitle: widget.title,
-          isLeadingHide: true,
+          isLeadingHide: false,
           isActionHide: true,
           onBackPress: () => {},
           onClosePress: () => {}),
@@ -61,7 +61,9 @@ class PreviousAttendState extends State<PreviousAttendScreen> {
   }
 
   _buildRecordList(BuildContext context) {
-    return data
+    var _attendList =
+        data.where((element) => element.status.compareTo('修正済') == 0).toList();
+    return _attendList
         .map((item) => AttendListWidget.buildAttendItem(context, item, 4))
         .toList();
   }

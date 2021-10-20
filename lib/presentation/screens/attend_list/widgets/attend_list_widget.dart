@@ -26,7 +26,7 @@ class AttendListWidget {
                   width: 1.5, color: const Color(0xff9d9d9d).withOpacity(0.3)),
             )),
         height: 50.0,
-        padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -118,7 +118,7 @@ class AttendListWidget {
                           );
                         }),
                       if (typeScreen == 3)
-                        _buildButton('記録を書', AppColors.primaryColor,
+                        _buildButton('記録を書く', AppColors.primaryColor,
                             AppColors.whiteColor, AppColors.whiteColor, () {
                           // #37 MakeJobRecord
                           Navigator.of(context).pushNamed(

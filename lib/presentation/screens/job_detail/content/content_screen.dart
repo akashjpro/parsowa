@@ -54,7 +54,7 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
               toBringSection(),
               _buildTitle('参考資料'),
               documentSection(),
-              _buildTitle('参考資料'),
+              _buildTitle('事業所詳細'),
               providerSection(),
               buttonSection(),
               // ButtonSection()
@@ -62,7 +62,9 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 1,),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: 1,
+      ),
     );
   }
 
@@ -301,7 +303,7 @@ class ContentJobDetailScreenState extends State<ContentJobDetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _buildSubTitle('事業名'),
+            _buildSubTitle('事業所名'),
             Container(
               margin: const EdgeInsets.only(left: 26.0, top: 10),
               child: _buildText(widget.job.providerName),
