@@ -58,4 +58,6 @@ class Strings {
   // Account Info
   static const accountInfoTitle = 'アカウント情報';
 
+  // Salary Detail
+  static const salaryDetailTitle = '報酬確認';
 }
