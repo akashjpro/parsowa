@@ -4,6 +4,7 @@ import 'package:parsowa/presentation/screens/login/login_screen.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
+import 'presentation/screens/fix_request_detail/completed/completed_fix_request_detail.dart';
 import 'presentation/screens/qr_code_read/qr_code_read_screen.dart';
 
 void main() {
@@ -21,9 +22,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: AppTheme.lightTheme,
-      home: LoginScreen(
-        title: "",
-      ),
+      // home: LoginScreen(
+      //   title: "",
+      // ),
+      home: CompleteFixRequestDetailScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
