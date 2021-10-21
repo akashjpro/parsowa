@@ -15,7 +15,7 @@ import 'package:parsowa/presentation/screens/job_detail/confirm/confirm_screen.d
 import 'package:parsowa/presentation/screens/job_detail/content/content_screen.dart';
 import 'package:parsowa/presentation/screens/job_list/data/job_list_data.dart';
 import 'package:parsowa/presentation/screens/job_list/job_list_screen.dart';
-import 'package:parsowa/presentation/screens/job_list_new/apply_fillter_screen.dart';
+import 'package:parsowa/presentation/screens/job_list_new/applying_screen.dart';
 import 'package:parsowa/presentation/screens/job_list_new/job_list_new.dart';
 import 'package:parsowa/presentation/screens/login/login_screen.dart';
 import 'package:parsowa/presentation/screens/make_job_record/make_job_record.dart';
@@ -146,7 +146,9 @@ class RouteGenerator {
         );
       case ContactUsScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => const ContactUsScreen(),
+          builder: (_) => ContactUsScreen(
+            title: args,
+          ),
         );
       case MakeJobRecord.routeName:
         return MaterialPageRoute(
