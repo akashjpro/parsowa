@@ -60,60 +60,11 @@ class SlideItem extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "利用規約",
-                  style: TextStyle(
-                      fontFamily: 'NotoSanJP',
-                      fontSize: 16.0,
-                      decoration: TextDecoration.underline,
-                      color: AppColors.primaryColor,
-                      fontWeight: FontWeight.w400),
-                ),
-                SizedBox(
-                  width: 39.9,
-                ),
-                Text(
-                  "プライバシーポリシー",
-                  style: TextStyle(
-                      fontFamily: 'NotoSanJP',
-                      fontSize: 16.0,
-                      decoration: TextDecoration.underline,
-                      color: AppColors.primaryColor,
-                      fontWeight: FontWeight.w400),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 25.0,
-            ),
-            _buildButton(slideList[index].textButton, AppColors.primaryColor,
-                AppColors.whiteColor, AppColors.primaryColor, () {
-              switch (index) {
-                case 0:
-                  Navigator.of(context).pushNamed(
-                    WebViewScreen.routeName,
-                    arguments: Strings.termsOfUseTitle,
-                  );
-                  break;
-                case 1:
-                  Navigator.of(context).pushNamed(
-                    WebViewScreen.routeName,
-                    arguments: Strings.termsOfUseTitle,
-                  );
-                  break;
-                case 2:
-                  Navigator.of(context)
-                      .pushReplacementNamed(LoginScreen.routeName);
-                  break;
-                case 3:
-                  Navigator.of(context)
-                      .pushReplacementNamed(MyPageScreen.routeName);
-                  break;
-              }
-            }),
+            index == 3
+                ? _buildBottom(slideList[index].typeButton, context)
+                : SizedBox(
+                    height: 0.0,
+                  ),
           ],
         ));
   }
@@ -140,4 +91,83 @@ class SlideItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(19.0),
             side: BorderSide(color: borderColor, width: 2)),
       );
+
+  Widget _buildBottom(ButtonType typeButton, BuildContext context) {
+    var textButton = "";
+    switch (typeButton) {
+      case ButtonType.TermsOfService:
+        textButton = "利用規約";
+        break;
+      case ButtonType.PrivacyPolicy:
+        textButton = "プライバシーポリシー";
+        break;
+      case ButtonType.AgreeAndStart:
+        textButton = "同意してはじめる";
+        break;
+      case ButtonType.Finish:
+        textButton = "終了する";
+        break;
+    }
+
+    var widget = Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "利用規約",
+                style: TextStyle(
+                    fontFamily: 'NotoSanJP',
+                    fontSize: 16.0,
+                    decoration: TextDecoration.underline,
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.w400),
+              ),
+              SizedBox(
+                width: 39.9,
+              ),
+              Text(
+                "プライバシーポリシー",
+                style: TextStyle(
+                    fontFamily: 'NotoSanJP',
+                    fontSize: 16.0,
+                    decoration: TextDecoration.underline,
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.w400),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 25.0,
+          ),
+          _buildButton(textButton, AppColors.primaryColor, AppColors.whiteColor,
+              AppColors.primaryColor, () {
+            switch (typeButton) {
+              case ButtonType.TermsOfService:
+                Navigator.of(context).pushNamed(
+                  WebViewScreen.routeName,
+                  arguments: Strings.termsOfUseTitle,
+                );
+                break;
+              case ButtonType.PrivacyPolicy:
+                Navigator.of(context).pushNamed(
+                  WebViewScreen.routeName,
+                  arguments: Strings.privacyPolicyTitle,
+                );
+                break;
+              case ButtonType.AgreeAndStart:
+                Navigator.of(context)
+                    .pushReplacementNamed(LoginScreen.routeName);
+                break;
+              case ButtonType.Finish:
+                Navigator.of(context)
+                    .pushReplacementNamed(MyPageScreen.routeName);
+                break;
+            }
+          })
+        ]);
+    return widget;
+  }
 }
