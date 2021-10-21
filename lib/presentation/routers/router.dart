@@ -94,7 +94,7 @@ class RouteGenerator {
         );
       case ApplyFillterScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => ApplyFillterScreen(title: Strings.searchScreenTitle),
+          builder: (_) => ApplyFillterScreen(title: Strings.jobListTitle),
         );
       case AttendListScreen.routeName:
         return MaterialPageRoute(

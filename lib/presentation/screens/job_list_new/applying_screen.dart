@@ -38,14 +38,14 @@ class _ApplyFillterScreenState extends State<ApplyFillterScreen> {
     return Scaffold(
       appBar: AppBarCustom(
           stringTitle: widget.title,
-          isLeadingHide: false,
+          isLeadingHide: true,
           isActionHide: true,
-          onBackPress: () => {Navigator.of(context).pop()},
+          onBackPress: () => {},
           onClosePress: () => {}),
       body: JobListBodyWidget(
         data: widget.data,
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 0),
+      bottomNavigationBar: BottomNavBar(currentIndex: 1 ),
     );
   }
 

@@ -57,7 +57,7 @@ class AttendListScreenState extends State<AttendListScreen>
           Expanded(child: _buildTabView(context))
         ],
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 1),
+      bottomNavigationBar: BottomNavBar(currentIndex: 2),
     );
   }
 

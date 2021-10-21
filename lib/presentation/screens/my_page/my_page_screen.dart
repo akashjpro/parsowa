@@ -128,7 +128,7 @@ class MyPageScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 3),
+      bottomNavigationBar: BottomNavBar(currentIndex: 4),
     );
   }
 

@@ -24,7 +24,7 @@ class WebViewScreen extends StatelessWidget {
         initialUrl: 'https://flutter.io',
         javascriptMode: JavascriptMode.unrestricted,
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 3),
+      bottomNavigationBar: BottomNavBar(currentIndex: 4),
     );
   }
 }

@@ -24,6 +24,11 @@ class BottomNavBarState extends State<BottomNavBar> {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
+            icon: _buildIcon('assets/icons/icon_svg/Search_icon_on.svg'),
+            label: '探す',
+            activeIcon:
+            _buildIconActive('assets/icons/icon_svg/Search_icon_on.svg')),
+        BottomNavigationBarItem(
             icon: _buildIcon('assets/icons/icon_svg/JobList_icon.svg'),
             label: '申込中',
             activeIcon:

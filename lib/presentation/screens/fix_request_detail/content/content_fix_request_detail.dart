@@ -71,7 +71,7 @@ class _ContentsFixRequestDetailScreenState
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavBar(currentIndex: 1),
+        bottomNavigationBar: BottomNavBar(currentIndex: 2),
       ),
     );
   }
