@@ -146,7 +146,9 @@ class RouteGenerator {
         );
       case ContactUsScreen.routeName:
         return MaterialPageRoute(
-          builder: (_) => const ContactUsScreen(),
+          builder: (_) => ContactUsScreen(
+            title: args,
+          ),
         );
       case MakeJobRecord.routeName:
         return MaterialPageRoute(
