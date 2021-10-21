@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:parsowa/core/constants/colors.dart';
 import 'package:parsowa/presentation/screens/attend_list/attend_list_screen.dart';
 import 'package:parsowa/presentation/screens/attend_list/record_screen.dart';
+import 'package:parsowa/presentation/screens/job_list_new/applying_screen.dart';
 import 'package:parsowa/presentation/screens/job_list_new/job_list_new.dart';
 import 'package:parsowa/presentation/screens/my_page/my_page_screen.dart';
 
@@ -66,13 +67,16 @@ class BottomNavBarState extends State<BottomNavBar> {
             Navigator.of(context).pushReplacementNamed(JobListNewScreen.routeName);
             break;
           case 1:
+            Navigator.of(context).pushReplacementNamed(ApplyFillterScreen.routeName);
+            break;
+          case 2:
             Navigator.of(context)
                 .pushReplacementNamed(AttendListScreen.routeName);
             break;
-          case 2:
+          case 3:
             Navigator.of(context).pushReplacementNamed(RecordScreen.routeName);
             break;
-          case 3:
+          case 4:
             Navigator.of(context).pushReplacementNamed(MyPageScreen.routeName);
             break;
         }
